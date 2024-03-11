@@ -29,6 +29,7 @@ current = true
 
 [node name="Flashlight" type="SpotLight3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0403762, 0)
+visible = false
 spot_range = 15.0
 spot_angle = 50.0
 script = ExtResource("2_81jkl")
