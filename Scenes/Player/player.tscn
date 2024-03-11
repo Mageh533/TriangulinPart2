@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ishtnc6uke55"]
+
+[ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u8eft"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3orey"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 6
+script = ExtResource("1_nm7ix")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_u8eft")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_3orey")
