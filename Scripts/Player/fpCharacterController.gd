@@ -46,35 +46,10 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		
+	playerControls(delta)
 	
-	# Sprinting
-	if Input.is_action_pressed("sprint"):
-		sprinting = true
-		if stamina > 0:
-			currentSpeed = SPRINT_SPEED
-			stamina -= delta * STAMINA_DRAIN_RATE
-		else:
-			currentSpeed = SPEED
-	else:
-		sprinting = false
-		currentSpeed = SPEED
-		stamina += delta * STAMINA_RECHARGE_RATE
-	
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	var input_dir = Input.get_vector("strafe_left", "strafe_right", "forward", "backward")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * currentSpeed
-		velocity.z = direction.z * currentSpeed
-		steps -= (delta if !sprinting else delta * 2)
-	else:
-		velocity.x = move_toward(velocity.x, 0, currentSpeed)
-		velocity.z = move_toward(velocity.z, 0, currentSpeed)
-	
+	# Walking makes noise
 	if steps < 0:
 		steps = STEPS_TO_NOISE
 		if tempNoise < 4:
@@ -101,6 +76,36 @@ func processNoise(delta):
 	noiseNode.shape.radius = noise
 	
 	emit_signal("sendCurrentNoise", noise)
+
+func playerControls(delta):
+	# Sprinting
+	if Input.is_action_pressed("sprint"):
+		sprinting = true
+		if stamina > 0:
+			currentSpeed = SPRINT_SPEED
+			stamina -= delta * STAMINA_DRAIN_RATE
+		else:
+			currentSpeed = SPEED
+	else:
+		sprinting = false
+		currentSpeed = SPEED
+		if stamina < MAX_STAMINA:
+			stamina += delta * STAMINA_RECHARGE_RATE
+	
+	# Handle jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		
+	# Get the input direction and handle the movement/deceleration.
+	var input_dir = Input.get_vector("strafe_left", "strafe_right", "forward", "backward")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * currentSpeed
+		velocity.z = direction.z * currentSpeed
+		steps -= (delta if !sprinting else delta * 2)
+	else:
+		velocity.x = move_toward(velocity.x, 0, currentSpeed)
+		velocity.z = move_toward(velocity.z, 0, currentSpeed)
 
 func _on_flashlight_emit_noise(noiseMade):
 	# Flashlight recharge shouldnt be louder than 2

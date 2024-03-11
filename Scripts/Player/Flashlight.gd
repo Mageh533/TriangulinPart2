@@ -19,6 +19,9 @@ func _ready():
 func _process(delta):
 	# Drain battery, send values to UI
 	playerControls(delta)
+	# Light feels weaker on lower battery, lets the player know to recharge
+	light_energy = battery / 100
+	spot_angle = battery / 2
 	if battery > 0 and visible:
 		battery -= delta * consumptionRate
 		if battery < 0:

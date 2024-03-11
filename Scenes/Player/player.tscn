@@ -31,6 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0403762, 0)
 spot_range = 15.0
 spot_angle = 50.0
 script = ExtResource("2_81jkl")
+rechargeRate = 20.0
 consumptionRate = 3.0
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
@@ -57,6 +58,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_lxg5p")
+
+[node name="BG" type="ColorRect" parent="UI/PausedUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.168627)
 
 [node name="Paused" type="Label" parent="UI/PausedUI"]
 layout_mode = 1
@@ -89,10 +99,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -539.0
-offset_top = -72.0
-offset_right = -414.0
-offset_bottom = -32.0
+offset_left = -158.0
+offset_top = -75.0
+offset_right = -33.0
+offset_bottom = -35.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -109,10 +119,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 403.0
-offset_top = -73.0
-offset_right = 507.0
-offset_bottom = -33.0
+offset_left = 880.0
+offset_top = -76.0
+offset_right = 984.0
+offset_bottom = -36.0
 grow_vertical = 0
 
 [node name="NoiseNum" type="Label" parent="UI/GameplayUI/NoisePanel"]

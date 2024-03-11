@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dv77eetkloak6"]
+[gd_scene load_steps=3 format=3 uid="uid://dv77eetkloak6"]
 
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_tfmf3"]
+
+[sub_resource type="Environment" id="Environment_lebrv"]
 
 [node name="Dev1" type="Node3D"]
 
@@ -42,7 +44,11 @@ collision_mask = 0
 size = Vector3(8, 1, 8)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, -0.285638, 0.958338, 0, -0.958338, -0.285638, 0, 2.65915, -2.0598)
+transform = Transform3D(0.891934, 0.088306, 0.443459, -0.339936, -0.515745, 0.786416, 0.298157, -0.852179, -0.429992, 0, 2.65915, -2.0598)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
+environment = SubResource("Environment_lebrv")
 
 [node name="Player" parent="." instance=ExtResource("1_tfmf3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64584, 3.73112)
