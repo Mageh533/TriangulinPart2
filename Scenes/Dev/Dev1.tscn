@@ -7,11 +7,42 @@
 [node name="Level" type="Node3D" parent="."]
 
 [node name="Ground" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.570801, -0.276855, -0.111481)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90625, -0.276855, -1.17957)
 use_collision = true
 collision_layer = 4
 collision_mask = 0
-size = Vector3(6.3291, 0.446289, 7.86383)
+size = Vector3(15, 0.446289, 18)
+
+[node name="Wall" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.90625, 1.5, 4.32043)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 4, 7)
+
+[node name="Wall2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.40625, 1.5, 0.321435)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(8, 4, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.40625, 1.5, 7.32143)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(8, 4, 1)
+
+[node name="Ceiling" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.40625, 3.999, 3.82143)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(8, 1, 8)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, -0.285638, 0.958338, 0, -0.958338, -0.285638, 0, 2.65915, -2.0598)
 
 [node name="Player" parent="." instance=ExtResource("1_tfmf3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64584, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64584, 3.73112)
