@@ -17,8 +17,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# Drain battery, send values to UI
-	playerControls(delta)
 	# Light feels weaker on lower battery, lets the player know to recharge
 	light_energy = battery / 100
 	spot_angle = battery / 2
@@ -28,11 +26,10 @@ func _process(delta):
 			battery = 0
 	emit_signal("sendBattery", battery)
 
-func playerControls(delta):
-	# Turn on flaslight
-	if Input.is_action_just_pressed("flashlight_toggle"):
-		visible = !visible
-	if Input.is_action_pressed("recharge"):
-		if battery < maxBattery:
-			battery += delta * rechargeRate
-		emit_signal("emitNoise", noise * delta)
+func _on_player_use_flashlight():
+	visible = !visible
+
+func _on_player_reload(delta):
+	if battery < maxBattery:
+		battery += delta * rechargeRate
+	emit_signal("emitNoise", noise * delta)

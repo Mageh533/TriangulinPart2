@@ -3,9 +3,12 @@ extends CharacterBody3D
 # Signals
 signal sendCurrentNoise(currentNoise : float)
 signal sendCurrentStamina(currentStamina : float)
+signal use_flashlight
+signal reload(delta : float)
 
 # Nodes
 @onready var noiseNode = $Noise/NoiseCollision
+@onready var interactRay = $Head/Interact
 
 # Editable constants
 @export var SENSITIVITY : float = 0.01
@@ -23,11 +26,12 @@ const STEPS_TO_NOISE : float = 0.5
 var permNoise : float = 0
 var tempNoise : float = 0
 var noise : float = 0
-
-var sprinting : bool = false
 var currentSpeed : float = 0
 var stamina : float = 0
 var steps : float = 0
+
+var active : bool = true
+var sprinting : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -41,13 +45,20 @@ func _ready():
 func _process(delta):
 	processNoise(delta)
 	emit_signal("sendCurrentStamina", stamina)
+	
+	# Free the mouse if the player is not active
+	if active:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-		
-	playerControls(delta)
+	
+	if active:
+		playerControls(delta)
 	
 	# Walking makes noise
 	if steps < 0:
@@ -59,7 +70,7 @@ func _physics_process(delta):
 
 # Mouselook
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and active:
 		rotation.y -= event.relative.x * SENSITIVITY
 		
 		$Head.rotation.x -= event.relative.y * SENSITIVITY
@@ -92,6 +103,17 @@ func playerControls(delta):
 		if stamina < MAX_STAMINA:
 			stamina += delta * STAMINA_RECHARGE_RATE
 	
+	# Handle objects that are interactable
+	if Input.is_action_just_pressed("interact"):
+		if interactRay.is_colliding():
+			interactRay.get_collider().use()
+	
+	if Input.is_action_just_pressed("flashlight_toggle"):
+		emit_signal("use_flashlight")
+	
+	if Input.is_action_pressed("recharge"):
+		emit_signal("reload", delta)
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -107,6 +129,7 @@ func playerControls(delta):
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
 
+# Signal connections
 func _on_flashlight_emit_noise(noiseMade):
 	# Flashlight recharge shouldnt be louder than 2
 	if tempNoise < 2:

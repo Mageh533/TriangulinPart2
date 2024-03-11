@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="CCPRO"
+config/name="Triangulin3D"
 run/main_scene="res://Scenes/Menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -75,6 +75,7 @@ interact={
 3d_physics/layer_2="monsters"
 3d_physics/layer_3="world"
 3d_physics/layer_4="noise"
+3d_physics/layer_5="interactables"
 
 [rendering]
 
