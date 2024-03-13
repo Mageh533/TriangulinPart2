@@ -9,6 +9,8 @@ signal reload(delta : float)
 # Nodes
 @onready var noiseNode = $Noise/NoiseCollision
 @onready var interactRay = $Head/Interact
+@onready var playerCam = $Head
+@onready var playerCollision = $PlayerCollision
 
 # Editable constants
 @export var SENSITIVITY : float = 0.01
@@ -32,6 +34,7 @@ var steps : float = 0
 
 var active : bool = true
 var sprinting : bool = false
+var crouching : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -45,7 +48,6 @@ func _ready():
 func _process(delta):
 	processNoise(delta)
 	emit_signal("sendCurrentStamina", stamina)
-	
 	# Free the mouse if the player is not active
 	if active:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -90,18 +92,19 @@ func processNoise(delta):
 
 func playerControls(delta):
 	# Sprinting
-	if Input.is_action_pressed("sprint"):
-		sprinting = true
-		if stamina > 0:
-			currentSpeed = SPRINT_SPEED
-			stamina -= delta * STAMINA_DRAIN_RATE
+	if !crouching:
+		if Input.is_action_pressed("sprint"):
+			sprinting = true
+			if stamina > 0:
+				currentSpeed = SPRINT_SPEED
+				stamina -= delta * STAMINA_DRAIN_RATE
+			else:
+				currentSpeed = SPEED
 		else:
+			sprinting = false
 			currentSpeed = SPEED
-	else:
-		sprinting = false
-		currentSpeed = SPEED
-		if stamina < MAX_STAMINA:
-			stamina += delta * STAMINA_RECHARGE_RATE
+			if stamina < MAX_STAMINA:
+				stamina += delta * STAMINA_RECHARGE_RATE
 	
 	# Handle objects that are interactable
 	if Input.is_action_just_pressed("interact"):
@@ -117,7 +120,16 @@ func playerControls(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
+	
+	if Input.is_action_just_pressed("crouch"):
+		crouching = true
+		playerCollision.shape.height = 1.0
+		currentSpeed = SPEED / 2
+	elif Input.is_action_just_released("crouch"):
+		crouching = false
+		currentSpeed = SPEED
+		playerCollision.shape.height = 2.0
+	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("strafe_left", "strafe_right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
