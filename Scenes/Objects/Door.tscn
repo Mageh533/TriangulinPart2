@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://w5m437wxwmbl"]
+[gd_scene load_steps=7 format=3 uid="uid://w5m437wxwmbl"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Door.gd" id="1_lwywv"]
+[ext_resource type="Script" path="res://Scripts/Objects/DoorBarricade.gd" id="2_vsh1s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24v4j"]
 size = Vector3(0.342773, 2.67102, 1.59424)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k4kta"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7layd"]
+size = Vector3(0.250488, 2.58688, 0.444824)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wd52f"]
 
 [node name="Door" type="AnimatableBody3D"]
 collision_layer = 16
@@ -19,3 +25,26 @@ shape = SubResource("BoxShape3D_24v4j")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.384838, 0, 0, 0, 2.64245, 0, 0, 0, 1.62822, 0, 1.31136, -0.839304)
 mesh = SubResource("BoxMesh_k4kta")
+
+[node name="DoorBarricade" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133483, 0.934128, 0.506495)
+top_level = true
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_vsh1s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorBarricade"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.374756, 1.23625, 0.0234851)
+shape = SubResource("BoxShape3D_7layd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoorBarricade"]
+transform = Transform3D(0.249666, 0, 0, 0, 2.55043, 0, 0, 0, 0.464356, -0.364679, 1.24098, 0.0360485)
+mesh = SubResource("BoxMesh_wd52f")
+
+[node name="BarricadeTransform" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133483, 0.934128, 0.506495)
+remote_path = NodePath("../DoorBarricade")
+update_rotation = false
+update_scale = false
+
+[connection signal="IsInUse" from="DoorBarricade" to="." method="_on_door_barricade_is_in_use"]
