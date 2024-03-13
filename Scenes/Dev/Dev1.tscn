@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dv77eetkloak6"]
+[gd_scene load_steps=5 format=3 uid="uid://dv77eetkloak6"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/Dev/InteractableObject.gd" id="1_a346j"]
 [ext_resource type="Script" path="res://Scripts/Game/Dev/Dev1.gd" id="1_bickb"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_tfmf3"]
-[ext_resource type="Script" path="res://Scripts/Objects/Dev/InteractableObject2.gd" id="2_86vg7"]
+[ext_resource type="PackedScene" uid="uid://w5m437wxwmbl" path="res://Scenes/Objects/Door.tscn" id="2_ujbm5"]
 
 [sub_resource type="Environment" id="Environment_lebrv"]
 
@@ -54,25 +53,10 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
 environment = SubResource("Environment_lebrv")
 
-[node name="InteractableObject" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68128, 1.96857, -3.10363)
-use_collision = true
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("1_a346j")
+[node name="Interactables" type="Node3D" parent="."]
 
-[node name="InteractableObject2" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68128, 1.96857, -5.30593)
-use_collision = true
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("2_86vg7")
-
-[node name="TakeOver" type="Camera3D" parent="Level/InteractableObject2"]
-transform = Transform3D(0.0787458, -0.305031, 0.949081, 0.0252219, 0.952343, 0.303986, -0.996576, 0, 0.0826864, 3.84437, 1.09015, 0)
+[node name="Door" parent="Interactables" instance=ExtResource("2_ujbm5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80712, 0.00818276, -5.00795)
 
 [node name="Player" parent="." instance=ExtResource("1_tfmf3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18588, 3.73112)
-
-[connection signal="freezePlayer" from="Level/InteractableObject2" to="." method="_on_interactable_object_2_freeze_player"]
-[connection signal="returnCamera" from="Level/InteractableObject2" to="." method="_on_interactable_object_2_return_camera"]
