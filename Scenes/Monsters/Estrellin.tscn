@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cta78vy2cx2y3"]
+
+[ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_bivr6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
+size = Vector3(2.0405, 2.0791, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2m2ki"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r3aw4"]
+radius = 4.8442
+
+[node name="Estrellin" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 20
+script = ExtResource("1_bivr6")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0209198, 1.10471, -0.114316)
+shape = SubResource("BoxShape3D_n1k4l")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.97441, 0, 0, 0, 2.1, 0, 0, 0, 1.92537, 0.0241141, 1.05044, -0.107266)
+mesh = SubResource("BoxMesh_2m2ki")
+
+[node name="NoiseDetection" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="NoiceCollision" type="CollisionShape3D" parent="NoiseDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.976358, 0)
+shape = SubResource("SphereShape3D_r3aw4")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[connection signal="area_entered" from="NoiseDetection" to="." method="_on_noise_detection_area_entered"]

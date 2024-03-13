@@ -1,22 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dv77eetkloak6"]
+[gd_scene load_steps=7 format=3 uid="uid://dv77eetkloak6"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Dev/Dev1.gd" id="1_bickb"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_tfmf3"]
 [ext_resource type="PackedScene" uid="uid://w5m437wxwmbl" path="res://Scenes/Objects/Door.tscn" id="2_ujbm5"]
+[ext_resource type="PackedScene" uid="uid://cta78vy2cx2y3" path="res://Scenes/Monsters/Estrellin.tscn" id="4_sajwv"]
 
 [sub_resource type="Environment" id="Environment_lebrv"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_k1ls4"]
+vertices = PackedVector3Array(-9.90625, 2.4344, -9.57151, -9.90625, -1.0656, 7.17849, 4.09375, -1.0656, 7.17849, 4.09375, 2.4344, -9.57151)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [node name="Dev1" type="Node3D"]
 script = ExtResource("1_bickb")
 
 [node name="Level" type="Node3D" parent="."]
-
-[node name="Ground" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90625, -0.276855, -1.17957)
-use_collision = true
-collision_layer = 4
-collision_mask = 0
-size = Vector3(15, 0.446289, 18)
 
 [node name="Wall" type="CSGBox3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.90625, 1.5, 4.32043)
@@ -53,6 +51,17 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
 environment = SubResource("Environment_lebrv")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 0.979487, 0.201505, 0, -0.201505, 0.979487, 0, 0, 0)
+navigation_mesh = SubResource("NavigationMesh_k1ls4")
+
+[node name="Ground" type="CSGBox3D" parent="Level/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 0.979487, -0.201505, 0, 0.201505, 0.979487, -2.90625, -0.0334864, -1.21116)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(15, 0.446289, 18)
+
 [node name="Interactables" type="Node3D" parent="."]
 
 [node name="Door" parent="Interactables" instance=ExtResource("2_ujbm5")]
@@ -60,3 +69,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80712, 0.00818276, -5.0079
 
 [node name="Player" parent="." instance=ExtResource("1_tfmf3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18588, 3.73112)
+
+[node name="Estrellin" parent="." instance=ExtResource("4_sajwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0276928, -8.10441)
