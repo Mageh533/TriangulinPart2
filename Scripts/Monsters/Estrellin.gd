@@ -3,7 +3,7 @@ extends CharacterBody3D
 @onready var nav_agent = $NavigationAgent3D
 @onready var noise_detection = $NoiseCast
 
-var target : Vector3 = Vector3(0, 0, 0)
+var target : Vector3
 
 const SPEED : float = 5.0
 const JUMP_VELOCITY : float = 4.5
@@ -12,6 +12,7 @@ const JUMP_VELOCITY : float = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	target = global_position
 	call_deferred("actor_setup")
 
 func actor_setup():

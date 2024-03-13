@@ -8,7 +8,7 @@
 [sub_resource type="Environment" id="Environment_lebrv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_k1ls4"]
-vertices = PackedVector3Array(-9.80816, 0.5147, -9.71977, -9.80816, 0.5147, 8.53023, 4.19184, 0.5147, 8.53023, 4.19184, 0.5147, -9.71977)
+vertices = PackedVector3Array(-9.80816, 0.5147, -20.9108, -9.80816, 0.5147, 7.58925, 4.19184, 0.5147, 7.58925, 4.19184, 0.5147, -20.9108)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pbd3b"]
@@ -19,11 +19,11 @@ script = ExtResource("1_bickb")
 [node name="Level" type="Node3D" parent="."]
 
 [node name="Ground" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90625, -0.276855, -1.17957)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90625, -0.276855, -6.67957)
 use_collision = true
 collision_layer = 4
 collision_mask = 0
-size = Vector3(15, 0.446289, 18)
+size = Vector3(15, 0.446289, 29)
 
 [node name="Wall" type="CSGBox3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.90625, 1.5, 4.32043)
@@ -65,7 +65,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0128427, -4.76837e-07, -0.0
 navigation_mesh = SubResource("NavigationMesh_k1ls4")
 
 [node name="WalkableGround" type="MeshInstance3D" parent="Level/NavigationRegion3D"]
-transform = Transform3D(14.9015, 0, 0, 0, 0.470599, 0, 0, 0, 19.2258, -2.85742, 0, -0.60685)
+transform = Transform3D(14.9015, 0, 0, 0, 0.470599, 0, 0, 0, 29.6078, -2.85742, 0, -6.60685)
 visible = false
 mesh = SubResource("BoxMesh_pbd3b")
 
@@ -78,4 +78,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80712, 0.00818276, -5.0079
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18588, 3.73112)
 
 [node name="Estrellin" parent="." instance=ExtResource("4_sajwv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0276928, -8.10441)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.11157, -0.0276928, -20.1044)

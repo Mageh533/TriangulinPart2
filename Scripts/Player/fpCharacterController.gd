@@ -3,6 +3,7 @@ extends CharacterBody3D
 # Signals
 signal sendCurrentNoise(currentNoise : float)
 signal sendCurrentStamina(currentStamina : float)
+signal canInteract(interactable : bool)
 signal use_flashlight
 signal reload(delta : float)
 
@@ -62,6 +63,8 @@ func _physics_process(delta):
 	if active:
 		playerControls(delta)
 	
+	emit_signal("canInteract", interactRay.is_colliding())
+	
 	# Walking makes noise
 	if steps < 0:
 		steps = STEPS_TO_NOISE
@@ -105,6 +108,9 @@ func playerControls(delta):
 			currentSpeed = SPEED
 			if stamina < MAX_STAMINA:
 				stamina += delta * STAMINA_RECHARGE_RATE
+	else:
+		if stamina < MAX_STAMINA:
+			stamina += delta * STAMINA_RECHARGE_RATE
 	
 	# Handle objects that are interactable
 	if Input.is_action_just_pressed("interact"):

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://djoymv62txxbq"]
+
+[ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_li2m3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
+size = Vector3(2.0405, 2.0791, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2m2ki"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iqi3w"]
+radius = 3.0
+
+[node name="Circulin" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 20
+script = ExtResource("1_li2m3")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0209198, 1.10471, -0.114316)
+shape = SubResource("BoxShape3D_n1k4l")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.97441, 0, 0, 0, 2.1, 0, 0, 0, 1.92537, 0.0241141, 1.05044, -0.107266)
+mesh = SubResource("BoxMesh_2m2ki")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="NoiseCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54872, 0)
+shape = SubResource("SphereShape3D_iqi3w")
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
