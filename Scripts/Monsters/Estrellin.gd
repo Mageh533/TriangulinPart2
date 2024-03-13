@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var nav_agent = $NavigationAgent3D
+@onready var noise_detection = $NoiseCast
 
 var target : Vector3 = Vector3(100, 0, 300)
 
@@ -27,6 +28,9 @@ func _physics_process(delta):
 	if nav_agent.is_navigation_finished():
 		return
 	
+	if noise_detection.is_colliding():
+		setTarget(noise_detection.get_collider(0).global_position)
+	
 	var current_agent_position: Vector3 = global_transform.origin
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
 	
@@ -42,7 +46,3 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	
 	move_and_slide()
-
-func _on_noise_detection_area_entered(area : Area3D):
-	print("Estrellin Heard a Noise...")
-	setTarget(area.position)

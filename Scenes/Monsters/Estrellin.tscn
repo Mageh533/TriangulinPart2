@@ -7,8 +7,8 @@ size = Vector3(2.0405, 2.0791, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2m2ki"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_r3aw4"]
-radius = 4.8442
+[sub_resource type="SphereShape3D" id="SphereShape3D_iqi3w"]
+radius = 5.988
 
 [node name="Estrellin" type="CharacterBody3D"]
 collision_layer = 2
@@ -23,15 +23,11 @@ shape = SubResource("BoxShape3D_n1k4l")
 transform = Transform3D(1.97441, 0, 0, 0, 2.1, 0, 0, 0, 1.92537, 0.0241141, 1.05044, -0.107266)
 mesh = SubResource("BoxMesh_2m2ki")
 
-[node name="NoiseDetection" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 8
-monitorable = false
-
-[node name="NoiceCollision" type="CollisionShape3D" parent="NoiseDetection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.976358, 0)
-shape = SubResource("SphereShape3D_r3aw4")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[connection signal="area_entered" from="NoiseDetection" to="." method="_on_noise_detection_area_entered"]
+[node name="NoiseCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54872, 0)
+shape = SubResource("SphereShape3D_iqi3w")
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
