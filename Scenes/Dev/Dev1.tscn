@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv77eetkloak6"]
+[gd_scene load_steps=9 format=3 uid="uid://dv77eetkloak6"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Dev/Dev1.gd" id="1_bickb"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_tfmf3"]
 [ext_resource type="PackedScene" uid="uid://w5m437wxwmbl" path="res://Scenes/Objects/Door.tscn" id="2_ujbm5"]
 [ext_resource type="PackedScene" uid="uid://cta78vy2cx2y3" path="res://Scenes/Monsters/Estrellin.tscn" id="4_sajwv"]
+[ext_resource type="PackedScene" uid="uid://djoymv62txxbq" path="res://Scenes/Monsters/Circulin.tscn" id="5_7fwpv"]
 
 [sub_resource type="Environment" id="Environment_lebrv"]
 
@@ -79,3 +80,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18588, 3.73112)
 
 [node name="Estrellin" parent="." instance=ExtResource("4_sajwv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.11157, -0.0276928, -20.1044)
+
+[node name="Circulin" parent="." instance=ExtResource("5_7fwpv")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0.888426, -0.0276928, -20.1044)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.991445, -0.0401073, -0.124212, 0.0975649, 0.859868, 0.501107, 0.0867075, -0.508939, 0.856425, 0, 14.583, 11.3233)
+current = true
