@@ -66,7 +66,7 @@ func _physics_process(delta):
 	if steps < 0:
 		steps = STEPS_TO_NOISE
 		if tempNoise < 4:
-			tempNoise += 0.5
+			tempNoise += (0.5 if !crouching else 0.1)
 	
 	move_and_slide()
 
@@ -121,6 +121,7 @@ func playerControls(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
+	# Coruching disables srpint and goes slower
 	if Input.is_action_just_pressed("crouch"):
 		crouching = true
 		playerCollision.shape.height = 1.0
