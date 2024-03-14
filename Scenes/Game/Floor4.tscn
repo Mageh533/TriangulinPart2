@@ -1,3 +1,313 @@
-[gd_scene format=3 uid="uid://b0rpb7arjww6r"]
+[gd_scene load_steps=6 format=3 uid="uid://b0rpb7arjww6r"]
+
+[ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_esjso"]
+[ext_resource type="Texture2D" uid="uid://btjjv0cbox2wv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_hkuty"]
+[ext_resource type="Texture2D" uid="uid://cg46mw6li3bp6" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="2_r5pbs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3oscb"]
+albedo_texture = ExtResource("1_hkuty")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6ki8"]
+albedo_texture = ExtResource("2_r5pbs")
+uv1_scale = Vector3(0.75, 0.75, 0.75)
+uv1_triplanar = true
 
 [node name="Floor4" type="Node3D"]
+
+[node name="BaseLayout" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="BaseLayout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61, 0, -4.5)
+material_override = SubResource("StandardMaterial3D_3oscb")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(135, 1, 136)
+
+[node name="Wall" type="CSGBox3D" parent="BaseLayout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61, 2.5, 64)
+material_override = SubResource("StandardMaterial3D_a6ki8")
+size = Vector3(135, 6, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="BaseLayout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129, 2.5, -4.5)
+layers = 4
+material_override = SubResource("StandardMaterial3D_a6ki8")
+use_collision = true
+size = Vector3(1, 6, 138)
+
+[node name="Wall4" type="CSGBox3D" parent="BaseLayout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2.5, -4.5)
+layers = 4
+material_override = SubResource("StandardMaterial3D_a6ki8")
+use_collision = true
+size = Vector3(1, 6, 138)
+
+[node name="Wall2" type="CSGBox3D" parent="BaseLayout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.5, 2.5, -73)
+layers = 4
+material_override = SubResource("StandardMaterial3D_a6ki8")
+use_collision = true
+size = Vector3(136, 6, 1)
+
+[node name="Room1" type="Node3D" parent="."]
+
+[node name="Wall" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, 2.999, -65)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(51, 5, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, 2.999, -47)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(51, 5, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121, 2.999, -50.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 8)
+
+[node name="Wall5" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, 2.999, -50.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 8)
+
+[node name="Wall6" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, 2.999, -61.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 8)
+
+[node name="Wall4" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121, 2.999, -61.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 8)
+
+[node name="Room4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
+
+[node name="Wall" type="CSGBox3D" parent="Room4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, 2.999, -65)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(51, 5, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="Room4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.5, 2.999, -40)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(6, 5, 1)
+
+[node name="Wall5" type="CSGBox3D" parent="Room4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.5, 2.999, -40)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(8, 5, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="Room4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96, 2.999, -40)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(31, 5, 1)
+
+[node name="Wall6" type="CSGBox3D" parent="Room4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, 2.999, -52.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 26)
+
+[node name="Wall4" type="CSGBox3D" parent="Room4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121, 2.999, -52.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 26)
+
+[node name="Wall7" type="CSGBox3D" parent="Room4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.5, 2.999, -52.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(14, 5, 24)
+
+[node name="Room2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, 0)
+
+[node name="Wall" type="CSGBox3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105, 2.999, -65)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(31, 5, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118, 2.999, -47)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(5, 5, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101, 2.999, -47)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(23, 5, 1)
+
+[node name="Wall4" type="CSGBox3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121, 2.999, -56)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 19)
+
+[node name="Wall5" type="CSGBox3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.5, 2.999, -56)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(16, 5, 17)
+
+[node name="Room6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, 26)
+
+[node name="Wall" type="CSGBox3D" parent="Room6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105, 2.999, -65)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(31, 5, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="Room6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118, 2.999, -40)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(5, 5, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="Room6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101, 2.999, -40)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(23, 5, 1)
+
+[node name="Wall4" type="CSGBox3D" parent="Room6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121, 2.999, -61.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 8)
+
+[node name="Wall6" type="CSGBox3D" parent="Room6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121, 2.999, -47)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 15)
+
+[node name="Wall5" type="CSGBox3D" parent="Room6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89, 2.999, -52.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 26)
+
+[node name="Room3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102, 1, 0)
+
+[node name="Wall" type="CSGBox3D" parent="Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113, 2.999, -65)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(15, 5, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113, 2.999, -47)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(15, 5, 1)
+
+[node name="Wall4" type="CSGBox3D" parent="Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121, 2.999, -56)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 19)
+
+[node name="Wall5" type="CSGBox3D" parent="Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105, 2.999, -50.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 8)
+
+[node name="Wall6" type="CSGBox3D" parent="Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105, 2.999, -61.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 8)
+
+[node name="Room5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102, 1, 26)
+
+[node name="Wall" type="CSGBox3D" parent="Room5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113, 2.999, -65)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(15, 5, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="Room5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113, 2.999, -41)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(15, 5, 1)
+
+[node name="Wall4" type="CSGBox3D" parent="Room5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121, 2.999, -61.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 8)
+
+[node name="Wall6" type="CSGBox3D" parent="Room5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121, 2.999, -47.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 14)
+
+[node name="Wall5" type="CSGBox3D" parent="Room5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105, 2.999, -53)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 5, 25)
+
+[node name="Player" parent="." instance=ExtResource("1_esjso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124, 1.03327, -69)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.798247, 0.602331, 0, -0.602331, 0.798247, 0, 18.4082, 9.62625)
