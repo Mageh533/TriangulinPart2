@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_bivr6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
-size = Vector3(2.0405, 0.882538, 1.03003)
+size = Vector3(1.04928, 0.882538, 1.03003)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2m2ki"]
 
@@ -16,7 +16,7 @@ collision_mask = 20
 script = ExtResource("1_bivr6")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0209198, 1.12432, -0.0751314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.080385, 1.12432, -0.0751314)
 shape = SubResource("BoxShape3D_n1k4l")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]

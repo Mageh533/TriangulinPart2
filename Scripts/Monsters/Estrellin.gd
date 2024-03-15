@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
+# Nodes
 @onready var nav_agent = $NavigationAgent3D
 @onready var noise_detection = $NoiseCast
 @onready var idle_timer = $idleTimer
+var navigationMaps : Array[RID]
 
 @export var seearchTime : float = 30
 
@@ -22,6 +24,7 @@ var idle : bool = true
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	navigationMaps = NavigationServer3D.get_maps()
 	target = global_position
 	call_deferred("actor_setup")
 
@@ -81,11 +84,12 @@ func _physics_process(delta):
 func _on_idle_timer_timeout():
 	# When searching, it will go to the spot where the sound came from and scout the area
 	if !alert and idle:
+		idle = false
 		var searchSpot := Vector3(lastAlertSpot)
 		
 		# Go to a new spot thats nearby
 		searchSpot.x += randf_range(-15, 15)
 		searchSpot.z += randf_range(-15, 15)
 		
-		setTarget(searchSpot)
+		setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], searchSpot))
 		idle_timer.start()

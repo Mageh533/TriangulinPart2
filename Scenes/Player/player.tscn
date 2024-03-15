@@ -41,6 +41,7 @@ rechargeRate = 20.0
 consumptionRate = 3.0
 
 [node name="Interact" type="RayCast3D" parent="Head"]
+visible = false
 target_position = Vector3(0, 0, -1.55)
 collision_mask = 16
 collide_with_areas = true

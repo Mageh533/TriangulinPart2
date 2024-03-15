@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0rpb7arjww6r"]
+[gd_scene load_steps=12 format=3 uid="uid://b0rpb7arjww6r"]
 
+[ext_resource type="Script" path="res://Scripts/Game/Floor4.gd" id="1_85kuv"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_esjso"]
 [ext_resource type="Texture2D" uid="uid://btjjv0cbox2wv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_hkuty"]
+[ext_resource type="Script" path="res://Scripts/Monsters/NavigationMap.gd" id="2_jqqk0"]
 [ext_resource type="Texture2D" uid="uid://cg46mw6li3bp6" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="2_r5pbs"]
 [ext_resource type="PackedScene" uid="uid://cta78vy2cx2y3" path="res://Scenes/Monsters/Estrellin.tscn" id="4_gkiev"]
 [ext_resource type="PackedScene" uid="uid://djoymv62txxbq" path="res://Scenes/Monsters/Circulin.tscn" id="5_0ews1"]
@@ -25,12 +27,15 @@ albedo_texture = ExtResource("2_r5pbs")
 uv1_triplanar = true
 
 [node name="Floor4" type="Node3D"]
+script = ExtResource("1_85kuv")
 
 [node name="BaseLayout" type="Node3D" parent="."]
 
 [node name="NavMesh" type="NavigationRegion3D" parent="BaseLayout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08157, 0, -8.36428)
 navigation_mesh = SubResource("NavigationMesh_cuvp0")
 travel_cost = 3.0
+script = ExtResource("2_jqqk0")
 
 [node name="Wall2" type="CSGBox3D" parent="BaseLayout/NavMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.5, 2.5, -73)
@@ -599,7 +604,7 @@ size = Vector3(135, 1, 111)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.9636, 1.66454, 3.16453)
 
 [node name="Estrellin" parent="." instance=ExtResource("4_gkiev")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.345, 1.41271, -9.49613)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.345, 1.41271, -17.8064)
 
 [node name="Circulin" parent="." instance=ExtResource("5_0ews1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.65501, 1.70658, -5.03916)
