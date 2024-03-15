@@ -1,22 +1,26 @@
 extends CharacterBody3D
 
+#Export vars
+@export var timeToSearch : float = 30
+
 # Nodes
 @onready var nav_agent = $NavigationAgent3D
 @onready var noise_detection = $NoiseCast
 @onready var idle_timer = $idleTimer
 var navigationMaps : Array[RID]
 
-@export var seearchTime : float = 30
-
+# Vector targets
+var centerOfMap := Vector3(-67.688, 0, -23.18)
 var target : Vector3
 var lastAlertSpot : Vector3
 
+# Constants
 const SPEED : float = 5.0
 const JUMP_VELOCITY : float = 4.5
 
-var curiosity : int = 0
-
 # gameplay variables for chasing the player
+var searchTime : float = 0
+var curiosity : int = 0
 var alert : bool = false
 var idle : bool = true
 
@@ -48,22 +52,23 @@ func _physics_process(delta):
 		alert = true
 		idle = false
 	
+	# Lose curiosity when nothing is happening, if searching for something then lose curiosity slower
+	if !alert:
+		searchTime -= delta
+		if searchTime < 0:
+			searchTime = 0
+		if curiosity > 0:
+			curiosity -= delta
+			if curiosity < 0:
+				curiosity = 0
+	
 	if nav_agent.is_navigation_finished():
 		idle = true
 		if alert:
 			alert = false
 			lastAlertSpot = target
+			searchTime = timeToSearch
 		return
-	
-	# Lose curiosity when nothing is happening, if searching for something then lose curiosity slower
-	if !alert:
-		seearchTime -= delta
-		if seearchTime < 0:
-			seearchTime = 0
-		if curiosity > 0:
-			curiosity -= delta
-			if curiosity < 0:
-				curiosity = 0
 	
 	var current_agent_position: Vector3 = global_transform.origin
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()
@@ -81,12 +86,20 @@ func _physics_process(delta):
 
 func _on_idle_timer_timeout():
 	# When searching, it will go to the spot where the sound came from and scout the area
-	if !alert and idle:
+	if !alert and idle and searchTime > 0:
 		idle = false
 		var searchSpot := Vector3(lastAlertSpot)
 		
 		# Go to a new spot thats nearby
-		searchSpot.x += randf_range(-15, 15)
-		searchSpot.z += randf_range(-15, 15)
+		searchSpot.x += randf_range(-10, 10)
+		searchSpot.z += randf_range(-10, 10)
+		
+		setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], searchSpot))
+	elif !alert and searchTime == 0 and idle:
+		idle = false
+		var searchSpot := centerOfMap
+		# Go to a new spot thats somewhere else
+		searchSpot.x += randf_range(-60, 60)
+		searchSpot.z += randf_range(-50, 50)
 		
 		setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], searchSpot))

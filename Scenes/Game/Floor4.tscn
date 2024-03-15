@@ -27,6 +27,9 @@ uv1_triplanar = true
 [node name="Floor4" type="Node3D"]
 script = ExtResource("1_85kuv")
 
+[node name="MapCenter" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6877, 0, -23.1802)
+
 [node name="BaseLayout" type="Node3D" parent="."]
 
 [node name="NavMesh" type="NavigationRegion3D" parent="BaseLayout"]
@@ -598,7 +601,7 @@ collision_mask = 0
 size = Vector3(135, 1, 111)
 
 [node name="Player" parent="." instance=ExtResource("1_esjso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.963583, 1.66454, -19.8355)
+transform = Transform3D(-0.999886, 0, 0.0150965, 0, 1, 0, -0.0150965, 0, -0.999886, -0.963583, 1.66454, -19.8355)
 
 [node name="Estrellin" parent="." instance=ExtResource("4_gkiev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211145, 1.41271, -0.816917)
