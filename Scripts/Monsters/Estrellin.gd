@@ -21,7 +21,7 @@ const MAX_CURIOSITY : float = 10
 
 # gameplay variables for chasing the player
 var searchTime : float = 0
-var curiosity : int = 0
+var curiosity : float = 0
 var alert : bool = false
 var idle : bool = true
 var hearing : bool = false
@@ -51,7 +51,6 @@ func _physics_process(delta):
 	
 	if noise_detection.is_colliding():
 		hearing = true
-		curiosity += delta
 	else :
 		hearing = false
 	
@@ -61,11 +60,7 @@ func _physics_process(delta):
 		if searchTime < 0:
 			searchTime = 0
 		
-		if !hearing:
-			curiosity -= delta
-			if curiosity < 0:
-				curiosity = 0
-		else:
+		if hearing:
 			curiosity += delta
 			if curiosity > 3:
 				setTarget(noise_detection.get_collider(0).global_position)
@@ -73,6 +68,10 @@ func _physics_process(delta):
 				idle = false
 			if curiosity > MAX_CURIOSITY:
 				curiosity = MAX_CURIOSITY
+		else:
+			curiosity -= delta
+			if curiosity < 0:
+				curiosity = 0
 	
 	if nav_agent.is_navigation_finished():
 		idle = true
