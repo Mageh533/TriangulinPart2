@@ -35,7 +35,6 @@ func actor_setup():
 
 func setTarget(newTarget : Vector3):
 	target = newTarget
-	idle = false
 	
 	actor_setup()
 
@@ -54,7 +53,6 @@ func _physics_process(delta):
 		if alert:
 			alert = false
 			lastAlertSpot = target
-			idle_timer.start()
 		return
 	
 	# Lose curiosity when nothing is happening, if searching for something then lose curiosity slower
@@ -92,4 +90,3 @@ func _on_idle_timer_timeout():
 		searchSpot.z += randf_range(-15, 15)
 		
 		setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], searchSpot))
-		idle_timer.start()
