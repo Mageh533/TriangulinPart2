@@ -29,6 +29,10 @@ func setTarget(newTarget : Vector3):
 	actor_setup()
 
 func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	
 	if !playerFound and noise_detection.is_colliding():
 		setTarget(noise_detection.get_collider(0).global_position)
 	
@@ -50,10 +54,6 @@ func _physics_process(delta):
 	set_velocity(new_velocity)
 	
 	look_at(target)
-	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
 	
 	move_and_slide()
 
