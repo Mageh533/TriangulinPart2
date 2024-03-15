@@ -17,12 +17,14 @@ var lastAlertSpot : Vector3
 # Constants
 const SPEED : float = 5.0
 const JUMP_VELOCITY : float = 4.5
+const MAX_CURIOSITY : float = 10
 
 # gameplay variables for chasing the player
 var searchTime : float = 0
 var curiosity : int = 0
 var alert : bool = false
 var idle : bool = true
+var hearing : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -48,19 +50,29 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	
 	if noise_detection.is_colliding():
-		setTarget(noise_detection.get_collider(0).global_position)
-		alert = true
-		idle = false
+		hearing = true
+		curiosity += delta
+	else :
+		hearing = false
 	
 	# Lose curiosity when nothing is happening, if searching for something then lose curiosity slower
 	if !alert:
 		searchTime -= delta
 		if searchTime < 0:
 			searchTime = 0
-		if curiosity > 0:
+		
+		if !hearing:
 			curiosity -= delta
 			if curiosity < 0:
 				curiosity = 0
+		else:
+			curiosity += delta
+			if curiosity > 3:
+				setTarget(noise_detection.get_collider(0).global_position)
+				alert = true
+				idle = false
+			if curiosity > MAX_CURIOSITY:
+				curiosity = MAX_CURIOSITY
 	
 	if nav_agent.is_navigation_finished():
 		idle = true
@@ -84,6 +96,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
+# What to do when there is no noise around
 func _on_idle_timer_timeout():
 	# When searching, it will go to the spot where the sound came from and scout the area
 	if !alert and idle and searchTime > 0:
