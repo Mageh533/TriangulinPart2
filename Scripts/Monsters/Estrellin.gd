@@ -25,6 +25,7 @@ var curiosity : float = 0
 var alert : bool = false
 var idle : bool = true
 var hearing : bool = false
+var playerFound : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -51,6 +52,11 @@ func _physics_process(delta):
 	
 	if noise_detection.is_colliding():
 		hearing = true
+		# Check if its a player. All noises should have a type set
+		if noise_detection.get_collider(0).TYPE == "Player":
+			playerFound = true
+		else:
+			playerFound = false
 	else :
 		hearing = false
 	
@@ -61,17 +67,21 @@ func _physics_process(delta):
 			searchTime = 0
 		
 		if hearing:
-			curiosity += delta
-			if curiosity > 3:
+			curiosity += delta * 4 if !playerFound else delta * 8
+			if playerFound:
 				setTarget(noise_detection.get_collider(0).global_position)
-				alert = true
-				idle = false
-			if curiosity > MAX_CURIOSITY:
-				curiosity = MAX_CURIOSITY
+			else:
+				if curiosity > 3:
+					setTarget(noise_detection.get_collider(0).global_position)
+					alert = true
+					idle = false
+				if curiosity > MAX_CURIOSITY:
+					curiosity = MAX_CURIOSITY
 		else:
-			curiosity -= delta
-			if curiosity < 0:
-				curiosity = 0
+			if !playerFound:
+				curiosity -= delta
+				if curiosity < 0:
+					curiosity = 0
 	
 	if nav_agent.is_navigation_finished():
 		idle = true

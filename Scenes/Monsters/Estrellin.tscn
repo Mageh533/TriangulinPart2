@@ -1,11 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://cta78vy2cx2y3"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_bivr6"]
+[ext_resource type="PackedScene" uid="uid://c67oive06y2a7" path="res://Assets/Models/estrellin.glb" id="2_ldc16"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
 size = Vector3(1.04928, 0.882538, 1.03003)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2m2ki"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iqi3w"]
 radius = 5.988
@@ -19,9 +18,8 @@ script = ExtResource("1_bivr6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.080385, 1.12432, -0.0751314)
 shape = SubResource("BoxShape3D_n1k4l")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.97441, 0, 0, 0, 2.1, 0, 0, 0, 1.92537, 0.0241141, 1.05044, -0.107266)
-mesh = SubResource("BoxMesh_2m2ki")
+[node name="estrellin" parent="." instance=ExtResource("2_ldc16")]
+transform = Transform3D(-5.46392e-08, 0, 1.25, 0, 1.25, 0, -1.25, 0, -5.46392e-08, 0, 0.96981, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true

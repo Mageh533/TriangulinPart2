@@ -45,7 +45,6 @@ uv1_triplanar = true
 background_mode = 1
 background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.0
-ssr_enabled = true
 
 [node name="Floor4" type="Node3D"]
 script = ExtResource("1_85kuv")
@@ -769,7 +768,8 @@ collision_mask = 0
 size = Vector3(5, 5, 1)
 
 [node name="Floor5Ceiling" type="CSGBox3D" parent="BaseLayout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 6, -31.1767)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.8004, 5.2416, -31.2873)
+visible = false
 material_override = SubResource("StandardMaterial3D_3oscb")
 use_collision = true
 collision_layer = 4
@@ -777,7 +777,7 @@ collision_mask = 0
 size = Vector3(137, 1, 122.647)
 
 [node name="Ceiling" type="CSGBox3D" parent="BaseLayout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.5, 13, 37.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.4993, 13, 37.5237)
 material_override = SubResource("StandardMaterial3D_3oscb")
 use_collision = true
 collision_layer = 4
@@ -908,11 +908,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.00814, 7)
 omni_range = 11.0
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="BaseLayout/Stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.0673, 7)
 omni_range = 11.0
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="BaseLayout/Stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -15, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -12.55, 7)
 omni_range = 11.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="BaseLayout/Stairs"]

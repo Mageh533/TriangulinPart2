@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ishtnc6uke55"]
+[gd_scene load_steps=11 format=3 uid="uid://ishtnc6uke55"]
 
 [ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
 [ext_resource type="Script" path="res://Scripts/Player/PausedUI.gd" id="2_lxg5p"]
 [ext_resource type="Script" path="res://Scripts/Player/GameplayUI.gd" id="4_50oah"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerNoise.gd" id="5_mr74d"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u8eft"]
 
@@ -184,6 +185,7 @@ label_settings = SubResource("LabelSettings_4v4k0")
 collision_layer = 8
 collision_mask = 0
 monitoring = false
+script = ExtResource("5_mr74d")
 
 [node name="NoiseCollision" type="CollisionShape3D" parent="Noise"]
 shape = SubResource("SphereShape3D_wngvb")
