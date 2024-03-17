@@ -1,11 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://djoymv62txxbq"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Circulin.gd" id="1_yiteo"]
+[ext_resource type="PackedScene" uid="uid://bdaf3fjl6l4x3" path="res://Assets/Models/circulin.glb" id="2_nbtpa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
 size = Vector3(1.03796, 0.885437, 0.836365)
-
-[sub_resource type="SphereMesh" id="SphereMesh_1y40f"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iqi3w"]
 radius = 3.0
@@ -18,13 +17,12 @@ collision_layer = 2
 collision_mask = 20
 script = ExtResource("1_yiteo")
 
+[node name="circulin" parent="." instance=ExtResource("2_nbtpa")]
+transform = Transform3D(0.995028, 0.0995976, 0, -0.0995976, 0.995028, 0, 0, 0, 1, 0, 0.917995, -0.236198)
+
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0488163, 1.16089, -0.0531282)
 shape = SubResource("BoxShape3D_n1k4l")
-
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.97441, 0, 0, 0, 2.1, 0, 0, 0, 1.92537, 0.0241141, 1.05044, -0.107266)
-mesh = SubResource("SphereMesh_1y40f")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
