@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cta78vy2cx2y3"]
+[gd_scene load_steps=8 format=3 uid="uid://cta78vy2cx2y3"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_bivr6"]
+[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_hoqj4"]
 [ext_resource type="PackedScene" uid="uid://c67oive06y2a7" path="res://Assets/Models/estrellin.glb" id="2_ldc16"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
@@ -9,10 +10,101 @@ size = Vector3(1.04928, 0.882538, 1.03003)
 [sub_resource type="SphereShape3D" id="SphereShape3D_iqi3w"]
 radius = 5.988
 
+[sub_resource type="Animation" id="Animation_he77b"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glove_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"open"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glove_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"open"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glove_right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.26282, 0.474192, 0), Vector3(1.26282, 0.474192, 0), Vector3(1.26282, 0.474192, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("glove_right:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0696911, 1.44442, 1.57964), Vector3(-0.393408, 1.43424, 1.62342), Vector3(-0.0696911, 1.44442, 1.57964)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("glove_left:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.31773, 0.606217, 0.000144958), Vector3(-1.31773, 0.606217, 0.000144958), Vector3(-1.31773, 0.606217, 0.000144958)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("glove_left:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0288404, 1.64985, -1.60441), Vector3(0.394231, 1.6564, -1.56918), Vector3(-0.0288404, 1.64985, -1.60441)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6gyf0"]
+_data = {
+"idle": SubResource("Animation_he77b")
+}
+
 [node name="Estrellin" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 20
 script = ExtResource("1_bivr6")
+
+[node name="glove_right" parent="." instance=ExtResource("2_hoqj4")]
+transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.26282, 0.474192, 0)
+
+[node name="glove_left" parent="." instance=ExtResource("2_hoqj4")]
+transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.31773, 0.606217, 0.000144958)
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.080385, 1.12432, -0.0751314)
@@ -36,5 +128,10 @@ collide_with_bodies = false
 [node name="idleTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6gyf0")
+}
 
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]

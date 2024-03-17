@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+# Ai Nodes
 @onready var nav_agent = $NavigationAgent3D
 @onready var noise_detection = $NoiseCast
 @onready var sight_detection = $SightCast

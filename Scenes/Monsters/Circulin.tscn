@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://djoymv62txxbq"]
+[gd_scene load_steps=7 format=3 uid="uid://djoymv62txxbq"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Circulin.gd" id="1_yiteo"]
 [ext_resource type="PackedScene" uid="uid://bdaf3fjl6l4x3" path="res://Assets/Models/circulin.glb" id="2_nbtpa"]
+[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="3_t443u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
 size = Vector3(1.03796, 0.885437, 0.836365)
@@ -40,3 +41,9 @@ collide_with_bodies = false
 [node name="SightCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15302, -9.23583)
 shape = SubResource("BoxShape3D_hkngh")
+
+[node name="glove_right" parent="." instance=ExtResource("3_t443u")]
+transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.26282, 0.474192, 0)
+
+[node name="glove_left" parent="." instance=ExtResource("3_t443u")]
+transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.31773, 0.606217, 0.000144958)
