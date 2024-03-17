@@ -58,6 +58,7 @@ func _physics_process(delta):
 		else:
 			playerFound = false
 	else :
+		playerFound = false
 		hearing = false
 	
 	# Lose curiosity when nothing is happening, if searching for something then lose curiosity slower
@@ -67,21 +68,20 @@ func _physics_process(delta):
 			searchTime = 0
 		
 		if hearing:
-			curiosity += delta * 4 if !playerFound else delta * 8
-			if playerFound:
+			curiosity += delta * 4
+			if curiosity > 3:
 				setTarget(noise_detection.get_collider(0).global_position)
-			else:
-				if curiosity > 3:
-					setTarget(noise_detection.get_collider(0).global_position)
-					alert = true
-					idle = false
-				if curiosity > MAX_CURIOSITY:
-					curiosity = MAX_CURIOSITY
+				alert = true
+				idle = false
+			if curiosity > MAX_CURIOSITY:
+				curiosity = MAX_CURIOSITY
 		else:
-			if !playerFound:
-				curiosity -= delta
-				if curiosity < 0:
-					curiosity = 0
+			curiosity -= delta
+			if curiosity < 0:
+				curiosity = 0
+	else:
+		if playerFound:
+			setTarget(noise_detection.get_collider(0).global_position)
 	
 	if nav_agent.is_navigation_finished():
 		idle = true
