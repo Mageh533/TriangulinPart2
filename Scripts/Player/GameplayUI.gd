@@ -5,6 +5,7 @@ extends Control
 @onready var noiseLabel = $NoisePanel/NoiseNum
 @onready var staminaBar = $StaminaPanel/ProgressBar
 @onready var interactableLabel = $InteractLabel
+@onready var useMsgLabel = $UseMessageLabel
 
 # Display battery on UI
 func _on_flashlight_send_battery(batteryLeft):
@@ -18,3 +19,8 @@ func _on_player_send_current_stamina(currentStamina):
 
 func _on_player_can_interact(interactable):
 	interactableLabel.visible = interactable
+
+func _on_player_send_use_message(message):
+	useMsgLabel.text = message
+	await get_tree().create_timer(2).timeout
+	useMsgLabel.text = ""

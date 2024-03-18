@@ -228,6 +228,20 @@ grow_vertical = 2
 text = "(E) - Interact"
 label_settings = SubResource("LabelSettings_4v4k0")
 
+[node name="UseMessageLabel" type="Label" parent="UI/GameplayUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 107.0
+offset_right = 20.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="InventoryPanel" type="Panel" parent="UI/GameplayUI"]
 layout_mode = 1
 anchors_preset = 7
@@ -281,6 +295,7 @@ shape = SubResource("SphereShape3D_wngvb")
 [connection signal="reload" from="." to="Head/Right_Inventory/Flashlight" method="_on_player_reload"]
 [connection signal="sendCurrentNoise" from="." to="UI/GameplayUI" method="_on_player_send_current_noise"]
 [connection signal="sendCurrentStamina" from="." to="UI/GameplayUI" method="_on_player_send_current_stamina"]
+[connection signal="sendUseMessage" from="." to="UI/GameplayUI" method="_on_player_send_use_message"]
 [connection signal="updateInventory" from="." to="UI/GameplayUI/InventoryPanel" method="_on_player_update_inventory"]
 [connection signal="usePrimary" from="." to="Head/Right_Inventory/Flashlight" method="_on_player_use_primary"]
 [connection signal="useSecondary" from="." to="Head/Left_Inventory/Coin_Bag_Throw" method="_on_player_use_secondary"]

@@ -4,6 +4,7 @@ extends CharacterBody3D
 signal sendCurrentNoise(currentNoise : float)
 signal sendCurrentStamina(currentStamina : float)
 signal canInteract(interactable : bool)
+signal sendUseMessage(message : String)
 signal reload(delta : float)
 signal updateInventory(inv : Array[String])
 signal usePrimary
@@ -121,7 +122,10 @@ func playerControls(delta):
 	# Handle objects that are interactable
 	if Input.is_action_just_pressed("interact"):
 		if interactRay.is_colliding():
-			interactRay.get_collider().use()
+			var message
+			message = interactRay.get_collider().use()
+			if message is String:
+				emit_signal("sendUseMessage", message)
 	
 	if Input.is_action_just_pressed("primary"):
 		emit_signal("usePrimary")

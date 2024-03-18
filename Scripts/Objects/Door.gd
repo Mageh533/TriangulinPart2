@@ -20,8 +20,13 @@ func _physics_process(delta):
 		rotation.y = rotate_toward(rotation.y, initRotY, delta * 8)
 
 func use():
+	var message : String = ""
 	if !locked:
 		open = !open
+		message = ""
+	else:
+		message = "The door is locked"
+	return message
 
 func _on_door_barricade_is_in_use(inUse):
 	locked = inUse
