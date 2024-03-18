@@ -26,10 +26,11 @@ func _process(delta):
 			battery = 0
 	emit_signal("sendBattery", battery)
 
-func _on_player_use_flashlight():
-	visible = !visible
-
 func _on_player_reload(delta):
 	if battery < maxBattery:
 		battery += delta * rechargeRate
 	emit_signal("emitNoise", noise * delta)
+
+
+func _on_player_use_primary():
+	visible = !visible

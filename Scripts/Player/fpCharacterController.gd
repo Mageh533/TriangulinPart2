@@ -4,8 +4,10 @@ extends CharacterBody3D
 signal sendCurrentNoise(currentNoise : float)
 signal sendCurrentStamina(currentStamina : float)
 signal canInteract(interactable : bool)
-signal use_flashlight
 signal reload(delta : float)
+signal updateInventory(inv : Array[String])
+signal usePrimary
+signal useSecondary
 
 # Nodes
 @onready var noiseNode = $Noise/NoiseCollision
@@ -18,6 +20,8 @@ signal reload(delta : float)
 @export var MAX_STAMINA : float = 100.0
 @export var STAMINA_DRAIN_RATE : float = 1.0
 @export var STAMINA_RECHARGE_RATE : float = 1.0
+@export var INVENTORY_RIGHT := ["Flashlight"]
+@export var INVENTORY_LEFT := ["CoinBag"]
 
 # Constants
 const SPEED : float = 4.5
@@ -45,15 +49,19 @@ func _init():
 
 func _ready():
 	stamina = MAX_STAMINA
+	var INVENTORY : Array[String]
+	INVENTORY.append_array(INVENTORY_LEFT)
+	INVENTORY.append_array(INVENTORY_RIGHT)
+	emit_signal("updateInventory", INVENTORY)
 
 func _process(delta):
 	processNoise(delta)
 	emit_signal("sendCurrentStamina", stamina)
 	# Free the mouse if the player is not active
 	if active:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -63,7 +71,7 @@ func _physics_process(delta):
 	if active:
 		playerControls(delta)
 	
-	emit_signal("canInteract", interactRay.is_colliding())
+	emit_signal("canInteract", interactRay.is_colliding() and active)
 	
 	# Walking makes noise
 	if steps < 0:
@@ -153,3 +161,6 @@ func _on_flashlight_emit_noise(noiseMade):
 	# Flashlight recharge shouldnt be louder than 2
 	if tempNoise < 2:
 		tempNoise += noiseMade
+
+func _on_pc_switch_perspective(state):
+	active = state
