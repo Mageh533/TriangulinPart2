@@ -49,9 +49,7 @@ func _init():
 
 func _ready():
 	stamina = MAX_STAMINA
-	var INVENTORY : Array[String]
-	INVENTORY.append_array(INVENTORY_LEFT)
-	INVENTORY.append_array(INVENTORY_RIGHT)
+	var INVENTORY := INVENTORY_LEFT + INVENTORY_RIGHT
 	emit_signal("updateInventory", INVENTORY)
 
 func _process(delta):

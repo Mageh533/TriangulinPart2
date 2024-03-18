@@ -53,7 +53,7 @@ func _physics_process(delta):
 	if noise_detection.is_colliding():
 		hearing = true
 		# Check if its a player. All noises should have a type set
-		if noise_detection.get_collider(0).TYPE == "Player":
+		if noise_detection is Area3D and noise_detection.get_collider(0).TYPE == "Player":
 			playerFound = true
 		else:
 			playerFound = false
@@ -70,9 +70,10 @@ func _physics_process(delta):
 		if hearing:
 			curiosity += delta * 4
 			if curiosity > 3:
-				setTarget(noise_detection.get_collider(0).global_position)
-				alert = true
-				idle = false
+				if noise_detection.get_collider(0) != null:
+					setTarget(noise_detection.get_collider(0).global_position)
+					alert = true
+					idle = false
 			if curiosity > MAX_CURIOSITY:
 				curiosity = MAX_CURIOSITY
 		else:
