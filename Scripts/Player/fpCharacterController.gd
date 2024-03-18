@@ -125,8 +125,11 @@ func playerControls(delta):
 		if interactRay.is_colliding():
 			interactRay.get_collider().use()
 	
-	if Input.is_action_just_pressed("flashlight_toggle"):
-		emit_signal("use_flashlight")
+	if Input.is_action_just_pressed("primary"):
+		emit_signal("usePrimary")
+	
+	if Input.is_action_just_pressed("secondary"):
+		emit_signal("useSecondary")
 	
 	if Input.is_action_pressed("recharge"):
 		emit_signal("reload", delta)

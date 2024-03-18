@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://kkwy2cd8ltf4"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Coin.gd" id="1_38d3h"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_joga8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3wymh"]
+size = Vector3(0.262085, 0.310211, 0.125)
+
+[node name="Coin" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_38d3h")
+
+[node name="CoinMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.285404, 0, 0, 0, 0.342034, 0, 0, 0, 0.120193, 0, 0, 0)
+mesh = SubResource("SphereMesh_joga8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286865, 0.000473022, 0.000976563)
+shape = SubResource("BoxShape3D_3wymh")

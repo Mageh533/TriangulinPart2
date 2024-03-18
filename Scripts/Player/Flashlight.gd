@@ -11,6 +11,8 @@ signal emitNoise(noiseMade : float)
 
 var battery : float
 
+var equiped := true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	battery = maxBattery
@@ -31,6 +33,6 @@ func _on_player_reload(delta):
 		battery += delta * rechargeRate
 	emit_signal("emitNoise", noise * delta)
 
-
 func _on_player_use_primary():
-	visible = !visible
+	if equiped:
+		visible = !visible

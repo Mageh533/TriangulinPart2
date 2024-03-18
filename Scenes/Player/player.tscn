@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ishtnc6uke55"]
+[gd_scene load_steps=21 format=3 uid="uid://ishtnc6uke55"]
 
 [ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Scripts/Player/InventoryPanel.gd" id="7_3k3yk"]
 [ext_resource type="Texture2D" uid="uid://cpc0qjd6ijork" path="res://Assets/Sprites/UI/dynamo_flashlight.png" id="8_7qemn"]
 [ext_resource type="Texture2D" uid="uid://bacq2nvjkrqeo" path="res://Assets/Sprites/UI/coin_bag.png" id="9_hfxj1"]
+[ext_resource type="Script" path="res://Scripts/Player/Coin_Bag.gd" id="11_ss1v8"]
+[ext_resource type="PackedScene" uid="uid://kkwy2cd8ltf4" path="res://Scenes/Player/Coin.tscn" id="12_pm3pb"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u8eft"]
 
@@ -71,6 +73,19 @@ visible = false
 
 [node name="Sketchfab_Scene" parent="Head/fps-hands" instance=ExtResource("4_f80ke")]
 transform = Transform3D(-2.47514e-05, -0.019994, 0.000488018, -0.0010126, 0.000488645, 0.0199684, -0.0199743, 3.86675e-09, -0.0010129, -2.30925, 12.7037, 6.34418)
+
+[node name="Left_Inventory" type="Node3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Coin_Bag_Throw" type="RayCast3D" parent="Head/Left_Inventory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43708, 0.375473, -0.318695)
+target_position = Vector3(0, 0.465, -0.845)
+collision_mask = 4
+script = ExtResource("11_ss1v8")
+Coin = ExtResource("12_pm3pb")
+
+[node name="Right_Inventory" type="Node3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_u8eft")
@@ -269,5 +284,6 @@ shape = SubResource("SphereShape3D_wngvb")
 [connection signal="sendCurrentStamina" from="." to="UI/GameplayUI" method="_on_player_send_current_stamina"]
 [connection signal="updateInventory" from="." to="UI/GameplayUI/InventoryPanel" method="_on_player_update_inventory"]
 [connection signal="usePrimary" from="." to="Head/Flashlight" method="_on_player_use_primary"]
+[connection signal="useSecondary" from="." to="Head/Left_Inventory/Coin_Bag_Throw" method="_on_player_use_secondary"]
 [connection signal="emitNoise" from="Head/Flashlight" to="." method="_on_flashlight_emit_noise"]
 [connection signal="sendBattery" from="Head/Flashlight" to="UI/GameplayUI" method="_on_flashlight_send_battery"]
