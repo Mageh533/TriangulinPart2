@@ -52,15 +52,6 @@ STAMINA_RECHARGE_RATE = 15.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 current = true
 
-[node name="Flashlight" type="SpotLight3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0403762, 0)
-visible = false
-spot_range = 15.0
-spot_angle = 50.0
-script = ExtResource("2_81jkl")
-rechargeRate = 20.0
-consumptionRate = 3.0
-
 [node name="Interact" type="RayCast3D" parent="Head"]
 visible = false
 target_position = Vector3(0, 0, -1.55)
@@ -68,8 +59,7 @@ collision_mask = 16
 collide_with_areas = true
 
 [node name="fps-hands" parent="Head" instance=ExtResource("6_2ln3t")]
-transform = Transform3D(-0.2, 0, 1.74846e-08, 0, 0.2, 0, -1.74846e-08, 0, -0.2, 0, -3.029, 0.351193)
-visible = false
+transform = Transform3D(-0.1, 0, 1.50996e-08, 0, 0.1, 0, -1.50996e-08, 0, -0.1, 0.0119543, -1.48121, 0.29242)
 
 [node name="Sketchfab_Scene" parent="Head/fps-hands" instance=ExtResource("4_f80ke")]
 transform = Transform3D(-2.47514e-05, -0.019994, 0.000488018, -0.0010126, 0.000488645, 0.0199684, -0.0199743, 3.86675e-09, -0.0010129, -2.30925, 12.7037, 6.34418)
@@ -86,6 +76,15 @@ Coin = ExtResource("12_pm3pb")
 
 [node name="Right_Inventory" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Right_Inventory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04038, 0)
+visible = false
+spot_range = 50.0
+spot_angle = 50.0
+script = ExtResource("2_81jkl")
+rechargeRate = 20.0
+consumptionRate = 3.0
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_u8eft")
@@ -279,11 +278,11 @@ script = ExtResource("12_7oppw")
 shape = SubResource("SphereShape3D_wngvb")
 
 [connection signal="canInteract" from="." to="UI/GameplayUI" method="_on_player_can_interact"]
-[connection signal="reload" from="." to="Head/Flashlight" method="_on_player_reload"]
+[connection signal="reload" from="." to="Head/Right_Inventory/Flashlight" method="_on_player_reload"]
 [connection signal="sendCurrentNoise" from="." to="UI/GameplayUI" method="_on_player_send_current_noise"]
 [connection signal="sendCurrentStamina" from="." to="UI/GameplayUI" method="_on_player_send_current_stamina"]
 [connection signal="updateInventory" from="." to="UI/GameplayUI/InventoryPanel" method="_on_player_update_inventory"]
-[connection signal="usePrimary" from="." to="Head/Flashlight" method="_on_player_use_primary"]
+[connection signal="usePrimary" from="." to="Head/Right_Inventory/Flashlight" method="_on_player_use_primary"]
 [connection signal="useSecondary" from="." to="Head/Left_Inventory/Coin_Bag_Throw" method="_on_player_use_secondary"]
-[connection signal="emitNoise" from="Head/Flashlight" to="." method="_on_flashlight_emit_noise"]
-[connection signal="sendBattery" from="Head/Flashlight" to="UI/GameplayUI" method="_on_flashlight_send_battery"]
+[connection signal="emitNoise" from="Head/Right_Inventory/Flashlight" to="." method="_on_flashlight_emit_noise"]
+[connection signal="sendBattery" from="Head/Right_Inventory/Flashlight" to="UI/GameplayUI" method="_on_flashlight_send_battery"]

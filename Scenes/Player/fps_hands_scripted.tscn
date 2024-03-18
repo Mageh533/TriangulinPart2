@@ -35,3 +35,6 @@ bones/26/rotation = Quaternion(0.481586, -0.00347025, 0.00865952, 0.876349)
 bones/27/rotation = Quaternion(0.474557, -0.00317875, 0.00294387, 0.880214)
 bones/28/rotation = Quaternion(0.35419, 0.00568508, -0.00608894, 0.935137)
 bones/29/position = Vector3(4.80308, 10.5946, 1.79434)
+
+[node name="basicRig_Body" parent="basicRig/Skeleton3D" index="0"]
+layers = 2

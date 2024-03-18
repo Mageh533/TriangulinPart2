@@ -2,19 +2,22 @@ extends AnimatableBody3D
 
 @onready var barricade = $DoorBarricade
 
-var open : bool = false
-var locked : bool = false
-var lockable : bool = true
+@export var open : bool = false
+@export var locked : bool = false
+@export var lockable : bool = true
+
+var initRotY : float
 
 func _ready():
+	initRotY = rotation.y
 	if !lockable:
 		barricade.queue_free()
 
 func _physics_process(delta):
 	if open:
-		rotation.y = rotate_toward(rotation.y, deg_to_rad(90), delta * 8)
+		rotation.y = rotate_toward(rotation.y, initRotY + deg_to_rad(90), delta * 8)
 	else:
-		rotation.y = rotate_toward(rotation.y, deg_to_rad(0), delta * 8)
+		rotation.y = rotate_toward(rotation.y, initRotY, delta * 8)
 
 func use():
 	if !locked:
