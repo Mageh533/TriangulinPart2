@@ -3,7 +3,7 @@ extends Node3D
 # Nodes
 @onready var map_center_mark = $MapCenter
 @onready var estrellin_monster = $Estrellin
-@onready var ceiling = $BaseLayout/Ceiling
+@onready var ceiling = $BaseLayout/Floor5Ceiling
 
 var nextFloorLocked := true
 var pcDecryptable := false

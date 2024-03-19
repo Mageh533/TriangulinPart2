@@ -1,8 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://b0rpb7arjww6r"]
+[gd_scene load_steps=35 format=3 uid="uid://b0rpb7arjww6r"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Floor4.gd" id="1_85kuv"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_esjso"]
 [ext_resource type="Texture2D" uid="uid://btjjv0cbox2wv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_hkuty"]
+[ext_resource type="PackedScene" uid="uid://dbb8gechocnfo" path="res://Assets/Models/ceiling_light/light.gltf" id="2_jmu7s"]
 [ext_resource type="Texture2D" uid="uid://cg46mw6li3bp6" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="2_r5pbs"]
 [ext_resource type="PackedScene" uid="uid://cta78vy2cx2y3" path="res://Scenes/Monsters/Estrellin.tscn" id="4_gkiev"]
 [ext_resource type="Texture2D" uid="uid://cftm1yfo1d0m3" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="4_hl7au"]
@@ -91,125 +92,33 @@ script = ExtResource("1_85kuv")
 
 [node name="HallwayLights" type="Node3D" parent="."]
 
-[node name="OmniLight" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, 0)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
+[node name="CeilingLight" parent="HallwayLights" instance=ExtResource("2_jmu7s")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.6185, 4.43299, 27.635)
 
-[node name="OmniLight2" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -35)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
+[node name="OmniLight3D" type="OmniLight3D" parent="HallwayLights/CeilingLight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356014, 0.0842781)
+omni_range = 7.74711
 
-[node name="OmniLight3" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -64)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
+[node name="CeilingLight2" parent="HallwayLights" instance=ExtResource("2_jmu7s")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.6185, 4.43299, -17.5632)
 
-[node name="OmniLight4" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 4, -64)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
+[node name="OmniLight3D" type="OmniLight3D" parent="HallwayLights/CeilingLight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356014, 0.0842781)
+omni_range = 7.74711
 
-[node name="OmniLight5" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 4, -33)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
+[node name="CeilingLight3" parent="HallwayLights" instance=ExtResource("2_jmu7s")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.6185, 4.43299, -52.1455)
 
-[node name="OmniLight6" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 4, 1)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
+[node name="OmniLight3D" type="OmniLight3D" parent="HallwayLights/CeilingLight3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356014, 0.0842781)
+omni_range = 7.74711
 
-[node name="OmniLight7" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67, 4, 1)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
+[node name="CeilingLight4" parent="HallwayLights" instance=ExtResource("2_jmu7s")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.6185, 4.43299, -76.0277)
 
-[node name="OmniLight8" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67, 4, -33)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight9" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67, 4, -66)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight10" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 4, -66)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight11" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 4, -32)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight12" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 4, 8)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight13" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, 4, -18)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight14" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 4, -18)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight15" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98, 4, -52)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight16" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 4, -52)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight17" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 4, 28)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight18" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 4, 28)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight19" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99, 4, -76)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
-
-[node name="OmniLight20" type="OmniLight3D" parent="HallwayLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 4, -76)
-light_cull_mask = 4294967293
-shadow_enabled = true
-omni_range = 10.0
+[node name="OmniLight3D" type="OmniLight3D" parent="HallwayLights/CeilingLight4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356014, 0.0842781)
+omni_range = 7.74711
 
 [node name="BaseLayout" type="Node3D" parent="."]
 
@@ -826,7 +735,6 @@ size = Vector3(5, 5, 1)
 
 [node name="Floor5Ceiling" type="CSGBox3D" parent="BaseLayout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.8004, 5.2416, -31.2873)
-visible = false
 material_override = SubResource("StandardMaterial3D_3oscb")
 use_collision = true
 collision_layer = 4
@@ -1367,6 +1275,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6877, 0, -23.1802)
 
 [node name="Player" parent="." instance=ExtResource("1_esjso")]
 transform = Transform3D(0.99027, 0, -0.139156, 0, 1, 0, 0.139156, 0, 0.99027, -67.9636, 1.66454, 33.3674)
+metadata/_edit_group_ = true
 
 [node name="Estrellin" parent="." instance=ExtResource("4_gkiev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211145, 1.41271, -0.816917)
