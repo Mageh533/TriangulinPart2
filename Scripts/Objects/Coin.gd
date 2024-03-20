@@ -4,7 +4,7 @@ extends RigidBody3D
 
 var collided := false
 
-func _process(delta):
+func _physics_process(_delta):
 	if !collided:
 		if get_contact_count() > 0:
 			collided = true

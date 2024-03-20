@@ -54,6 +54,8 @@ func _init():
 
 func _ready():
 	stamina = MAX_STAMINA
+	playEquipAnims(EQUIPED_LEFT, leftHand)
+	playEquipAnims(EQUIPED_RIGHT, rightHand)
 	send_inventory_to_ui()
 
 func _process(delta):
@@ -201,22 +203,18 @@ func playUseAnims(itemName : String, hand):
 		"Coinbag":
 			hand.useCoinbag()
 
+func playEquipAnims(itemName : String, hand):
+	match itemName:
+		"Flashlight":
+			hand.equipFlashlight()
+		"Coinbag":
+			hand.equipCoinbag()
+		"":
+			hand.dequip()
+
 # Send inventory to ui and update anims
 func send_inventory_to_ui():
 	emit_signal("updateInventory", INVENTORY)
-	
-	if EQUIPED_LEFT == "Flashlight":
-		leftHand.equipFlashlight()
-	if EQUIPED_RIGHT == "Flashlight":
-		rightHand.equipFlashlight()
-	if EQUIPED_LEFT == "Coinbag":
-		leftHand.equipCoinbag()
-	if EQUIPED_RIGHT == "Coinbag":
-		rightHand.equipCoinbag()
-	if EQUIPED_LEFT == "":
-		leftHand.dequip()
-	if EQUIPED_RIGHT == "":
-		rightHand.dequip()
 
 # Equiping items from inventory
 func _on_flashlight_gui_input(event):
@@ -226,10 +224,15 @@ func _on_flashlight_gui_input(event):
 				EQUIPED_RIGHT = "Flashlight"
 				if EQUIPED_LEFT == EQUIPED_RIGHT:
 					EQUIPED_LEFT = ""
+					playEquipAnims(EQUIPED_LEFT, leftHand)
+				playEquipAnims(EQUIPED_RIGHT, rightHand)
 			MOUSE_BUTTON_RIGHT:
 				EQUIPED_LEFT = "Flashlight"
+				playEquipAnims("Flashlight", leftHand)
 				if EQUIPED_RIGHT == EQUIPED_LEFT:
 					EQUIPED_RIGHT = ""
+					playEquipAnims(EQUIPED_RIGHT, rightHand)
+				playEquipAnims(EQUIPED_LEFT, leftHand)
 		send_inventory_to_ui()
 
 func _on_coinbag_gui_input(event):
@@ -239,8 +242,13 @@ func _on_coinbag_gui_input(event):
 				EQUIPED_RIGHT = "Coinbag"
 				if EQUIPED_LEFT == EQUIPED_RIGHT:
 					EQUIPED_LEFT = ""
+					playEquipAnims(EQUIPED_LEFT, leftHand)
+				playEquipAnims(EQUIPED_RIGHT, rightHand)
 			MOUSE_BUTTON_RIGHT:
 				EQUIPED_LEFT = "Coinbag"
+				playEquipAnims("Coinbag", leftHand)
 				if EQUIPED_RIGHT == EQUIPED_LEFT:
 					EQUIPED_RIGHT = ""
+					playEquipAnims(EQUIPED_RIGHT, rightHand)
+				playEquipAnims(EQUIPED_LEFT, leftHand)
 		send_inventory_to_ui()
