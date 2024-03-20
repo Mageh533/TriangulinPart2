@@ -1,3 +1,3 @@
 extends Area3D
 
-const TYPE := "Player"
+@export var TYPE := "Player"
