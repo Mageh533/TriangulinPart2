@@ -34,26 +34,14 @@ func _on_player_send_use_message(message):
 
 func reset_inventories():
 	# Hide all sprites shown
-	for item in leftEquiped.get_children():
-		item.hide()
-	for item in rightEquiped.get_children():
-		item.hide()
 	for item in inventory.get_children():
 		item.hide()
 
 func _on_player_update_inventory(inv):
 	reset_inventories()
 	
-	for item in leftEquiped.get_children():
-		if item.name == inv["EquipedLeft"]:
-			item.show()
-	
 	for item in inventory.get_children():
-		if item.name in inv["Inventory"]:
-			item.show()
-	
-	for item in rightEquiped.get_children():
-		if item.name == inv["EquipedRight"]:
+		if item.name in inv:
 			item.show()
 
 func _on_player_toggle_inventory():

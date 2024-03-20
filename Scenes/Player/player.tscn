@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://ishtnc6uke55"]
+[gd_scene load_steps=18 format=3 uid="uid://ishtnc6uke55"]
 
 [ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
 [ext_resource type="Script" path="res://Scripts/Player/PausedUI.gd" id="2_lxg5p"]
 [ext_resource type="Script" path="res://Scripts/Player/GameplayUI.gd" id="4_50oah"]
-[ext_resource type="PackedScene" uid="uid://c5654fd1mk85r" path="res://Assets/Models/flashlight_-_fenix_fd41/flashlight.gltf" id="4_f80ke"]
 [ext_resource type="PackedScene" uid="uid://cmf0eb4wvgecn" path="res://Scenes/Player/fps_hands_scripted.tscn" id="6_2ln3t"]
 [ext_resource type="Texture2D" uid="uid://cpc0qjd6ijork" path="res://Assets/Sprites/UI/dynamo_flashlight.png" id="9_eb8xi"]
 [ext_resource type="Texture2D" uid="uid://bacq2nvjkrqeo" path="res://Assets/Sprites/UI/coin_bag.png" id="10_oh2wr"]
@@ -54,11 +53,11 @@ target_position = Vector3(0, 0, -1.55)
 collision_mask = 16
 collide_with_areas = true
 
-[node name="fps-hands" parent="Head" instance=ExtResource("6_2ln3t")]
+[node name="Hand_Right" parent="Head" instance=ExtResource("6_2ln3t")]
 transform = Transform3D(-0.1, 0, 1.50996e-08, 0, 0.1, 0, -1.50996e-08, 0, -0.1, 0.0119543, -1.48121, 0.29242)
 
-[node name="Sketchfab_Scene" parent="Head/fps-hands" instance=ExtResource("4_f80ke")]
-transform = Transform3D(-2.47514e-05, -0.019994, 0.000488018, -0.0010126, 0.000488645, 0.0199684, -0.0199743, 3.86675e-09, -0.0010129, -2.30925, 12.7037, 6.34418)
+[node name="Hand_Left" parent="Head" instance=ExtResource("6_2ln3t")]
+transform = Transform3D(0.100305, 8.74228e-09, 1.50996e-08, -8.76893e-09, 0.1, 0, 1.51456e-08, 1.32005e-15, -0.1, 0.0119543, -1.48121, 0.29242)
 
 [node name="Flashlight" type="SpotLight3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04038, 0)
@@ -265,59 +264,6 @@ mouse_filter = 1
 button_mask = 3
 icon = ExtResource("10_oh2wr")
 text_overrun_behavior = 1
-
-[node name="EquipedRight" type="Panel" parent="UI/GameplayUI"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -20.0
-offset_right = -24.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Flashlight" type="TextureRect" parent="UI/GameplayUI/EquipedRight"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("9_eb8xi")
-expand_mode = 2
-
-[node name="Coinbag" type="TextureRect" parent="UI/GameplayUI/EquipedRight"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("10_oh2wr")
-expand_mode = 2
-
-[node name="EquipedLeft" type="Panel" parent="UI/GameplayUI"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 17.0
-offset_top = -20.0
-offset_right = 57.0
-offset_bottom = 20.0
-grow_vertical = 2
-
-[node name="Flashlight" type="TextureRect" parent="UI/GameplayUI/EquipedLeft"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("9_eb8xi")
-expand_mode = 2
-
-[node name="Coinbag" type="TextureRect" parent="UI/GameplayUI/EquipedLeft"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("10_oh2wr")
-expand_mode = 2
 
 [node name="Noise" type="Area3D" parent="."]
 collision_layer = 8

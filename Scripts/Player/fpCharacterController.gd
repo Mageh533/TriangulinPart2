@@ -6,7 +6,7 @@ signal sendCurrentStamina(currentStamina : float)
 signal canInteract(interactable : bool)
 signal sendUseMessage(message : String)
 signal reload(delta : float)
-signal updateInventory(inv : Dictionary)
+signal updateInventory(inv : Array)
 signal toggleInventory
 signal usePrimary(primaryTool : String)
 signal useSecondary(secondaryTool : String)
@@ -16,6 +16,8 @@ signal useSecondary(secondaryTool : String)
 @onready var interactRay = $Head/Interact
 @onready var playerCam = $Head
 @onready var playerCollision = $PlayerCollision
+@onready var leftHand = $Head/Hand_Left
+@onready var rightHand = $Head/Hand_Right
 
 # Editable constants
 @export var SENSITIVITY : float = 0.01
@@ -190,13 +192,22 @@ func _on_flashlight_emit_noise(noiseMade):
 func _on_pc_switch_perspective(state):
 	active = state
 
+# Send inventory to ui and update anims
 func send_inventory_to_ui():
-	var fullInventory := {
-		"Inventory" : INVENTORY,
-		"EquipedLeft" : EQUIPED_LEFT,
-		"EquipedRight" : EQUIPED_RIGHT
-	}
-	emit_signal("updateInventory", fullInventory)
+	emit_signal("updateInventory", INVENTORY)
+	
+	if EQUIPED_LEFT == "Flashlight":
+		leftHand.equipFlashlight()
+	if EQUIPED_RIGHT == "Flashlight":
+		rightHand.equipFlashlight()
+	if EQUIPED_LEFT == "Coinbag":
+		leftHand.equipCoinbag()
+	if EQUIPED_RIGHT == "Coinbag":
+		rightHand.equipCoinbag()
+	if EQUIPED_LEFT == "":
+		leftHand.dequip()
+	if EQUIPED_RIGHT == "":
+		rightHand.dequip()
 
 # Equiping items from inventory
 func _on_flashlight_gui_input(event):
