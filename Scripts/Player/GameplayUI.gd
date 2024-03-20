@@ -6,8 +6,6 @@ extends Control
 @onready var staminaBar = $StaminaPanel/ProgressBar
 @onready var interactableLabel = $InteractLabel
 @onready var useMsgLabel = $UseMessageLabel
-@onready var leftEquiped = $EquipedLeft
-@onready var rightEquiped = $EquipedRight
 @onready var inventory = $Inventory
 
 func _ready():

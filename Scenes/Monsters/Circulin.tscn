@@ -47,3 +47,7 @@ transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, 
 
 [node name="glove_left" parent="." instance=ExtResource("3_t443u")]
 transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.31773, 0.606217, 0.000144958)
+
+[node name="idleTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
