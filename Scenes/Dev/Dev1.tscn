@@ -92,6 +92,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21605, 0.00818276, 5.98769
 
 [node name="Player" parent="." instance=ExtResource("1_tfmf3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18588, 3.73112)
+INVENTORY = ["Flashlight", ""]
 
 [node name="Estrellin" parent="." instance=ExtResource("4_sajwv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0629, 0.810346, -13.5117)

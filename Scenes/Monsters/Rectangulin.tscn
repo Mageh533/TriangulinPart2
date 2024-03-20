@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bsuc42l1mm6wb"]
+
+[node name="Rectangulin" type="CharacterBody3D"]
