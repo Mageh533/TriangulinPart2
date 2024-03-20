@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
+[ext_resource type="PackedScene" uid="uid://c37o4eb6356us" path="res://Scenes/Player/fps_hands_scripted.tscn" id="2_b8wef"]
 [ext_resource type="Script" path="res://Scripts/Player/PausedUI.gd" id="2_lxg5p"]
 [ext_resource type="Script" path="res://Scripts/Player/GameplayUI.gd" id="4_50oah"]
-[ext_resource type="PackedScene" uid="uid://c37o4eb6356us" path="res://Scenes/Player/fps_hands_scripted.tscn" id="6_2ln3t"]
 [ext_resource type="Texture2D" uid="uid://cpc0qjd6ijork" path="res://Assets/Sprites/UI/dynamo_flashlight.png" id="9_eb8xi"]
 [ext_resource type="Texture2D" uid="uid://bacq2nvjkrqeo" path="res://Assets/Sprites/UI/coin_bag.png" id="10_oh2wr"]
 [ext_resource type="Script" path="res://Scripts/Player/Coin_Bag.gd" id="11_ss1v8"]
@@ -47,17 +47,17 @@ STAMINA_RECHARGE_RATE = 15.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 current = true
 
+[node name="Hand_Right" parent="Head" instance=ExtResource("2_b8wef")]
+transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0.10466, -1.53475, 0.211629)
+
+[node name="Hand_Left" parent="Head" instance=ExtResource("2_b8wef")]
+transform = Transform3D(0.0996158, 0, -8.74228e-09, 0, 0.1, 0, -8.70869e-09, 0, -0.1, -0.1363, -1.53475, 0.186193)
+
 [node name="Interact" type="RayCast3D" parent="Head"]
 visible = false
 target_position = Vector3(0, 0, -1.55)
 collision_mask = 16
 collide_with_areas = true
-
-[node name="Hand_Right" parent="Head" instance=ExtResource("6_2ln3t")]
-transform = Transform3D(-0.1, 0, 1.50996e-08, 0, 0.1, 0, -1.50996e-08, 0, -0.1, 0.0119543, -1.48121, 0.29242)
-
-[node name="Hand_Left" parent="Head" instance=ExtResource("6_2ln3t")]
-transform = Transform3D(0.100305, 8.74228e-09, 1.50996e-08, -8.76893e-09, 0.1, 0, 1.51456e-08, 1.32005e-15, -0.1, 0.0119543, -1.48121, 0.29242)
 
 [node name="Flashlight" type="SpotLight3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04038, 0)

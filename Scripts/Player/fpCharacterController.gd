@@ -145,9 +145,11 @@ func playerControls(delta):
 	
 	if Input.is_action_just_pressed("primary"):
 		emit_signal("usePrimary", EQUIPED_RIGHT)
+		playUseAnims(EQUIPED_RIGHT, rightHand)
 	
 	if Input.is_action_just_pressed("secondary"):
 		emit_signal("useSecondary", EQUIPED_LEFT)
+		playUseAnims(EQUIPED_LEFT, leftHand)
 	
 	if Input.is_action_just_pressed("swap"):
 		var temp = EQUIPED_LEFT
@@ -192,6 +194,13 @@ func _on_flashlight_emit_noise(noiseMade):
 func _on_pc_switch_perspective(state):
 	active = state
 
+func playUseAnims(itemName : String, hand):
+	match itemName:
+		"Flashlight":
+			hand.useFlashlight()
+		"Coinbag":
+			hand.useCoinbag()
+
 # Send inventory to ui and update anims
 func send_inventory_to_ui():
 	emit_signal("updateInventory", INVENTORY)
@@ -221,7 +230,7 @@ func _on_flashlight_gui_input(event):
 				EQUIPED_LEFT = "Flashlight"
 				if EQUIPED_RIGHT == EQUIPED_LEFT:
 					EQUIPED_RIGHT = ""
-	send_inventory_to_ui()
+		send_inventory_to_ui()
 
 func _on_coinbag_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -234,4 +243,4 @@ func _on_coinbag_gui_input(event):
 				EQUIPED_LEFT = "Coinbag"
 				if EQUIPED_RIGHT == EQUIPED_LEFT:
 					EQUIPED_RIGHT = ""
-	send_inventory_to_ui()
+		send_inventory_to_ui()
