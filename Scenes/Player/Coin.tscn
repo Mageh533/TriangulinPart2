@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://kkwy2cd8ltf4"]
+[gd_scene load_steps=6 format=3 uid="uid://kkwy2cd8ltf4"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Coin.gd" id="1_38d3h"]
-[ext_resource type="Script" path="res://Scripts/Noise/Coin_noise.gd" id="2_5x2xm"]
+[ext_resource type="PackedScene" uid="uid://b0thk1p1j4whw" path="res://Scenes/Game/noise.tscn" id="2_lkps4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6oisp"]
 albedo_color = Color(1, 1, 0, 1)
@@ -11,10 +11,8 @@ albedo_color = Color(1, 1, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3wymh"]
 size = Vector3(0.181122, 0.201344, 0.04776)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_12f1m"]
-radius = 9.73749
-
 [node name="Coin" type="RigidBody3D"]
+process_mode = 1
 collision_layer = 0
 collision_mask = 6
 max_contacts_reported = 1
@@ -35,13 +33,9 @@ remote_path = NodePath("../Noise")
 update_rotation = false
 update_scale = false
 
-[node name="Noise" type="Area3D" parent="."]
+[node name="Noise" parent="." instance=ExtResource("2_lkps4")]
 process_mode = 4
 top_level = true
-collision_layer = 8
-collision_mask = 0
-monitoring = false
-script = ExtResource("2_5x2xm")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Noise"]
-shape = SubResource("SphereShape3D_12f1m")
+TYPE = "Coin"
+noise_radius = 10.0
+one_shot = true
