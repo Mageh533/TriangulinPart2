@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0thk1p1j4whw"]
+[gd_scene load_steps=10 format=3 uid="uid://b0thk1p1j4whw"]
 
 [ext_resource type="Script" path="res://Scripts/Noise/PlayerNoise.gd" id="1_3x665"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r2tqh"]
 resource_local_to_scene = true
 radius = 0.001
+
+[sub_resource type="Curve" id="Curve_7ajbj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x41tj"]
+curve = SubResource("Curve_7ajbj")
 
 [sub_resource type="Curve" id="Curve_cu0hs"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -19,13 +26,16 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_2x5gm")
 scale_over_velocity_min = 132.53
 scale_over_velocity_max = 132.53
+alpha_curve = SubResource("CurveTexture_x41tj")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyq3u"]
-albedo_color = Color(0.133333, 0.133333, 0.133333, 0.101961)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bc7tv"]
+transparency = 1
+vertex_color_use_as_albedo = true
+grow = true
 
 [sub_resource type="TorusMesh" id="TorusMesh_j5x7p"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_uyq3u")
+material = SubResource("StandardMaterial3D_bc7tv")
 inner_radius = 0.93
 
 [node name="Noise" type="Area3D"]
