@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://kkwy2cd8ltf4"]
+[gd_scene load_steps=7 format=3 uid="uid://kkwy2cd8ltf4"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Coin.gd" id="1_38d3h"]
 [ext_resource type="Script" path="res://Scripts/Noise/Coin_noise.gd" id="2_5x2xm"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6oisp"]
+albedo_color = Color(1, 1, 0, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_joga8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3wymh"]
-size = Vector3(0.262085, 0.310211, 0.125)
+size = Vector3(0.181122, 0.201344, 0.04776)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_12f1m"]
 radius = 9.73749
@@ -19,11 +22,12 @@ contact_monitor = true
 script = ExtResource("1_38d3h")
 
 [node name="CoinMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.285404, 0, 0, 0, 0.342034, 0, 0, 0, 0.120193, 0, 0, 0)
+transform = Transform3D(0.175738, 0, 0, 0, 0.213153, 0, 0, 0, 0.0527431, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_6oisp")
 mesh = SubResource("SphereMesh_joga8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286865, 0.000473022, 0.000976563)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00147927, 0.00221826, -0.00193787)
 shape = SubResource("BoxShape3D_3wymh")
 
 [node name="Noise" type="Area3D" parent="."]

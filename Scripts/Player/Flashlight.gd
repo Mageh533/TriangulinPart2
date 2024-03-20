@@ -11,8 +11,6 @@ signal emitNoise(noiseMade : float)
 
 var battery : float
 
-var equiped := true
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	battery = maxBattery
@@ -33,6 +31,13 @@ func _on_player_reload(delta):
 		battery += delta * rechargeRate
 	emit_signal("emitNoise", noise * delta)
 
-func _on_player_use_primary():
-	if equiped:
-		visible = !visible
+func use_flashlight():
+	visible = !visible
+
+func _on_player_use_primary(primaryTool):
+	if primaryTool == "FLashlight":
+		use_flashlight()
+
+func _on_player_use_secondary(secondaryTool):
+	if secondaryTool == "FLashlight":
+		use_flashlight()

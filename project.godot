@@ -91,6 +91,10 @@ secondary={
 3d_physics/layer_4="noise"
 3d_physics/layer_5="interactables"
 
+[physics]
+
+3d/physics_engine="JoltPhysics3D"
+
 [rendering]
 
 renderer/rendering_method.mobile="gl_compatibility"

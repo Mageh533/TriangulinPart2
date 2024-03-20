@@ -7,8 +7,8 @@ signal canInteract(interactable : bool)
 signal sendUseMessage(message : String)
 signal reload(delta : float)
 signal updateInventory(inv : Array[String])
-signal usePrimary
-signal useSecondary
+signal usePrimary(primaryTool : String)
+signal useSecondary(secondaryTool : String)
 
 # Nodes
 @onready var noiseNode = $Noise/NoiseCollision
@@ -21,8 +21,9 @@ signal useSecondary
 @export var MAX_STAMINA : float = 100.0
 @export var STAMINA_DRAIN_RATE : float = 1.0
 @export var STAMINA_RECHARGE_RATE : float = 1.0
-@export var INVENTORY_RIGHT := ["Flashlight"]
-@export var INVENTORY_LEFT := ["CoinBag"]
+@export var EQUIPED_RIGHT := "FLashlight"
+@export var EQUIPED_LEFT := "Coinbag"
+@export var INVENTORY := ["Flashlight, Coinbag"]
 
 # Constants
 const SPEED : float = 4.5
@@ -50,7 +51,6 @@ func _init():
 
 func _ready():
 	stamina = MAX_STAMINA
-	var INVENTORY := INVENTORY_LEFT + INVENTORY_RIGHT
 	emit_signal("updateInventory", INVENTORY)
 
 func _process(delta):
@@ -128,10 +128,10 @@ func playerControls(delta):
 				emit_signal("sendUseMessage", message)
 	
 	if Input.is_action_just_pressed("primary"):
-		emit_signal("usePrimary")
+		emit_signal("usePrimary", EQUIPED_RIGHT)
 	
 	if Input.is_action_just_pressed("secondary"):
-		emit_signal("useSecondary")
+		emit_signal("useSecondary", EQUIPED_LEFT)
 	
 	if Input.is_action_pressed("recharge"):
 		emit_signal("reload", delta)
