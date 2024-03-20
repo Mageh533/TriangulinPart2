@@ -6,7 +6,8 @@ signal sendCurrentStamina(currentStamina : float)
 signal canInteract(interactable : bool)
 signal sendUseMessage(message : String)
 signal reload(delta : float)
-signal updateInventory(inv : Array[String])
+signal updateInventory(inv : Dictionary)
+signal toggleInventory
 signal usePrimary(primaryTool : String)
 signal useSecondary(secondaryTool : String)
 
@@ -21,7 +22,7 @@ signal useSecondary(secondaryTool : String)
 @export var MAX_STAMINA : float = 100.0
 @export var STAMINA_DRAIN_RATE : float = 1.0
 @export var STAMINA_RECHARGE_RATE : float = 1.0
-@export var EQUIPED_RIGHT := "FLashlight"
+@export var EQUIPED_RIGHT := "Flashlight"
 @export var EQUIPED_LEFT := "Coinbag"
 @export var INVENTORY := ["Flashlight, Coinbag"]
 
@@ -51,12 +52,12 @@ func _init():
 
 func _ready():
 	stamina = MAX_STAMINA
-	emit_signal("updateInventory", INVENTORY)
+	send_inventory_to_ui()
 
 func _process(delta):
 	processNoise(delta)
 	emit_signal("sendCurrentStamina", stamina)
-	# Free the mouse if the player is not active
+	
 	if active:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
@@ -96,7 +97,7 @@ func processNoise(delta):
 	
 	noise = tempNoise + permNoise
 	
-	noiseNode.shape.radius = noise
+	noiseNode.shape.radius = noise + 0.001
 	
 	emit_signal("sendCurrentNoise", noise)
 
@@ -133,8 +134,17 @@ func playerControls(delta):
 	if Input.is_action_just_pressed("secondary"):
 		emit_signal("useSecondary", EQUIPED_LEFT)
 	
+	if Input.is_action_just_pressed("swap"):
+		var temp = EQUIPED_LEFT
+		EQUIPED_LEFT = EQUIPED_RIGHT
+		EQUIPED_RIGHT = temp
+		send_inventory_to_ui()
+	
 	if Input.is_action_pressed("recharge"):
 		emit_signal("reload", delta)
+	
+	if Input.is_action_just_pressed("inventory"):
+		emit_signal("toggleInventory")
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -169,3 +179,11 @@ func _on_flashlight_emit_noise(noiseMade):
 
 func _on_pc_switch_perspective(state):
 	active = state
+
+func send_inventory_to_ui():
+	var fullInventory := {
+		"Inventory" : INVENTORY,
+		"EquipedLeft" : EQUIPED_LEFT,
+		"EquipedRight" : EQUIPED_RIGHT
+	}
+	emit_signal("updateInventory", fullInventory)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ishtnc6uke55"]
+[gd_scene load_steps=19 format=3 uid="uid://ishtnc6uke55"]
 
 [ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/Player/GameplayUI.gd" id="4_50oah"]
 [ext_resource type="PackedScene" uid="uid://c5654fd1mk85r" path="res://Assets/Models/flashlight_-_fenix_fd41/flashlight.gltf" id="4_f80ke"]
 [ext_resource type="PackedScene" uid="uid://cmf0eb4wvgecn" path="res://Scenes/Player/fps_hands_scripted.tscn" id="6_2ln3t"]
+[ext_resource type="Texture2D" uid="uid://cpc0qjd6ijork" path="res://Assets/Sprites/UI/dynamo_flashlight.png" id="9_eb8xi"]
+[ext_resource type="Texture2D" uid="uid://bacq2nvjkrqeo" path="res://Assets/Sprites/UI/coin_bag.png" id="10_oh2wr"]
 [ext_resource type="Script" path="res://Scripts/Player/Coin_Bag.gd" id="11_ss1v8"]
 [ext_resource type="Script" path="res://Scripts/Noise/PlayerNoise.gd" id="12_7oppw"]
 [ext_resource type="PackedScene" uid="uid://kkwy2cd8ltf4" path="res://Scenes/Player/Coin.tscn" id="12_pm3pb"]
@@ -41,8 +43,6 @@ collision_mask = 22
 script = ExtResource("1_nm7ix")
 STAMINA_DRAIN_RATE = 20.0
 STAMINA_RECHARGE_RATE = 15.0
-EQUIPED_RIGHT = "Coinbag"
-EQUIPED_LEFT = "Flashlight"
 
 [node name="Head" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -232,6 +232,73 @@ offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Inventory" type="Panel" parent="UI/GameplayUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -212.0
+offset_top = -75.0
+offset_right = 211.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="EquipedRight" type="Panel" parent="UI/GameplayUI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -20.0
+offset_right = -24.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Flashlight" type="TextureRect" parent="UI/GameplayUI/EquipedRight"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("9_eb8xi")
+expand_mode = 2
+
+[node name="Coinbag" type="TextureRect" parent="UI/GameplayUI/EquipedRight"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_oh2wr")
+expand_mode = 2
+
+[node name="EquipedLeft" type="Panel" parent="UI/GameplayUI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -20.0
+offset_right = 57.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="Flashlight" type="TextureRect" parent="UI/GameplayUI/EquipedLeft"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("9_eb8xi")
+expand_mode = 2
+
+[node name="Coinbag" type="TextureRect" parent="UI/GameplayUI/EquipedLeft"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_oh2wr")
+expand_mode = 2
+
 [node name="Noise" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 0
@@ -246,6 +313,8 @@ shape = SubResource("SphereShape3D_wngvb")
 [connection signal="sendCurrentNoise" from="." to="UI/GameplayUI" method="_on_player_send_current_noise"]
 [connection signal="sendCurrentStamina" from="." to="UI/GameplayUI" method="_on_player_send_current_stamina"]
 [connection signal="sendUseMessage" from="." to="UI/GameplayUI" method="_on_player_send_use_message"]
+[connection signal="toggleInventory" from="." to="UI/GameplayUI" method="_on_player_toggle_inventory"]
+[connection signal="updateInventory" from="." to="UI/GameplayUI" method="_on_player_update_inventory"]
 [connection signal="usePrimary" from="." to="Head/Flashlight" method="_on_player_use_primary"]
 [connection signal="usePrimary" from="." to="Head/Coin_Bag_Throw" method="_on_player_use_primary"]
 [connection signal="useSecondary" from="." to="Head/Flashlight" method="_on_player_use_secondary"]

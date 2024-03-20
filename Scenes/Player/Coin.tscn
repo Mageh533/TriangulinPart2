@@ -30,8 +30,14 @@ mesh = SubResource("SphereMesh_joga8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00147927, 0.00221826, -0.00193787)
 shape = SubResource("BoxShape3D_3wymh")
 
+[node name="NoiseTransform" type="RemoteTransform3D" parent="."]
+remote_path = NodePath("../Noise")
+update_rotation = false
+update_scale = false
+
 [node name="Noise" type="Area3D" parent="."]
 process_mode = 4
+top_level = true
 collision_layer = 8
 collision_mask = 0
 monitoring = false

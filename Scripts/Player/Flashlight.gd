@@ -35,9 +35,9 @@ func use_flashlight():
 	visible = !visible
 
 func _on_player_use_primary(primaryTool):
-	if primaryTool == "FLashlight":
+	if primaryTool == "Flashlight":
 		use_flashlight()
 
 func _on_player_use_secondary(secondaryTool):
-	if secondaryTool == "FLashlight":
+	if secondaryTool == "Flashlight":
 		use_flashlight()

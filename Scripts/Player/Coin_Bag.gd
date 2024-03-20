@@ -8,9 +8,8 @@ func throw_coin():
 		get_tree().root.add_child(coin)
 		coin.linear_velocity = (global_transform.basis.z.normalized())
 		coin.global_position = global_position
-		var impulsePos := global_position
-		impulsePos.y -= 20
-		coin.apply_impulse(Vector3(5,5,5), impulsePos)
+		var direction: Vector3 = global_transform.looking_at(to_global(target_position), Vector3.UP).basis.z.normalized()
+		coin.apply_impulse(global_transform.origin, direction)
 
 func _on_player_use_primary(primaryTool):
 	if primaryTool == "Coinbag":
