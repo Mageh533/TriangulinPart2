@@ -23,8 +23,8 @@ signal useSecondary(secondaryTool : String)
 @export var STAMINA_DRAIN_RATE : float = 1.0
 @export var STAMINA_RECHARGE_RATE : float = 1.0
 @export var EQUIPED_RIGHT := "Flashlight"
-@export var EQUIPED_LEFT := "Coinbag"
-@export var INVENTORY := ["Flashlight, Coinbag"]
+@export var EQUIPED_LEFT := ""
+@export var INVENTORY := ["Flashlight", "Coinbag"]
 
 # Constants
 const SPEED : float = 4.5
@@ -58,6 +58,16 @@ func _process(delta):
 	processNoise(delta)
 	emit_signal("sendCurrentStamina", stamina)
 	
+	# When the player presses the inventory key it will allow them to move again, also applies when interacting with objects
+	if Input.is_action_just_pressed("inventory"):
+		if active:
+			emit_signal("toggleInventory")
+			active = false
+	elif Input.is_action_just_released("inventory"):
+		if !active:
+			active = true
+			emit_signal("toggleInventory")
+	
 	if active:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
@@ -70,6 +80,9 @@ func _physics_process(delta):
 	
 	if active:
 		playerControls(delta)
+	else:
+		velocity.x = 0
+		velocity.z = 0
 	
 	emit_signal("canInteract", interactRay.is_colliding() and active)
 	
@@ -143,9 +156,6 @@ func playerControls(delta):
 	if Input.is_action_pressed("recharge"):
 		emit_signal("reload", delta)
 	
-	if Input.is_action_just_pressed("inventory"):
-		emit_signal("toggleInventory")
-	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -187,3 +197,30 @@ func send_inventory_to_ui():
 		"EquipedRight" : EQUIPED_RIGHT
 	}
 	emit_signal("updateInventory", fullInventory)
+
+# Equiping items from inventory
+func _on_flashlight_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				EQUIPED_RIGHT = "Flashlight"
+				if EQUIPED_LEFT == EQUIPED_RIGHT:
+					EQUIPED_LEFT = ""
+			MOUSE_BUTTON_RIGHT:
+				EQUIPED_LEFT = "Flashlight"
+				if EQUIPED_RIGHT == EQUIPED_LEFT:
+					EQUIPED_RIGHT = ""
+	send_inventory_to_ui()
+
+func _on_coinbag_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				EQUIPED_RIGHT = "Coinbag"
+				if EQUIPED_LEFT == EQUIPED_RIGHT:
+					EQUIPED_LEFT = ""
+			MOUSE_BUTTON_RIGHT:
+				EQUIPED_LEFT = "Coinbag"
+				if EQUIPED_RIGHT == EQUIPED_LEFT:
+					EQUIPED_RIGHT = ""
+	send_inventory_to_ui()

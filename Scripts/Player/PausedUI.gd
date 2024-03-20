@@ -12,5 +12,4 @@ func pauseHotKeys():
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		show()
 	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		hide()

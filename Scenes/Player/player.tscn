@@ -239,12 +239,32 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -212.0
-offset_top = -75.0
-offset_right = 211.0
-offset_bottom = -35.0
+offset_left = -310.0
+offset_top = -250.0
+offset_right = 309.0
+offset_bottom = -111.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Flashlight" type="Button" parent="UI/GameplayUI/Inventory"]
+layout_mode = 0
+offset_left = 11.0
+offset_right = 147.0
+offset_bottom = 136.0
+mouse_filter = 1
+button_mask = 3
+icon = ExtResource("9_eb8xi")
+text_overrun_behavior = 1
+
+[node name="Coinbag" type="Button" parent="UI/GameplayUI/Inventory"]
+layout_mode = 0
+offset_left = 165.0
+offset_right = 305.0
+offset_bottom = 136.0
+mouse_filter = 1
+button_mask = 3
+icon = ExtResource("10_oh2wr")
+text_overrun_behavior = 1
 
 [node name="EquipedRight" type="Panel" parent="UI/GameplayUI"]
 layout_mode = 1
@@ -321,3 +341,5 @@ shape = SubResource("SphereShape3D_wngvb")
 [connection signal="useSecondary" from="." to="Head/Coin_Bag_Throw" method="_on_player_use_secondary"]
 [connection signal="emitNoise" from="Head/Flashlight" to="." method="_on_flashlight_emit_noise"]
 [connection signal="sendBattery" from="Head/Flashlight" to="UI/GameplayUI" method="_on_flashlight_send_battery"]
+[connection signal="gui_input" from="UI/GameplayUI/Inventory/Flashlight" to="." method="_on_flashlight_gui_input"]
+[connection signal="gui_input" from="UI/GameplayUI/Inventory/Coinbag" to="." method="_on_coinbag_gui_input"]

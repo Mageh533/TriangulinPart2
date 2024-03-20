@@ -1194,6 +1194,7 @@ mesh = SubResource("QuadMesh_urcvl")
 skeleton = NodePath("../..")
 
 [node name="PCView" type="SubViewport" parent="Objects/PC Room/PC/PCMesh"]
+handle_input_locally = false
 size = Vector2i(500, 256)
 size_2d_override_stretch = true
 
@@ -1274,7 +1275,7 @@ shape = SubResource("BoxShape3D_ttxpy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6877, 0, -23.1802)
 
 [node name="Player" parent="." instance=ExtResource("1_esjso")]
-transform = Transform3D(0.99027, 0, -0.139156, 0, 1, 0, 0.139156, 0, 0.99027, -67.9636, 1.66454, 33.3674)
+transform = Transform3D(0.99027, 0, -0.139156, 0, 1, 0, 0.139156, 0, 0.99027, -67.9636, 1.66454, -81.2266)
 metadata/_edit_group_ = true
 
 [node name="Estrellin" parent="." instance=ExtResource("4_gkiev")]
