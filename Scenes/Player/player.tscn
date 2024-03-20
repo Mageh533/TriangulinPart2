@@ -128,50 +128,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_50oah")
 
-[node name="FlashlightPanel" type="Panel" parent="UI/GameplayUI"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -158.0
-offset_top = -75.0
-offset_right = -33.0
-offset_bottom = -35.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="FlashlightNum" type="Label" parent="UI/GameplayUI/FlashlightPanel"]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 9.0
-offset_right = 51.0
-offset_bottom = 32.0
-text = "Battery: "
-
-[node name="NoisePanel" type="Panel" parent="UI/GameplayUI"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -295.0
-offset_top = -75.0
-offset_right = -191.0
-offset_bottom = -35.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="NoiseNum" type="Label" parent="UI/GameplayUI/NoisePanel"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 10.0
-offset_right = 61.0
-offset_bottom = 33.0
-text = "Noise: "
-
 [node name="StaminaPanel" type="Panel" parent="UI/GameplayUI"]
 layout_mode = 1
 anchors_preset = 2
@@ -266,7 +222,6 @@ text_overrun_behavior = 1
 
 [connection signal="canInteract" from="." to="UI/GameplayUI" method="_on_player_can_interact"]
 [connection signal="reload" from="." to="Head/Flashlight" method="_on_player_reload"]
-[connection signal="sendCurrentNoise" from="." to="UI/GameplayUI" method="_on_player_send_current_noise"]
 [connection signal="sendCurrentStamina" from="." to="UI/GameplayUI" method="_on_player_send_current_stamina"]
 [connection signal="sendUseMessage" from="." to="UI/GameplayUI" method="_on_player_send_use_message"]
 [connection signal="toggleInventory" from="." to="UI/GameplayUI" method="_on_player_toggle_inventory"]
@@ -276,6 +231,5 @@ text_overrun_behavior = 1
 [connection signal="useSecondary" from="." to="Head/Flashlight" method="_on_player_use_secondary"]
 [connection signal="useSecondary" from="." to="Head/Coin_Bag_Throw" method="_on_player_use_secondary"]
 [connection signal="emitNoise" from="Head/Flashlight" to="." method="_on_flashlight_emit_noise"]
-[connection signal="sendBattery" from="Head/Flashlight" to="UI/GameplayUI" method="_on_flashlight_send_battery"]
 [connection signal="gui_input" from="UI/GameplayUI/Inventory/Flashlight" to="." method="_on_flashlight_gui_input"]
 [connection signal="gui_input" from="UI/GameplayUI/Inventory/Coinbag" to="." method="_on_coinbag_gui_input"]

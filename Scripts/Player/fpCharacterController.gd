@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 # Signals
-signal sendCurrentNoise(currentNoise : float)
 signal sendCurrentStamina(currentStamina : float)
 signal canInteract(interactable : bool)
 signal sendUseMessage(message : String)
@@ -115,8 +114,6 @@ func processNoise(delta):
 	noise = tempNoise + permNoise
 	
 	noiseNode.shape.radius = noise + 0.001
-	
-	emit_signal("sendCurrentNoise", noise)
 
 func playerControls(delta):
 	# Sprinting

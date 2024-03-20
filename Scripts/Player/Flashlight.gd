@@ -1,6 +1,5 @@
 extends SpotLight3D
 
-signal sendBattery(batteryLeft : float)
 signal emitNoise(noiseMade : float)
 
 @export var maxBattery : float = 100.0
@@ -24,7 +23,6 @@ func _process(delta):
 		battery -= delta * consumptionRate
 		if battery < 0:
 			battery = 0
-	emit_signal("sendBattery", battery)
 
 func _on_player_reload(delta):
 	if battery < maxBattery:
