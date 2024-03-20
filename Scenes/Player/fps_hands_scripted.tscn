@@ -1,28 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmf0eb4wvgecn"]
+[gd_scene load_steps=3 format=3 uid="uid://c37o4eb6356us"]
 
-[ext_resource type="PackedScene" uid="uid://dpreienu34nhg" path="res://Assets/Models/fps-hands.glb" id="1_85mo6"]
-[ext_resource type="Script" path="res://Scripts/Player/fps_hands_scripted.gd" id="2_1esbd"]
+[ext_resource type="PackedScene" uid="uid://dpreienu34nhg" path="res://Assets/Models/fps-hands.glb" id="1_b0j5w"]
+[ext_resource type="Script" path="res://Scripts/Player/fps_hands_scripted.gd" id="2_r5xx3"]
 
-[node name="fps-hands" instance=ExtResource("1_85mo6")]
-script = ExtResource("2_1esbd")
-
-[node name="Skeleton3D" parent="basicRig" index="0"]
-bones/0/rotation = Quaternion(-0.419232, 0.470686, 0.471532, 0.616731)
-bones/1/rotation = Quaternion(-0.397716, 0.320031, -0.250706, 0.822526)
-bones/2/rotation = Quaternion(0.0022945, 0.889979, -0.164785, -0.425181)
-bones/3/rotation = Quaternion(0.406937, -0.00110615, 0.00266442, 0.913452)
-bones/4/rotation = Quaternion(-0.419234, -0.470684, -0.471531, 0.616732)
-bones/5/rotation = Quaternion(-0.397717, -0.320031, 0.250706, 0.822526)
-bones/6/rotation = Quaternion(-0.00231814, 0.889915, -0.164786, 0.425314)
-bones/7/rotation = Quaternion(0.406979, 0.00110921, -0.00266397, 0.913433)
-bones/8/position = Vector3(-4.80212, 10.5947, 1.7934)
-bones/9/rotation = Quaternion(0.70315, 0.148215, 0.547304, 0.429035)
-bones/11/rotation = Quaternion(0.166281, -0.00037769, 0.00761926, 0.986049)
-bones/12/rotation = Quaternion(0.0680921, 0.00456147, -0.00696148, 0.997644)
-bones/16/rotation = Quaternion(0.0998841, 0.00298254, -0.00599186, 0.994977)
-bones/22/rotation = Quaternion(0.153638, -0.546145, -0.44896, 0.69033)
-bones/28/rotation = Quaternion(0.0161513, 0.00741279, -0.00380073, 0.999835)
-bones/29/position = Vector3(4.80308, 10.5946, 1.79434)
-
-[node name="basicRig_Body" parent="basicRig/Skeleton3D" index="0"]
-layers = 2
+[node name="fps-hands" instance=ExtResource("1_b0j5w")]
+script = ExtResource("2_r5xx3")

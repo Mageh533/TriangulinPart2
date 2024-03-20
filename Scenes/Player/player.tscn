@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
 [ext_resource type="Script" path="res://Scripts/Player/PausedUI.gd" id="2_lxg5p"]
 [ext_resource type="Script" path="res://Scripts/Player/GameplayUI.gd" id="4_50oah"]
-[ext_resource type="PackedScene" uid="uid://cmf0eb4wvgecn" path="res://Scenes/Player/fps_hands_scripted.tscn" id="6_2ln3t"]
+[ext_resource type="PackedScene" uid="uid://c37o4eb6356us" path="res://Scenes/Player/fps_hands_scripted.tscn" id="6_2ln3t"]
 [ext_resource type="Texture2D" uid="uid://cpc0qjd6ijork" path="res://Assets/Sprites/UI/dynamo_flashlight.png" id="9_eb8xi"]
 [ext_resource type="Texture2D" uid="uid://bacq2nvjkrqeo" path="res://Assets/Sprites/UI/coin_bag.png" id="10_oh2wr"]
 [ext_resource type="Script" path="res://Scripts/Player/Coin_Bag.gd" id="11_ss1v8"]
