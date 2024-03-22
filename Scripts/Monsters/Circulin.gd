@@ -54,7 +54,7 @@ func _physics_process(delta):
 	if noise_detection.is_colliding() or sight_detection.is_colliding():
 		hearing = true
 		# Check if its a player. All noises should have a type set
-		if sight_detection.is_colliding() or noise_detection.get_collider(0).TYPE == "Player":
+		if sight_detection.is_colliding() or (noise_detection.get_collider(0) is Area3D and noise_detection.get_collider(0).TYPE == "Player"):
 			playerFound = true
 		else:
 			playerFound = false

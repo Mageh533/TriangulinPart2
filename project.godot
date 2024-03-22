@@ -100,6 +100,7 @@ inventory={
 3d_physics/layer_3="world"
 3d_physics/layer_4="noise"
 3d_physics/layer_5="interactables"
+3d_physics/layer_6="beams"
 
 [physics]
 

@@ -8,6 +8,8 @@ signal emitNoise(noiseMade : float)
 
 @export var noise : float = 2
 
+@onready var beam = $Beam
+
 var battery : float
 
 # Called when the node enters the scene tree for the first time.
@@ -20,9 +22,13 @@ func _process(delta):
 	light_energy = battery / 100
 	spot_angle = battery / 2
 	if battery > 0 and visible:
+		beam.process_mode = Node.PROCESS_MODE_INHERIT
 		battery -= delta * consumptionRate
 		if battery < 0:
 			battery = 0
+			hide()
+	else:
+		beam.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_player_reload(delta):
 	if battery < maxBattery:

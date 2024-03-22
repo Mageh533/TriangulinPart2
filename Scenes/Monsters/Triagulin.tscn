@@ -1,3 +1,41 @@
-[gd_scene format=3 uid="uid://ceuwkfvmg4356"]
+[gd_scene load_steps=6 format=3 uid="uid://ceuwkfvmg4356"]
 
-[node name="Triagulin" type="StaticBody3D"]
+[ext_resource type="Script" path="res://Scripts/Monsters/Triagulin.gd" id="1_syhr2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2uy6q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6sei"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_q6r0m"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vlf8a"]
+radius = 2.0
+
+[node name="Triagulin" type="CharacterBody3D" groups=["Monsters"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_syhr2")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2uy6q")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_x6sei")
+mesh = SubResource("PrismMesh_q6r0m")
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="FlashlightDetect" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896331, 0)
+shape = SubResource("SphereShape3D_vlf8a")
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
