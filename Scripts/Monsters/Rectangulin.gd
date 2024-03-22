@@ -89,7 +89,7 @@ func _physics_process(delta):
 					glove_left.grab()
 					timeLeftToShoot -= delta
 					if timeLeftToShoot <= 0:
-						shoot(sight_detection.get_collider(0).global_position)
+						shoot()
 						timeLeftToShoot = TIME_TO_SHOOT
 			if curiosity > MAX_CURIOSITY:
 				curiosity = MAX_CURIOSITY
@@ -121,7 +121,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func shoot(shootTarget : Vector3):
+func shoot():
 	var bulletShot = bullet.instantiate()
 	get_tree().root.add_child(bulletShot)
 	bulletShot.global_transform = global_transform

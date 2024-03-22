@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED : float = 10
+const SPEED : float = 30
 const FLASHLIGHT_TIME : float = 3
 
 @export var appearChance : float = 0.2
