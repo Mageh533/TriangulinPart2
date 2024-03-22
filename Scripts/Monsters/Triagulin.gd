@@ -6,7 +6,6 @@ const FLASHLIGHT_TIME : float = 3
 @export var appearChance : float = 0.2
 @export var appearCooldown : float = 5
 
-var spawnPoints : Array[Vector3]
 var playerNode : CharacterBody3D
 var navigationMaps : Array[RID]
 
@@ -29,13 +28,9 @@ func _ready():
 	
 	call_deferred("actor_setup")
 	
-	var markers = get_tree().get_nodes_in_group("TSpawnPoints")
 	var players = get_tree().get_nodes_in_group("Players")
 	
 	playerNode = players.pick_random()
-	
-	for marker in markers:
-		spawnPoints.append(marker.global_position)
 
 func actor_setup():
 	await get_tree().physics_frame
@@ -73,14 +68,14 @@ func _process(delta):
 				if flashlight_time_left <= 0:
 					dissapear()
 
-func appear():
+func appear(spawnPoint : Vector3):
 	if randf_range(0, 1) <= appearChance:
 		if !visible:
 			show()
 			
 			flashlight_time_left = FLASHLIGHT_TIME
 			
-			global_position = spawnPoints.pick_random()
+			global_position = spawnPoint
 			
 			killtimer.start()
 

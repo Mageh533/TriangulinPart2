@@ -111,6 +111,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.37769, 1.33124, 1.66587)
 
 [node name="Triagulin" parent="." instance=ExtResource("6_sg2y0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.52675, 0.809245, 1.74087)
-appearChance = 0.6
+appearChance = 0.3
 
 [connection signal="body_entered" from="TriangulinTrigger" to="." method="_on_triangulin_trigger_body_entered"]
