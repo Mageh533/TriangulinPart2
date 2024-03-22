@@ -4,12 +4,15 @@ const SPEED : float = 10
 const FLASHLIGHT_TIME : float = 3
 
 @export var appearChance : float = 0.2
+@export var appearCooldown : float = 5
 
 var spawnPoints : Array[Vector3]
 var playerNode : CharacterBody3D
 var navigationMaps : Array[RID]
 
 var timeOut : bool = false
+var cooldownActive : bool = false
+
 var flashlight_time_left : float
 
 var target : Vector3
@@ -71,14 +74,15 @@ func _process(delta):
 					dissapear()
 
 func appear():
-	if !visible:
-		show()
-		
-		flashlight_time_left = FLASHLIGHT_TIME
-	
-		global_position = spawnPoints.pick_random()
-	
-		killtimer.start()
+	if randf_range(0, 1) <= appearChance:
+		if !visible:
+			show()
+			
+			flashlight_time_left = FLASHLIGHT_TIME
+			
+			global_position = spawnPoints.pick_random()
+			
+			killtimer.start()
 
 func dissapear():
 	hide()

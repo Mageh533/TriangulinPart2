@@ -24,10 +24,6 @@ shape = SubResource("BoxShape3D_2uy6q")
 material_override = SubResource("StandardMaterial3D_x6sei")
 mesh = SubResource("PrismMesh_q6r0m")
 
-[node name="KillTimer" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 
@@ -37,5 +33,9 @@ shape = SubResource("SphereShape3D_vlf8a")
 collision_mask = 32
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
