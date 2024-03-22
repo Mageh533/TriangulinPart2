@@ -6,9 +6,8 @@ func throw_coin():
 	if !is_colliding():
 		var coin = Coin.instantiate()
 		get_tree().root.add_child(coin)
-		coin.linear_velocity = (global_transform.basis.z.normalized())
 		coin.global_position = global_position
-		var direction: Vector3 = global_transform.looking_at(to_global(target_position), Vector3.UP).basis.z.normalized()
+		var direction = global_transform.basis.z.normalized()
 		coin.apply_impulse(global_transform.origin, direction)
 
 func _on_player_use_primary(primaryTool):

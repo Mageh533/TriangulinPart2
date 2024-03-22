@@ -1,3 +1,52 @@
-[gd_scene format=3 uid="uid://bsuc42l1mm6wb"]
+[gd_scene load_steps=8 format=3 uid="uid://bsuc42l1mm6wb"]
+
+[ext_resource type="Script" path="res://Scripts/Monsters/Rectangulin.gd" id="1_rpb52"]
+[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_cwn3w"]
+[ext_resource type="PackedScene" uid="uid://0hr57sq6s78l" path="res://Scenes/Monsters/bullet.tscn" id="2_e18hp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_40ujj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vcgo2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wn7mm"]
+radius = 1.712
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5x7g1"]
+size = Vector3(2, 2, 13.815)
 
 [node name="Rectangulin" type="CharacterBody3D" groups=["Monsters"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_rpb52")
+bullet = ExtResource("2_e18hp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_40ujj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vcgo2")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="NoiseCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.802002, 0)
+shape = SubResource("SphereShape3D_wn7mm")
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="SightCast" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37825, -6.1155)
+shape = SubResource("BoxShape3D_5x7g1")
+
+[node name="idleTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="glove_right" parent="." instance=ExtResource("2_cwn3w")]
+transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.26282, -0.438866, 0)
+
+[node name="glove_left" parent="." instance=ExtResource("2_cwn3w")]
+transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.31773, -0.306841, 0.000144958)
+
+[connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]

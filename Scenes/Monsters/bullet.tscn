@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://0hr57sq6s78l"]
+
+[ext_resource type="Script" path="res://Scenes/Monsters/bullet.gd" id="1_s6ayi"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lifbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lgrq1"]
+radius = 0.0637324
+height = 0.266511
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_s6ayi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-16, -4.37114e-09, -0.1, -0.1, -4.37114e-09, 0, -4.37114e-09, 0.1, -4.37114e-09, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_lifbx")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_lgrq1")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

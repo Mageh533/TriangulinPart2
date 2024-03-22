@@ -13,6 +13,5 @@ func _on_interactable_object_2_return_camera():
 func _on_interactable_object_2_freeze_player():
 	player.active = false
 
-
 func _on_triangulin_trigger_body_entered(body):
 	triangulin.appear(spawnPoint.global_position)
