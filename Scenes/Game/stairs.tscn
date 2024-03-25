@@ -243,6 +243,9 @@ locked = true
 lockable = false
 
 [node name="DoorFrame" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 4
+collision_mask = 0
 
 [node name="Wall30" type="CSGBox3D" parent="DoorFrame"]
 transform = Transform3D(0.999977, -0.00682418, 0, 0.00682418, 0.999977, 0, 0, 0, 1, 14.4945, 9.4708, 0.409561)
@@ -269,6 +272,9 @@ collision_mask = 0
 size = Vector3(1.75647, 3.29517, 1)
 
 [node name="DoorFrame2" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 4
+collision_mask = 0
 
 [node name="Wall15" type="CSGBox3D" parent="DoorFrame2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49775, 3, 0.409561)
@@ -295,6 +301,9 @@ collision_mask = 0
 size = Vector3(1.75647, 2.27588, 1)
 
 [node name="DoorFrame3" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 4
+collision_mask = 0
 
 [node name="Wall18" type="CSGBox3D" parent="DoorFrame3"]
 transform = Transform3D(0.999977, -0.00682418, 0, 0.00682418, 0.999977, 0, 0, 0, 1, 14.6326, -3.48987, 0.409561)
@@ -321,6 +330,9 @@ collision_mask = 0
 size = Vector3(1.75647, 3.29517, 1)
 
 [node name="DoorFrame4" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 4
+collision_mask = 0
 
 [node name="Wall21" type="CSGBox3D" parent="DoorFrame4"]
 transform = Transform3D(0.999977, -0.00682418, 0, 0.00682418, 0.999977, 0, 0, 0, 1, -1.65773, -10.0827, 0.409561)
@@ -347,6 +359,9 @@ collision_mask = 0
 size = Vector3(1.75647, 2.47656, 1)
 
 [node name="DoorFrame5" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 4
+collision_mask = 0
 
 [node name="Wall24" type="CSGBox3D" parent="DoorFrame5"]
 transform = Transform3D(0.999977, -0.00682418, 0, 0.00682418, 0.999977, 0, 0, 0, 1, 14.581, -17.0995, 0.409561)
@@ -373,6 +388,9 @@ collision_mask = 0
 size = Vector3(1.75647, 2.47656, 1)
 
 [node name="DoorFrame6" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 4
+collision_mask = 0
 
 [node name="Wall27" type="CSGBox3D" parent="DoorFrame6"]
 transform = Transform3D(0.999977, -0.00682418, 0, 0.00682418, 0.999977, 0, 0, 0, 1, -1.53988, -23.5583, 0.409561)

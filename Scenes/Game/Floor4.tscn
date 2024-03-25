@@ -69,6 +69,10 @@ size = Vector3(3.28833, 3.91687, 1)
 background_mode = 1
 background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.0
+ssao_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
 
 [node name="Floor4" type="Node3D"]
 script = ExtResource("1_85kuv")
@@ -718,6 +722,7 @@ size = Vector3(5, 5, 1)
 
 [node name="Ceiling" type="CSGBox3D" parent="BaseLayout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.8004, 5.2416, -31.2873)
+visible = false
 material_override = SubResource("StandardMaterial3D_3oscb")
 use_collision = true
 collision_layer = 4
@@ -896,6 +901,21 @@ shape = SubResource("BoxShape3D_ttxpy")
 [node name="Terminal" parent="Objects" instance=ExtResource("9_a0bvf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -68, 2.69311, 42.0089)
 
+[node name="Terminal2" parent="Objects" instance=ExtResource("9_a0bvf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -46, 2.69311, -5.99113)
+
+[node name="Terminal3" parent="Objects" instance=ExtResource("9_a0bvf")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -104, 2.69311, 10.0089)
+
+[node name="Terminal4" parent="Objects" instance=ExtResource("9_a0bvf")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -99, 2.69311, -70.9911)
+
+[node name="Terminal5" parent="Objects" instance=ExtResource("9_a0bvf")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -81, 2.69311, -45.9911)
+
+[node name="Terminal6" parent="Objects" instance=ExtResource("9_a0bvf")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -14, 2.69311, -71.9911)
+
 [node name="TriangulinSpawnPoints" type="Node3D" parent="."]
 
 [node name="SpawnTrigger" type="Area3D" parent="TriangulinSpawnPoints"]
@@ -1043,6 +1063,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.6657, 3.8147e-06, -33.955
 [connection signal="pickedUp" from="Objects/PC Room/USB" to="." method="_on_usb_picked_up"]
 [connection signal="pickedUp" from="Objects/PC Room/USB" to="Objects/PC Room/PC" method="_on_usb_picked_up"]
 [connection signal="toggleControlToPlayer" from="Objects/Terminal" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="toggleControlToPlayer" from="Objects/Terminal2" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="toggleControlToPlayer" from="Objects/Terminal3" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="toggleControlToPlayer" from="Objects/Terminal4" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="toggleControlToPlayer" from="Objects/Terminal5" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="toggleControlToPlayer" from="Objects/Terminal6" to="Player" method="_on_terminal_toggle_control_to_player"]
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger" to="." method="_on_spawn_trigger_body_entered"]
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger11" to="." method="_on_spawn_trigger_body_entered"]
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger12" to="." method="_on_spawn_trigger_body_entered"]
