@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bku78k5461bs1"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player_Frogger.gd" id="1_th3bl"]
+[ext_resource type="Texture2D" uid="uid://cjg78mwet1njj" path="res://Assets/Sprites/Minigames/frogger_sprite.png" id="2_poi4g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebd31"]
+size = Vector2(45, 49)
+
+[node name="Frogger" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(551, 420)
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_th3bl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+top_level = true
+position = Vector2(-1.14441e-05, 0.499996)
+scale = Vector2(0.34375, 0.367188)
+texture = ExtResource("2_poi4g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ebd31")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
