@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal death
+
 var tile_size = 32
 
 @onready var sprite = $Sprite2D

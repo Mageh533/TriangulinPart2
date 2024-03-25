@@ -17,6 +17,7 @@ signal useSecondary(secondaryTool : String)
 @onready var playerCollision = $PlayerCollision
 @onready var leftHand = $Head/Hand_Left
 @onready var rightHand = $Head/Hand_Right
+@onready var UI = $UI
 
 # Editable constants
 @export var SENSITIVITY : float = 0.01
@@ -70,6 +71,11 @@ func _process(delta):
 		if !active:
 			active = true
 			emit_signal("toggleInventory")
+	
+	if playerCam.current:
+		UI.show()
+	else:
+		UI.hide()
 	
 	if active:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -249,3 +255,8 @@ func _on_coinbag_gui_input(event):
 					playEquipAnims(EQUIPED_RIGHT, rightHand)
 				playEquipAnims(EQUIPED_LEFT, leftHand)
 		send_inventory_to_ui()
+
+func _on_terminal_toggle_control_to_player():
+	active = !active
+	if active:
+		playerCam.current = true

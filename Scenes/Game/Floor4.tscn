@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b0rpb7arjww6r"]
+[gd_scene load_steps=32 format=3 uid="uid://b0rpb7arjww6r"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Floor4.gd" id="1_85kuv"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_esjso"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Objects/PC.gd" id="5_qkx2s"]
 [ext_resource type="PackedScene" uid="uid://djoymv62txxbq" path="res://Scenes/Monsters/Circulin.tscn" id="7_g01tx"]
 [ext_resource type="Script" path="res://Scripts/Objects/USB.gd" id="7_pi07f"]
+[ext_resource type="PackedScene" uid="uid://dj7kqc66xttxy" path="res://Scenes/Objects/Terminal.tscn" id="9_a0bvf"]
 [ext_resource type="PackedScene" uid="uid://ceuwkfvmg4356" path="res://Scenes/Monsters/Triagulin.tscn" id="12_walbj"]
 [ext_resource type="PackedScene" uid="uid://bsuc42l1mm6wb" path="res://Scenes/Monsters/Rectangulin.tscn" id="13_pf6k7"]
 
@@ -892,6 +893,9 @@ mesh = SubResource("BoxMesh_8x2dl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.233887, 0)
 shape = SubResource("BoxShape3D_ttxpy")
 
+[node name="Terminal" parent="Objects" instance=ExtResource("9_a0bvf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -68, 2.69311, 42.0089)
+
 [node name="TriangulinSpawnPoints" type="Node3D" parent="."]
 
 [node name="SpawnTrigger" type="Area3D" parent="TriangulinSpawnPoints"]
@@ -1038,6 +1042,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.6657, 3.8147e-06, -33.955
 [connection signal="pressed" from="Objects/PC Room/PC/PCMesh/PCView/PCUI/Button" to="Objects/PC Room/PC" method="_on_button_pressed"]
 [connection signal="pickedUp" from="Objects/PC Room/USB" to="." method="_on_usb_picked_up"]
 [connection signal="pickedUp" from="Objects/PC Room/USB" to="Objects/PC Room/PC" method="_on_usb_picked_up"]
+[connection signal="toggleControlToPlayer" from="Objects/Terminal" to="Player" method="_on_terminal_toggle_control_to_player"]
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger" to="." method="_on_spawn_trigger_body_entered"]
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger11" to="." method="_on_spawn_trigger_body_entered"]
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger12" to="." method="_on_spawn_trigger_body_entered"]
