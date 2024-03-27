@@ -54,6 +54,10 @@ func _on_win_clip_body_entered(body):
 	queue_free()
 
 func _on_player_game_over():
+	for child in get_children():
+		if child != UI:
+			child.queue_free()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	UI.show()
 
 func _on_restart_pressed():
