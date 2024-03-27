@@ -49,4 +49,9 @@ transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, 
 [node name="glove_left" parent="." instance=ExtResource("2_cwn3w")]
 transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.31773, -0.306841, 0.000144958)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307327, -0.101001, -1.10002)
+light_color = Color(1, 0, 0, 1)
+light_energy = 9.242
+
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]

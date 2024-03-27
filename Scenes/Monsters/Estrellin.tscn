@@ -126,7 +126,6 @@ shape = SubResource("BoxShape3D_pnpi8")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 radius = 1.0
-debug_enabled = true
 
 [node name="NoiseCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54872, 0)
@@ -143,6 +142,11 @@ autostart = true
 libraries = {
 "": SubResource("AnimationLibrary_6gyf0")
 }
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951495, -0.662896)
+light_color = Color(1, 0, 0, 1)
+light_energy = 9.242
 
 [connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]
