@@ -6,9 +6,9 @@ func throw_coin():
 	if !is_colliding():
 		var coin = Coin.instantiate()
 		get_tree().root.add_child(coin)
-		coin.global_position = global_position
+		coin.global_transform = global_transform
 		var direction = global_transform.basis.z.normalized()
-		coin.apply_impulse(global_transform.origin, direction)
+		coin.apply_central_impulse(-direction * 10)
 
 func _on_player_use_primary(primaryTool):
 	if primaryTool == "Coinbag":

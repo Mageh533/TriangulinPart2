@@ -944,7 +944,7 @@ shape = SubResource("BoxShape3D_taxjm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6877, 0, -23.1802)
 
 [node name="Player" parent="." instance=ExtResource("1_esjso")]
-transform = Transform3D(0.99027, 0, -0.139156, 0, 1, 0, 0.139156, 0, 0.99027, -67.9636, 1.66454, -84.1997)
+transform = Transform3D(0.99027, 0, -0.139156, 0, 1, 0, 0.139156, 0, 0.99027, -67.9636, 1.66454, 34.7772)
 
 [node name="Estrellin" parent="." instance=ExtResource("4_gkiev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211145, 1.41271, -0.816917)
@@ -954,12 +954,13 @@ transform = Transform3D(-0.999563, 0, -0.0295617, 0, 1, 0, 0.0295617, 0, -0.9995
 
 [node name="Triagulin" parent="." instance=ExtResource("12_walbj")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_iu5va")
-
 [node name="Rectangulin" parent="." instance=ExtResource("13_pf6k7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.6657, 3.8147e-06, -33.9551)
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iu5va")
+
+[connection signal="terminalCleared" from="." to="Objects/PC Room/PC" method="_on_floor_4_terminal_cleared"]
 [connection signal="unlock3rdFloor" from="." to="BaseLayout/Stairs" method="_on_floor_4_unlock_3_rd_floor"]
 [connection signal="body_entered" from="BaseLayout/Stairs/WinClip" to="." method="_on_win_clip_body_entered"]
 [connection signal="pickupKey" from="Objects/PC Room/Key" to="." method="_on_key_pickup_key"]

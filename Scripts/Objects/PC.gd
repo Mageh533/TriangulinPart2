@@ -20,9 +20,6 @@ func _process(_delta):
 	else:
 		pc_ui.hide()
 
-func _on_button_pressed():
-	toggleControlToPlayer.emit()
-
 func _on_floor_4_terminal_cleared():
 	usbPickedUp += 1
 	pc_label.text = str(usbPickedUp) + "/" + str(usbToPickUp)
