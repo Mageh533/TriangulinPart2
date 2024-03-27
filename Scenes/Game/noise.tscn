@@ -31,6 +31,8 @@ alpha_curve = SubResource("CurveTexture_x41tj")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bc7tv"]
 transparency = 1
 vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
 grow = true
 
 [sub_resource type="TorusMesh" id="TorusMesh_j5x7p"]
