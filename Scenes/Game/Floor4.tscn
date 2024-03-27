@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b0rpb7arjww6r"]
+[gd_scene load_steps=26 format=3 uid="uid://b0rpb7arjww6r"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Floor4.gd" id="1_85kuv"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_esjso"]
@@ -8,9 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cta78vy2cx2y3" path="res://Scenes/Monsters/Estrellin.tscn" id="4_gkiev"]
 [ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="5_5urrw"]
 [ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="5_he655"]
-[ext_resource type="Script" path="res://Scripts/Objects/PC.gd" id="5_qkx2s"]
 [ext_resource type="PackedScene" uid="uid://djoymv62txxbq" path="res://Scenes/Monsters/Circulin.tscn" id="7_g01tx"]
-[ext_resource type="Script" path="res://Scripts/Objects/USB.gd" id="7_pi07f"]
+[ext_resource type="PackedScene" uid="uid://vmdjo3yhbaby" path="res://Scenes/Objects/pc.tscn" id="7_hwhci"]
 [ext_resource type="PackedScene" uid="uid://dj7kqc66xttxy" path="res://Scenes/Objects/Terminal.tscn" id="9_a0bvf"]
 [ext_resource type="PackedScene" uid="uid://ceuwkfvmg4356" path="res://Scenes/Monsters/Triagulin.tscn" id="12_walbj"]
 [ext_resource type="PackedScene" uid="uid://bsuc42l1mm6wb" path="res://Scenes/Monsters/Rectangulin.tscn" id="13_pf6k7"]
@@ -33,6 +32,9 @@ uv1_triplanar = true
 albedo_texture = ExtResource("2_r5pbs")
 uv1_triplanar = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qdjc3"]
+size = Vector3(2.23193, 2.79639, 2.04175)
+
 [sub_resource type="PrismMesh" id="PrismMesh_ic6w3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_da8dn"]
@@ -44,23 +46,6 @@ size = Vector3(5.04871, 1.33386, 1.20993)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_707i3"]
 size = Vector3(1.42365, 1.33386, 2.93817)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3ap6l"]
-size = Vector3(1, 1, 3.47369)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_wlsct"]
-viewport_path = NodePath("Objects/PC Room/PC/PCMesh/PCView")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dyoa"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_wlsct")
-
-[sub_resource type="QuadMesh" id="QuadMesh_urcvl"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_8x2dl"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ttxpy"]
-size = Vector3(1, 0.532227, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_taxjm"]
 size = Vector3(3.28833, 3.91687, 1)
@@ -740,6 +725,15 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(22, 1, 14)
 
+[node name="WinClip" type="Area3D" parent="BaseLayout/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2191, -5.50111, -0.0532188)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BaseLayout/Stairs/WinClip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0894279, 0.41333, 0.527304)
+shape = SubResource("BoxShape3D_qdjc3")
+
 [node name="Objects" type="Node3D" parent="."]
 
 [node name="PC Room" type="Node3D" parent="Objects"]
@@ -805,101 +799,10 @@ light_indirect_energy = 1.105
 spot_range = 17.2708
 spot_angle = 25.1796
 
-[node name="PC" type="StaticBody3D" parent="Objects/PC Room"]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("5_qkx2s")
-
-[node name="Collision" type="CollisionShape3D" parent="Objects/PC Room/PC"]
-transform = Transform3D(-1.755, 0, 0, 0, 0.920808, 0, 0, 0, 0.3, 0.00556946, 0.207676, -6.38744)
-shape = SubResource("BoxShape3D_3ap6l")
-
-[node name="PCMesh" type="MeshInstance3D" parent="Objects/PC Room/PC"]
-transform = Transform3D(1.76564, 0.0166474, -0.0130592, -0.0290315, 1.01246, 0.000214639, 0.0233016, 8.85163e-08, 0.989806, 0, 0.207676, -6.85078)
-material_override = SubResource("StandardMaterial3D_0dyoa")
-mesh = SubResource("QuadMesh_urcvl")
-skeleton = NodePath("../..")
-
-[node name="PCView" type="SubViewport" parent="Objects/PC Room/PC/PCMesh"]
-handle_input_locally = false
-size = Vector2i(500, 256)
-size_2d_override_stretch = true
-
-[node name="PCUI" type="Control" parent="Objects/PC Room/PC/PCMesh/PCView"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Objects/PC Room/PC/PCMesh/PCView/PCUI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Please insert all decryption keys"
-horizontal_alignment = 1
-
-[node name="UsbLabel" type="Label" parent="Objects/PC Room/PC/PCMesh/PCView/PCUI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -124.0
-offset_top = 19.0
-offset_right = 124.0
-offset_bottom = 42.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "0/5"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="Objects/PC Room/PC/PCMesh/PCView/PCUI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -52.0
-offset_top = 50.0
-offset_right = 49.0
-offset_bottom = 84.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Insert"
-
-[node name="PCCam" type="Camera3D" parent="Objects/PC Room/PC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223541, 0.208967, -6.25967)
-fov = 107.011
-
-[node name="USB" type="StaticBody3D" parent="Objects/PC Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.989357, -0.160343, -5.98563)
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("7_pi07f")
-
-[node name="Mesh" type="MeshInstance3D" parent="Objects/PC Room/USB"]
-transform = Transform3D(0.568514, 0, 0, 0, 0.213872, 0, 0, 0, 0.180148, 0, 0, 0)
-mesh = SubResource("BoxMesh_8x2dl")
-
-[node name="PickUpCol" type="CollisionShape3D" parent="Objects/PC Room/USB"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.233887, 0)
-shape = SubResource("BoxShape3D_ttxpy")
+[node name="PC" parent="Objects/PC Room" instance=ExtResource("7_hwhci")]
 
 [node name="Terminal" parent="Objects" instance=ExtResource("9_a0bvf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -68, 2.69311, 42.0089)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -60.5249, 2.69311, -87.5867)
 
 [node name="Terminal2" parent="Objects" instance=ExtResource("9_a0bvf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -46, 2.69311, -5.99113)
@@ -1041,7 +944,7 @@ shape = SubResource("BoxShape3D_taxjm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6877, 0, -23.1802)
 
 [node name="Player" parent="." instance=ExtResource("1_esjso")]
-transform = Transform3D(0.99027, 0, -0.139156, 0, 1, 0, 0.139156, 0, 0.99027, -67.9636, 1.66454, 33.4554)
+transform = Transform3D(0.99027, 0, -0.139156, 0, 1, 0, 0.139156, 0, 0.99027, -67.9636, 1.66454, -84.1997)
 
 [node name="Estrellin" parent="." instance=ExtResource("4_gkiev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211145, 1.41271, -0.816917)
@@ -1057,16 +960,21 @@ environment = SubResource("Environment_iu5va")
 [node name="Rectangulin" parent="." instance=ExtResource("13_pf6k7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.6657, 3.8147e-06, -33.9551)
 
+[connection signal="unlock3rdFloor" from="." to="BaseLayout/Stairs" method="_on_floor_4_unlock_3_rd_floor"]
+[connection signal="body_entered" from="BaseLayout/Stairs/WinClip" to="." method="_on_win_clip_body_entered"]
 [connection signal="pickupKey" from="Objects/PC Room/Key" to="." method="_on_key_pickup_key"]
-[connection signal="switchPerspective" from="Objects/PC Room/PC" to="Player" method="_on_pc_switch_perspective"]
-[connection signal="pressed" from="Objects/PC Room/PC/PCMesh/PCView/PCUI/Button" to="Objects/PC Room/PC" method="_on_button_pressed"]
-[connection signal="pickedUp" from="Objects/PC Room/USB" to="." method="_on_usb_picked_up"]
-[connection signal="pickedUp" from="Objects/PC Room/USB" to="Objects/PC Room/PC" method="_on_usb_picked_up"]
+[connection signal="toggleControlToPlayer" from="Objects/PC Room/PC" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="terminalFinished" from="Objects/Terminal" to="." method="_on_terminal_terminal_finished"]
 [connection signal="toggleControlToPlayer" from="Objects/Terminal" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="terminalFinished" from="Objects/Terminal2" to="." method="_on_terminal_terminal_finished"]
 [connection signal="toggleControlToPlayer" from="Objects/Terminal2" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="terminalFinished" from="Objects/Terminal3" to="." method="_on_terminal_terminal_finished"]
 [connection signal="toggleControlToPlayer" from="Objects/Terminal3" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="terminalFinished" from="Objects/Terminal4" to="." method="_on_terminal_terminal_finished"]
 [connection signal="toggleControlToPlayer" from="Objects/Terminal4" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="terminalFinished" from="Objects/Terminal5" to="." method="_on_terminal_terminal_finished"]
 [connection signal="toggleControlToPlayer" from="Objects/Terminal5" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="terminalFinished" from="Objects/Terminal6" to="." method="_on_terminal_terminal_finished"]
 [connection signal="toggleControlToPlayer" from="Objects/Terminal6" to="Player" method="_on_terminal_toggle_control_to_player"]
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger" to="." method="_on_spawn_trigger_body_entered"]
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger11" to="." method="_on_spawn_trigger_body_entered"]

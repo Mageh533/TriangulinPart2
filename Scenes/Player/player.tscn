@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ishtnc6uke55"]
+[gd_scene load_steps=23 format=3 uid="uid://ishtnc6uke55"]
 
 [ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
@@ -35,6 +35,74 @@ bg_color = Color(0, 0.72549, 0.192157, 1)
 font_size = 24
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_i4f1y"]
+resource_name = "UI_fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3rdar"]
+resource_name = "UI_fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e3hmk"]
+resource_name = "UI_stamina_fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/GameplayUI/StaminaPanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6vej0"]
+resource_name = "UI_stamina_fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/GameplayUI/StaminaPanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ul36"]
+_data = {
+"UI_fade_in": SubResource("Animation_i4f1y"),
+"UI_fade_out": SubResource("Animation_3rdar"),
+"UI_stamina_fade_in": SubResource("Animation_6vej0"),
+"UI_stamina_fade_out": SubResource("Animation_e3hmk")
+}
 
 [node name="Player" type="CharacterBody3D" groups=["Players"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03327, 0)
@@ -95,6 +163,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_brl77")
 
+[node name="Fade" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
 [node name="PausedUI" type="Control" parent="UI"]
 process_mode = 3
 visible = false
@@ -141,13 +218,16 @@ script = ExtResource("4_50oah")
 
 [node name="StaminaPanel" type="Panel" parent="UI/GameplayUI"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 17.0
-offset_top = -72.0
-offset_right = 228.0
+offset_left = -261.0
+offset_top = -70.0
+offset_right = 258.0
 offset_bottom = -32.0
+grow_horizontal = 2
 grow_vertical = 0
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/GameplayUI/StaminaPanel"]
@@ -164,6 +244,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_kv0rk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_c86d4")
+show_percentage = false
 
 [node name="InteractLabel" type="Label" parent="UI/GameplayUI"]
 layout_mode = 1
@@ -230,6 +311,11 @@ icon = ExtResource("10_oh2wr")
 text_overrun_behavior = 1
 
 [node name="Noise" parent="." instance=ExtResource("10_x3s4h")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5ul36")
+}
 
 [connection signal="canInteract" from="." to="UI/GameplayUI" method="_on_player_can_interact"]
 [connection signal="reload" from="." to="Head/Flashlight" method="_on_player_reload"]

@@ -18,6 +18,7 @@ signal useSecondary(secondaryTool : String)
 @onready var leftHand = $Head/Hand_Left
 @onready var rightHand = $Head/Hand_Right
 @onready var UI = $UI
+@onready var anim_player = $AnimationPlayer
 
 # Editable constants
 @export var SENSITIVITY : float = 0.01
@@ -45,6 +46,7 @@ var steps : float = 0
 var active : bool = true
 var sprinting : bool = false
 var crouching : bool = false
+var staminaAnims : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -53,6 +55,7 @@ func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _ready():
+	anim_player.play("UI_fade_out")
 	stamina = MAX_STAMINA
 	playEquipAnims(EQUIPED_LEFT, leftHand)
 	playEquipAnims(EQUIPED_RIGHT, rightHand)
@@ -71,6 +74,13 @@ func _process(delta):
 		if !active:
 			active = true
 			emit_signal("toggleInventory")
+	
+	if stamina < MAX_STAMINA and !staminaAnims:
+		staminaAnims = true
+		anim_player.play("UI_stamina_fade_in")
+	elif stamina >= MAX_STAMINA and staminaAnims:
+		staminaAnims = false
+		anim_player.play("UI_stamina_fade_out")
 	
 	if playerCam.current:
 		UI.show()
@@ -196,9 +206,6 @@ func _on_flashlight_emit_noise(noiseMade):
 	if tempNoise < 2:
 		tempNoise += noiseMade
 
-func _on_pc_switch_perspective(state):
-	active = state
-
 func playUseAnims(itemName : String, hand):
 	match itemName:
 		"Flashlight":
@@ -218,6 +225,10 @@ func playEquipAnims(itemName : String, hand):
 # Send inventory to ui and update anims
 func send_inventory_to_ui():
 	emit_signal("updateInventory", INVENTORY)
+
+func exitLevel():
+	active = false
+	anim_player.play("UI_fade_in")
 
 # Equiping items from inventory
 func _on_flashlight_gui_input(event):

@@ -11,6 +11,7 @@ signal terminalFinished
 @onready var UI = $UI
 @onready var label = $UI/Label
 @onready var unasable = $SubViewport/Unusable
+@onready var flash_timer = $FlashTimer
 
 var connected : bool = false
 var active : bool = true
@@ -37,7 +38,7 @@ func gameWon():
 	print("Game won")
 	game.get_child(0).queue_free()
 	active = false
-	unasable.show()
+	flash_timer.start()
 	terminalFinished.emit()
 
 func use():
@@ -45,8 +46,6 @@ func use():
 	toggleControlToPlayer.emit()
 	if active:
 		label.show()
-	else:
-		unasable.show()
 
 func _unhandled_input(event):
 	if camera.current:
@@ -56,3 +55,6 @@ func _unhandled_input(event):
 		# Input has to manually be pushed to the viewport
 		if viewport.is_inside_tree():
 			viewport.push_input(event)
+
+func _on_flash_timer_timeout():
+	unasable.visible = !unasable.visible

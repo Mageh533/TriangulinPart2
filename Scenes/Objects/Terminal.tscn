@@ -114,4 +114,7 @@ shape = SubResource("BoxShape3D_18ivn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.492986)
 omni_range = 1.06121
 
+[node name="FlashTimer" type="Timer" parent="."]
+
 [connection signal="pressed" from="UI/Exit" to="." method="_on_exit_button_pressed"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

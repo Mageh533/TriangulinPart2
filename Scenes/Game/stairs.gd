@@ -5,6 +5,7 @@ extends Node3D
 # doors
 @onready var floor5 = $Door2
 @onready var floor4 = $Door
+@onready var floor3 = $Door3
 
 func _ready():
 	if level == 1:
@@ -13,3 +14,7 @@ func _ready():
 	else:
 		floor5.locked = false
 		floor5.lockable = false
+
+
+func _on_floor_4_unlock_3_rd_floor():
+	floor3.locked = false
