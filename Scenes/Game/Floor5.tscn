@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl27ggc60wlyc"]
+
+[ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="1_1uuuv"]
+[ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="2_skniv"]
+
+[node name="Floor5" type="Node3D"]
+
+[node name="Stairs" parent="." instance=ExtResource("1_1uuuv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.490196, 0, -14.7738)
+
+[node name="Player" parent="." instance=ExtResource("2_skniv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.03327, -7)
+EQUIPED_RIGHT = ""
+INVENTORY = []

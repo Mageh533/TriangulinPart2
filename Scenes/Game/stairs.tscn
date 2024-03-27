@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlr0blffuc2fd"]
+[gd_scene load_steps=19 format=3 uid="uid://dlr0blffuc2fd"]
 
 [ext_resource type="Script" path="res://Scenes/Game/stairs.gd" id="1_jcd30"]
 [ext_resource type="Texture2D" uid="uid://btjjv0cbox2wv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_run7r"]
@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://cg46mw6li3bp6" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="3_ikoek"]
 [ext_resource type="PackedScene" uid="uid://w5m437wxwmbl" path="res://Scenes/Objects/Door.tscn" id="4_yq6s3"]
 [ext_resource type="Texture2D" uid="uid://mqmc3ywjhicm" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="5_gtlkm"]
+[ext_resource type="Texture2D" uid="uid://cudgu41c3n71h" path="res://Assets/Sprites/Decals/floor5.png" id="7_brbl5"]
+[ext_resource type="Texture2D" uid="uid://hbrs8adfeiom" path="res://Assets/Sprites/Decals/floor4.png" id="7_q18qd"]
+[ext_resource type="Texture2D" uid="uid://cx1qq042eyf36" path="res://Assets/Sprites/Decals/floor2.png" id="8_0ixas"]
+[ext_resource type="Texture2D" uid="uid://e16trpr7hg4f" path="res://Assets/Sprites/Decals/floor3.png" id="8_bmrtn"]
+[ext_resource type="Texture2D" uid="uid://bedn06rsemyby" path="res://Assets/Sprites/Decals/floorg.png" id="9_rlgqi"]
+[ext_resource type="Texture2D" uid="uid://calcsghnn4jlm" path="res://Assets/Sprites/Decals/floor1.png" id="11_ss41j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mg3mp"]
 albedo_texture = ExtResource("1_run7r")
@@ -181,6 +187,14 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(16, 7, 1)
 
+[node name="Wall15" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.92828, 2.5, 0.409561)
+material_override = SubResource("StandardMaterial3D_a6ki8")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(16, 6, 1)
+
 [node name="Wall11" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92828, -4, 0.409561)
 material_override = SubResource("StandardMaterial3D_a6ki8")
@@ -215,6 +229,7 @@ size = Vector3(16, 5, 1)
 
 [node name="Door" parent="." instance=ExtResource("4_yq6s3")]
 transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -0.882133, 0.539135, 0)
+locked = true
 lockable = false
 
 [node name="Door3" parent="." instance=ExtResource("4_yq6s3")]
@@ -285,12 +300,12 @@ collision_mask = 0
 size = Vector3(1.14795, 5, 1)
 
 [node name="Wall16" type="CSGBox3D" parent="DoorFrame2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45257, 3, 0.409561)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37536, 3, 0.409561)
 material_override = SubResource("StandardMaterial3D_h0vfa")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
-size = Vector3(1.24731, 5, 1)
+size = Vector3(1.0929, 5, 1)
 
 [node name="Wall17" type="CSGBox3D" parent="DoorFrame2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0517578, 4.36206, 0.409561)
@@ -415,3 +430,39 @@ use_collision = true
 collision_layer = 4
 collision_mask = 0
 size = Vector3(1.75647, 1.42676, 1)
+
+[node name="Floor5Decal" type="Decal" parent="."]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 16.9828, 10.6667, 6.89862)
+texture_albedo = ExtResource("7_brbl5")
+upper_fade = 9.66445e-05
+lower_fade = 7.58251e-05
+
+[node name="Floor4Decal" type="Decal" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1.61412, 6.97159, 6.97775)
+texture_albedo = ExtResource("7_q18qd")
+upper_fade = 9.66445e-05
+lower_fade = 7.58251e-05
+
+[node name="Floor3Decal" type="Decal" parent="."]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 16.9828, -0.955787, 6.89862)
+texture_albedo = ExtResource("8_bmrtn")
+upper_fade = 9.66445e-05
+lower_fade = 7.58251e-05
+
+[node name="Floor2Decal" type="Decal" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1.61412, -8.05149, 6.97775)
+texture_albedo = ExtResource("8_0ixas")
+upper_fade = 9.66445e-05
+lower_fade = 7.58251e-05
+
+[node name="Floor1Decal" type="Decal" parent="."]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 16.9828, -13.342, 6.89862)
+texture_albedo = ExtResource("11_ss41j")
+upper_fade = 9.66445e-05
+lower_fade = 7.58251e-05
+
+[node name="FloorGDecal" type="Decal" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1.61412, -21.92, 6.97775)
+texture_albedo = ExtResource("9_rlgqi")
+upper_fade = 9.66445e-05
+lower_fade = 7.58251e-05

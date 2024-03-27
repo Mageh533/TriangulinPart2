@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjg78mwet1njj"
-path.s3tc="res://.godot/imported/frogger_sprite.png-acd121fa5b944568296c816c7d04303b.s3tc.ctex"
+uid="uid://cx1qq042eyf36"
+path.s3tc="res://.godot/imported/floor2.png-dd167329deb5f854dc4136b0765eeedf.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Sprites/Minigames/frogger_sprite.png"
-dest_files=["res://.godot/imported/frogger_sprite.png-acd121fa5b944568296c816c7d04303b.s3tc.ctex"]
+source_file="res://Assets/Sprites/Decals/floor2.png"
+dest_files=["res://.godot/imported/floor2.png-dd167329deb5f854dc4136b0765eeedf.s3tc.ctex"]
 
 [params]
 
