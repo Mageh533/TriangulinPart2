@@ -6,7 +6,6 @@ const FLASHLIGHT_TIME : float = 3
 @export var appearChance : float = 0.2
 @export var appearCooldown : float = 5
 
-var playerNode : CharacterBody3D
 var navigationMaps : Array[RID]
 
 var timeOut : bool = false
@@ -27,10 +26,6 @@ func _ready():
 	hide()
 	
 	call_deferred("actor_setup")
-	
-	var players = get_tree().get_nodes_in_group("Players")
-	
-	playerNode = players.pick_random()
 
 func actor_setup():
 	await get_tree().physics_frame
@@ -43,11 +38,12 @@ func setTarget(newTarget : Vector3):
 	actor_setup()
 
 func _process(delta):
-	look_at(playerNode.global_position)
+	if get_tree().get_nodes_in_group("Players").size() > 0:
+		look_at(get_tree().get_first_node_in_group("Players").global_position)
 	
 	if visible:
 		if timeOut:
-			setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], playerNode.global_position))
+			setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], get_tree().get_first_node_in_group("Players").global_position))
 			
 			var current_agent_position: Vector3 = global_transform.origin
 			var next_path_position: Vector3 = nav_agent.get_next_path_position()
@@ -86,3 +82,6 @@ func dissapear():
 
 func _on_kill_timer_timeout():
 	timeOut = true
+
+func _on_kill_area_body_entered(body):
+	body.kill("Triangulin")

@@ -9,6 +9,8 @@ signal unlock3rdFloor
 @onready var triangulin_monster = $Triagulin
 @onready var ceiling = $BaseLayout/Ceiling
 
+@onready var UI = $UI
+
 @onready var exit_key = $"Objects/PC Room/Key"
 @onready var win_clip = $BaseLayout/Stairs/WinClip
 
@@ -24,6 +26,7 @@ func _ready():
 	navigationMaps = NavigationServer3D.get_maps()
 	exit_key.process_mode = Node.PROCESS_MODE_DISABLED
 	ceiling.show()
+	UI.hide()
 	win_clip.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_key_pickup_key():
@@ -49,3 +52,12 @@ func _on_win_clip_body_entered(body):
 	body.exitLevel()
 	await get_tree().create_timer(1).timeout
 	queue_free()
+
+func _on_player_game_over():
+	UI.show()
+
+func _on_restart_pressed():
+	get_tree().reload_current_scene()
+
+func _on_exit_pressed():
+	get_tree().quit()

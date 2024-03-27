@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://djoymv62txxbq"]
+[gd_scene load_steps=8 format=3 uid="uid://djoymv62txxbq"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Circulin.gd" id="1_yiteo"]
 [ext_resource type="PackedScene" uid="uid://bdaf3fjl6l4x3" path="res://Assets/Models/circulin.glb" id="2_nbtpa"]
@@ -12,6 +12,9 @@ radius = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkngh"]
 size = Vector3(3.29, 3.46, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_81ocm"]
+size = Vector3(2.90588, 2.79602, 1.29004)
 
 [node name="Circulin" type="CharacterBody3D" groups=["Monsters"]]
 collision_layer = 2
@@ -57,4 +60,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951495, -0.662896)
 light_color = Color(1, 0, 0, 1)
 light_energy = 9.242
 
+[node name="KillArea" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144653, 0.89801, -0.14502)
+shape = SubResource("BoxShape3D_81ocm")
+
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]

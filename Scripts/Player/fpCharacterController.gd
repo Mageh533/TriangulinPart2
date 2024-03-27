@@ -9,6 +9,7 @@ signal updateInventory(inv : Array)
 signal toggleInventory
 signal usePrimary(primaryTool : String)
 signal useSecondary(secondaryTool : String)
+signal gameOver
 
 # Nodes
 @onready var noiseNode = $Noise/NoiseCollision
@@ -229,6 +230,11 @@ func send_inventory_to_ui():
 func exitLevel():
 	active = false
 	anim_player.play("UI_fade_in")
+
+func kill(_killAnim := ""):
+	active = false
+	gameOver.emit()
+	queue_free()
 
 # Equiping items from inventory
 func _on_flashlight_gui_input(event):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ceuwkfvmg4356"]
+[gd_scene load_steps=7 format=3 uid="uid://ceuwkfvmg4356"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Triagulin.gd" id="1_syhr2"]
 
@@ -11,6 +11,9 @@ albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vlf8a"]
 radius = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5vwmb"]
+size = Vector3(1.38608, 1.35553, 1.61865)
 
 [node name="Triagulin" type="CharacterBody3D" groups=["Monsters"]]
 collision_layer = 2
@@ -38,4 +41,12 @@ collide_with_bodies = false
 wait_time = 10.0
 one_shot = true
 
+[node name="KillArea" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0556793, 0.177765, 0.0192871)
+shape = SubResource("BoxShape3D_5vwmb")
+
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]

@@ -15,7 +15,9 @@ func _physics_process(delta):
 	if timer >= KILL_TIMER:
 		queue_free()
 
-func _on_area_3d_body_entered(_body):
+func _on_area_3d_body_entered(body):
 	collided = true
+	
+	body.kill("Rectangulin")
 	
 	queue_free()

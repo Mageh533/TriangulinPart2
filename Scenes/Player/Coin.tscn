@@ -9,7 +9,7 @@ albedo_color = Color(1, 1, 0, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_joga8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3wymh"]
-size = Vector3(0.181122, 0.201344, 0.04776)
+size = Vector3(0.181122, 0.212488, 0.1688)
 
 [node name="Coin" type="RigidBody3D"]
 process_mode = 1
@@ -25,7 +25,7 @@ material_override = SubResource("StandardMaterial3D_6oisp")
 mesh = SubResource("SphereMesh_joga8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00147927, 0.00221826, -0.00193787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00147927, 0.00779047, -0.00249863)
 shape = SubResource("BoxShape3D_3wymh")
 
 [node name="NoiseTransform" type="RemoteTransform3D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cta78vy2cx2y3"]
+[gd_scene load_steps=9 format=3 uid="uid://cta78vy2cx2y3"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_bivr6"]
 [ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_hoqj4"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
 size = Vector3(1.04928, 0.882538, 1.03003)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pnpi8"]
+size = Vector3(2.90588, 2.79602, 1.29004)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iqi3w"]
 radius = 5.988
@@ -113,6 +116,13 @@ shape = SubResource("BoxShape3D_n1k4l")
 [node name="estrellin" parent="." instance=ExtResource("2_ldc16")]
 transform = Transform3D(-5.46392e-08, 0, 1.25, 0, 1.25, 0, -1.25, 0, -5.46392e-08, 0, 0.96981, 0)
 
+[node name="KillArea" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144653, 0.89801, -0.14502)
+shape = SubResource("BoxShape3D_pnpi8")
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 radius = 1.0
@@ -134,4 +144,5 @@ libraries = {
 "": SubResource("AnimationLibrary_6gyf0")
 }
 
+[connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]

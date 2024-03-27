@@ -134,3 +134,6 @@ func _on_idle_timer_timeout():
 		searchSpot.z += randf_range(-50, 50)
 		
 		setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], searchSpot))
+
+func _on_kill_area_body_entered(body):
+	body.kill("Circulin")
