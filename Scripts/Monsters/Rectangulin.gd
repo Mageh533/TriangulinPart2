@@ -23,7 +23,7 @@ var lastAlertSpot : Vector3
 const SPEED : float = 5.0
 const JUMP_VELOCITY : float = 4.5
 const MAX_CURIOSITY : float = 10
-const TIME_TO_SHOOT : float = 5
+const TIME_TO_SHOOT : float = 3
 
 # gameplay variables for chasing the player
 var searchTime : float = 0
@@ -78,7 +78,7 @@ func _physics_process(delta):
 				alert = false
 				lastAlertSpot = target
 				searchTime = timeToSearch
-			return
+		return
 	
 	# Lose curiosity when nothing is happening, if searching for something then lose curiosity slower
 	if !alert:
