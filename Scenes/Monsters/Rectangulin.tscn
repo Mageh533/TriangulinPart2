@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://Scripts/Monsters/Rectangulin.gd" id="1_rpb52"]
 [ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_cwn3w"]
 [ext_resource type="PackedScene" uid="uid://0hr57sq6s78l" path="res://Scenes/Monsters/bullet.tscn" id="2_e18hp"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_40ujj"]
+[ext_resource type="PackedScene" uid="uid://5vd67tpkkqij" path="res://Scenes/Monsters/rectangulin_model_scripted.tscn" id="3_waq0y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vcgo2"]
+size = Vector3(0.797821, 2.40588, 0.803833)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wn7mm"]
-radius = 1.712
+radius = 3.692
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5x7g1"]
 size = Vector3(2, 2, 13.815)
@@ -20,17 +20,19 @@ collision_mask = 4
 script = ExtResource("1_rpb52")
 bullet = ExtResource("2_e18hp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_40ujj")
+[node name="rectangulin" parent="." instance=ExtResource("3_waq0y")]
+transform = Transform3D(-8.08661e-09, 0, 0.169, 0, 0.185, 0, -0.185, 0, -7.38722e-09, 0.616, -0.658, 0.267)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0327606, 0.161432, -0.0980835)
 shape = SubResource("BoxShape3D_vcgo2")
+metadata/_edit_lock_ = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 
 [node name="NoiseCast" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.802002, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0214558, 0.802002, 0)
 shape = SubResource("SphereShape3D_wn7mm")
 collision_mask = 8
 collide_with_areas = true
@@ -42,12 +44,13 @@ shape = SubResource("BoxShape3D_5x7g1")
 
 [node name="idleTimer" type="Timer" parent="."]
 wait_time = 3.0
+autostart = true
 
 [node name="glove_right" parent="." instance=ExtResource("2_cwn3w")]
-transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.26282, -0.438866, 0)
+transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.35961, -0.300968, -0.00427508)
 
 [node name="glove_left" parent="." instance=ExtResource("2_cwn3w")]
-transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.31773, -0.306841, 0.000144958)
+transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.22094, -0.168943, -0.00413013)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307327, -0.101001, -1.10002)

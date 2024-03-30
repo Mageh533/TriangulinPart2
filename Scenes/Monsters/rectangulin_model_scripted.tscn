@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://5vd67tpkkqij"]
+
+[ext_resource type="PackedScene" uid="uid://bte3kkelvowo1" path="res://Assets/Models/rectangulin.glb" id="1_spb7s"]
+[ext_resource type="Texture2D" uid="uid://ca4gvq45kfqsy" path="res://Assets/Models/rectangulin_Fase_2.png" id="2_syofh"]
+[ext_resource type="Texture2D" uid="uid://3ioq14hhgo62" path="res://Assets/Models/rectangulin_Fase_1.png" id="3_fqlv2"]
+
+[sub_resource type="GDScript" id="GDScript_3t8bw"]
+script/source = "extends Node3D
+
+@export var angryMaterial : Material
+@export var normalMaterial : Material
+
+@onready var mesh = $Rectangulin
+
+func angry():
+	mesh.material_override = angryMaterial
+
+func normal():
+	mesh.material_override = normalMaterial
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um0an"]
+albedo_texture = ExtResource("2_syofh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bbon"]
+albedo_texture = ExtResource("3_fqlv2")
+
+[node name="rectangulin" instance=ExtResource("1_spb7s")]
+script = SubResource("GDScript_3t8bw")
+angryMaterial = SubResource("StandardMaterial3D_um0an")
+normalMaterial = SubResource("StandardMaterial3D_2bbon")

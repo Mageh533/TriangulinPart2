@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://ishtnc6uke55"]
+[gd_scene load_steps=26 format=3 uid="uid://ishtnc6uke55"]
 
 [ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
 [ext_resource type="PackedScene" uid="uid://c37o4eb6356us" path="res://Scenes/Player/fps_hands_scripted.tscn" id="2_b8wef"]
 [ext_resource type="Script" path="res://Scripts/Player/PausedUI.gd" id="2_lxg5p"]
 [ext_resource type="Script" path="res://Scripts/Player/GameplayUI.gd" id="4_50oah"]
+[ext_resource type="Shader" path="res://Shaders/CameraEffects/pixelated.gdshader" id="6_xrhyp"]
 [ext_resource type="Texture2D" uid="uid://cpc0qjd6ijork" path="res://Assets/Sprites/UI/dynamo_flashlight.png" id="9_eb8xi"]
 [ext_resource type="Texture2D" uid="uid://bacq2nvjkrqeo" path="res://Assets/Sprites/UI/coin_bag.png" id="10_oh2wr"]
 [ext_resource type="PackedScene" uid="uid://b0thk1p1j4whw" path="res://Scenes/Game/noise.tscn" id="10_x3s4h"]
@@ -13,6 +14,19 @@
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_vstah"]
 length = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nwqi3"]
+render_priority = 0
+shader = ExtResource("6_xrhyp")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.4
+shader_parameter/highlight_strength = 0.1
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_fds35"]
+size = Vector2(0.875, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u8eft"]
 
@@ -151,6 +165,11 @@ target_position = Vector3(0, 0.465, -0.845)
 collision_mask = 4
 script = ExtResource("11_ss1v8")
 Coin = ExtResource("12_pm3pb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.246172)
+material_override = SubResource("ShaderMaterial_nwqi3")
+mesh = SubResource("QuadMesh_fds35")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_u8eft")

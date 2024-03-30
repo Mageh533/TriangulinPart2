@@ -950,12 +950,12 @@ transform = Transform3D(0.99027, 0, -0.139156, 0, 1, 0, 0.139156, 0, 0.99027, -6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211145, 1.41271, -0.816917)
 
 [node name="Circulin" parent="." instance=ExtResource("7_g01tx")]
-transform = Transform3D(-0.999563, 0, -0.0295617, 0, 1, 0, 0.0295617, 0, -0.999563, -83.96, 1.26713, 11.5086)
+transform = Transform3D(-0.999563, 0, -0.0295617, 0, 1, 0, 0.0295617, 0, -0.999563, -79.96, 1.26713, -36.4914)
 
 [node name="Triagulin" parent="." instance=ExtResource("12_walbj")]
 
 [node name="Rectangulin" parent="." instance=ExtResource("13_pf6k7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.6657, 3.8147e-06, -33.9551)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.6657, 3.8147e-06, 8.0449)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iu5va")

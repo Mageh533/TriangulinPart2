@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var idle_timer = $idleTimer
 @onready var glove_left = $glove_left
 @onready var glove_right = $glove_right
+@onready var face = $rectangulin
 var navigationMaps : Array[RID]
 
 # Vector targets
@@ -30,7 +31,6 @@ var timeLeftToShoot : float = 0
 var curiosity : float = 0
 var alert : bool = false
 var idle : bool = true
-var hearing : bool = false
 var playerFound : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -57,16 +57,28 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
-	if noise_detection.is_colliding() or sight_detection.is_colliding():
-		hearing = true
-		# Check if its a player. All noises should have a type set
-		if sight_detection.is_colliding() or (noise_detection.get_collider(0) is Area3D and noise_detection.get_collider(0).TYPE == "Player"):
-			playerFound = true
-		else:
-			playerFound = false
-	else :
-		playerFound = false
-		hearing = false
+	if sight_detection.get_collision_count() > 0 and sight_detection.get_collider(0) != null:
+		face.angry()
+		look_at(sight_detection.get_collider(0).global_position)
+		lastAlertSpot = sight_detection.get_collider(0).global_position
+		alert = true
+		idle = false
+		glove_right.gun()
+		glove_left.grab()
+		timeLeftToShoot -= delta
+		if timeLeftToShoot <= 0:
+			shoot()
+			timeLeftToShoot = TIME_TO_SHOOT
+		return
+	else:
+		face.normal()
+		if nav_agent.is_navigation_finished():
+			idle = true
+			if alert:
+				alert = false
+				lastAlertSpot = target
+				searchTime = timeToSearch
+			return
 	
 	# Lose curiosity when nothing is happening, if searching for something then lose curiosity slower
 	if !alert:
@@ -74,23 +86,13 @@ func _physics_process(delta):
 		if searchTime < 0:
 			searchTime = 0
 		
-		if hearing:
+		if noise_detection.is_colliding():
 			curiosity += delta * 4
 			if curiosity > 3:
 				if noise_detection.get_collision_count() > 0 and noise_detection.get_collider(0) != null:
 					setTarget(noise_detection.get_collider(0).global_position)
 					alert = true
 					idle = false
-				elif sight_detection.get_collision_count() > 0 and sight_detection.get_collider(0) != null:
-					look_at(sight_detection.get_collider(0).global_position)
-					alert = true
-					idle = false
-					glove_right.gun()
-					glove_left.grab()
-					timeLeftToShoot -= delta
-					if timeLeftToShoot <= 0:
-						shoot()
-						timeLeftToShoot = TIME_TO_SHOOT
 			if curiosity > MAX_CURIOSITY:
 				curiosity = MAX_CURIOSITY
 		else:
@@ -98,14 +100,6 @@ func _physics_process(delta):
 			timeLeftToShoot = TIME_TO_SHOOT
 			if curiosity < 0:
 				curiosity = 0
-	
-	if nav_agent.is_navigation_finished():
-		idle = true
-		if alert:
-			alert = false
-			lastAlertSpot = target
-			searchTime = timeToSearch
-		return
 	
 	var current_agent_position: Vector3 = global_transform.origin
 	var next_path_position: Vector3 = nav_agent.get_next_path_position()

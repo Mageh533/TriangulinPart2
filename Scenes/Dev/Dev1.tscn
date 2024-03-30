@@ -115,6 +115,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.52675, 0.809245, 1.74087)
 appearChance = 0.3
 
 [node name="Rectangulin" parent="." instance=ExtResource("7_lxn8b")]
-transform = Transform3D(-0.830907, 0, 0.556412, 0, 1, 0, -0.556412, 0, -0.830907, -0.0317793, 1.91485, -15.0677)
+transform = Transform3D(-0.830907, 0, 0.556412, 0, 1, 0, -0.556412, 0, -0.830907, -0.0317793, 1.66939, -15.0677)
 
 [connection signal="body_entered" from="TriangulinTrigger" to="." method="_on_triangulin_trigger_body_entered"]

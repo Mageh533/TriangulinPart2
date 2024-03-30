@@ -1,6 +1,6 @@
 extends Node3D
 
-var BULLET_SPEED : float = 20
+var BULLET_SPEED : float = 40
 
 const KILL_TIMER : float = 4
 var timer : float = 0
