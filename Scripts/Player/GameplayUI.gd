@@ -11,7 +11,7 @@ func _ready():
 	inventory.hide()
 	reset_inventories()
 
-func _process(delta):
+func _process(_delta):
 	fps.text = "FPS: " +  str(Engine.get_frames_per_second())
 
 func _on_player_send_current_stamina(currentStamina):

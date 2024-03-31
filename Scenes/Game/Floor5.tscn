@@ -1,26 +1,51 @@
-[gd_scene load_steps=25 format=3 uid="uid://bl27ggc60wlyc"]
+[gd_scene load_steps=32 format=3 uid="uid://bl27ggc60wlyc"]
 
 [ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="1_1uuuv"]
+[ext_resource type="PackedScene" uid="uid://b0rpb7arjww6r" path="res://Scenes/Game/Floor4.tscn" id="1_txp8e"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="2_skniv"]
 [ext_resource type="PackedScene" uid="uid://cp7lfvrfqdxro" path="res://Scenes/Objects/ceiling_light_scripted.tscn" id="3_724ho"]
 [ext_resource type="PackedScene" uid="uid://djpnal1bm2ddo" path="res://Scenes/Objects/ceiling_alarm.tscn" id="3_n1yt5"]
+[ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="6_17fyw"]
+[ext_resource type="PackedScene" uid="uid://ceuwkfvmg4356" path="res://Scenes/Monsters/Triagulin.tscn" id="7_ljopn"]
 
 [sub_resource type="GDScript" id="GDScript_h4mex"]
 resource_name = "floor5sequences"
 script/source = "extends Node3D
 
+signal openDoor
+signal closeDoor
+
+@export var nextLevel : PackedScene
+
 @onready var stairs_trigger = $StairsTrigger
+@onready var stairs_trigger3 = $StairsTrigger3
 @onready var ceiling_lights = $Lights/CeilingLights
 @onready var alarm_light = $Lights/ceiling_alarm_light
+@onready var triangulin = $Triagulin
+@onready var t_spawn_point = $Spawnpoint
 
 func _ready():
 	alarm_light.switchLight()
 
-func _on_stairs_trigger_body_entered(body):
+func _on_stairs_trigger_body_entered(_body):
 	stairs_trigger.queue_free()
 	for light in ceiling_lights.get_children():
 		light.switchLight()
 	alarm_light.switchLight()
+	triangulin.appear(t_spawn_point.global_position)
+	openDoor.emit()
+
+func _on_stairs_trigger_2_body_entered(_body):
+	closeDoor.emit()
+	triangulin.queue_free()
+
+func _on_stairs_trigger_3_body_entered(body):
+	body.exitLevel()
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_packed(nextLevel)
+
+func _on_key_pickup_key():
+	stairs_trigger3.process_mode = Node.PROCESS_MODE_INHERIT
 "
 
 [sub_resource type="Environment" id="Environment_nuyf0"]
@@ -31,6 +56,11 @@ ssao_enabled = true
 sdfgi_use_occlusion = true
 glow_enabled = true
 glow_normalized = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_hws3d"]
+vertices = PackedVector3Array(3.4642, 0.249998, -5.75772, 3.9642, 0.249998, -8.00772, -10.0358, 0.249998, -8.00772, -10.0358, 0.249998, -5.75772, 5.2142, 0.249998, 3.99228, 3.4642, 0.249998, 3.99228, 3.9642, 0.249998, 6.24228, 3.9642, 0.249998, -8.00772, 3.4642, 0.249998, -5.75772, 5.2142, 0.249998, -5.75772, 5.7142, 0.249998, 3.49228, 5.2142, 0.249998, 3.99228, 3.9642, 0.249998, 6.24228, 9.2142, 0.249998, 6.24228, 3.9642, 0.249998, -8.00772, 5.2142, 0.249998, -5.75772, 5.7142, 0.249998, -5.25772, 9.2142, 0.249998, -8.00772, 5.7142, 0.249998, -5.25772, 5.7142, 0.249998, 3.49228, 9.2142, 0.249998, 6.24228, 9.2142, 0.249998, -8.00772, -7.0358, 0.249998, -0.257721, -5.5358, 0.249998, -0.757721, -5.5358, 0.249998, -1.00772, -7.0358, 0.249998, -1.50772, -6.5358, 0.249998, 3.99228, -7.0358, 0.249998, 3.49228, -10.0358, 0.249998, 6.24228, -7.0358, 0.249998, -1.50772, -7.0358, 0.249998, -3.00772, -10.0358, 0.249998, -3.00772, -7.0358, 0.249998, -0.257721, -7.0358, 0.249998, -1.50772, -10.0358, 0.249998, -3.00772, -7.0358, 0.249998, 3.49228, -7.0358, 0.249998, -0.257721, -10.0358, 0.249998, -3.00772, -10.0358, 0.249998, 6.24228, 3.9642, 0.249998, 6.24228, 3.4642, 0.249998, 3.99228, -6.5358, 0.249998, 3.99228, -10.0358, 0.249998, 6.24228, -4.2858, 0.249998, -1.50772, -5.5358, 0.249998, -1.00772, -5.5358, 0.249998, -0.757721, -4.2858, 0.249998, -0.257721, 2.9642, 0.249998, 1.24228, 2.9642, 0.249998, -3.00772, 2.9642, 0.249998, -3.00772, -4.2858, 0.249998, -3.00772, -4.2858, 0.249998, -1.50772, -4.2858, 0.249998, -0.257721, -4.2858, 0.249998, 1.24228, 2.9642, 0.249998, 1.24228)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(9, 8, 7), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(18, 21, 19), PackedInt32Array(19, 21, 20), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(28, 27, 26), PackedInt32Array(31, 30, 29), PackedInt32Array(34, 33, 32), PackedInt32Array(35, 38, 36), PackedInt32Array(36, 38, 37), PackedInt32Array(40, 39, 41), PackedInt32Array(41, 39, 42), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 46), PackedInt32Array(46, 43, 48), PackedInt32Array(46, 48, 47), PackedInt32Array(51, 50, 49), PackedInt32Array(54, 53, 52)]
+agent_radius = 0.6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67he0"]
 
@@ -93,19 +123,40 @@ material = SubResource("StandardMaterial3D_kaeke")
 radius = 0.024
 height = 0.03
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_w5272"]
+size = Vector3(1.8407, 3.11859, 3.85858)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i2x1"]
-size = Vector3(1, 3.73328, 4.02539)
+size = Vector3(1.8407, 2.62936, 1.27393)
+
+[sub_resource type="PrismMesh" id="PrismMesh_iwxyb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_64ft0"]
 
 [node name="Floor5" type="Node3D"]
 script = SubResource("GDScript_h4mex")
+nextLevel = ExtResource("1_txp8e")
 
-[node name="Stairs" parent="." instance=ExtResource("1_1uuuv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.509804, 0, -14.9199)
+[node name="Spawnpoint" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.984339, 7.48906, -29.2359)
+
+[node name="Triagulin" parent="." instance=ExtResource("7_ljopn")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.984339, 7.48906, -29.2359)
+appearChance = 1.0
+killTimerOverride = 4.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Triagulin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0567074, 0.404868, -1.07552)
+light_color = Color(1, 0, 0, 1)
+omni_range = 1.08419
 
 [node name="Player" parent="." instance=ExtResource("2_skniv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8.30846, -23.6691)
 EQUIPED_RIGHT = ""
 INVENTORY = []
+
+[node name="Stairs" parent="." instance=ExtResource("1_1uuuv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.509804, 0, -14.9199)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nuyf0")
@@ -113,7 +164,10 @@ environment = SubResource("Environment_nuyf0")
 [node name="F5Layout" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.58708, 7, -22)
 
-[node name="Floor" type="CSGBox3D" parent="F5Layout"]
+[node name="NavFloor" type="NavigationRegion3D" parent="F5Layout"]
+navigation_mesh = SubResource("NavigationMesh_hws3d")
+
+[node name="Floor" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.53584, -0.361084, -0.987122)
 material_override = SubResource("StandardMaterial3D_67he0")
 use_collision = true
@@ -121,14 +175,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(21, 0.277832, 15.9496)
 
-[node name="Ceiling" type="CSGBox3D" parent="F5Layout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492807, 3.61341, -1.46179)
-use_collision = true
-collision_layer = 4
-collision_mask = 0
-size = Vector3(21.1123, 0.277832, 17.1903)
-
-[node name="Wall" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53584, 1.64673, -2.99707)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -136,7 +183,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 3.70654, 2.07031)
 
-[node name="Wall2" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall2" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 0.229248, -1.01712)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -144,7 +191,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 1.4585, 6.01984)
 
-[node name="Wall9" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall9" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50128, 3, -1.02987)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -152,7 +199,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 1, 6.02228)
 
-[node name="Wall10" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall10" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72998, -3.50634)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -160,7 +207,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 1.54004, 1.08887)
 
-[node name="Wall11" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall11" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72998, 1.4832)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -168,7 +215,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 1.54004, 1)
 
-[node name="Wall12" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall12" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72998, 1.4832)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -176,7 +223,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 1.54004, 1)
 
-[node name="Wall7" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall7" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4642, 1.5, -0.914124)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -184,7 +231,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 4, 18.0956)
 
-[node name="Wall3" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall3" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03584, 1.64282, -4.5072)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -192,7 +239,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(16, 3.71436, 1)
 
-[node name="Wall6" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall6" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5358, 1.64282, 7.4928)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -200,7 +247,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 3.71436, 1)
 
-[node name="Wall8" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall8" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.545761, 1.52919, -9.50772)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -208,7 +255,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(21, 4.00464, 1)
 
-[node name="Wall4" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall4" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03584, 1.63379, 2.4928)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -216,7 +263,7 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(10, 3.73242, 1)
 
-[node name="Wall5" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall5" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53584, 1.6499, 1.4928)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
@@ -224,13 +271,20 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 3.7002, 3)
 
-[node name="Wall13" type="CSGBox3D" parent="F5Layout"]
+[node name="Wall13" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5358, 1.51721, -1.49487)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 3.96558, 16.9753)
+
+[node name="Ceiling" type="CSGBox3D" parent="F5Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492807, 3.61341, -1.46179)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(21.1123, 0.277832, 17.1903)
 
 [node name="Objects" type="Node3D" parent="F5Layout"]
 
@@ -423,7 +477,43 @@ draw_pass_1 = SubResource("SphereMesh_1jt14")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0084, 7.25162, -28.8722)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StairsTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36664, -0.125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12203, -0.197357)
+shape = SubResource("BoxShape3D_w5272")
+
+[node name="StairsTrigger2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0526, 7.25162, -14.6251)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StairsTrigger2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.420349, 0.589555, 1.25073)
 shape = SubResource("BoxShape3D_0i2x1")
 
+[node name="StairsTrigger3" type="Area3D" parent="."]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.986318, 1.29636, -14.6251)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StairsTrigger3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.420349, 0.589555, 1.25073)
+shape = SubResource("BoxShape3D_0i2x1")
+
+[node name="Key" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.63011, -25.1901, -7.45443)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("6_17fyw")
+returnMessage = "Picked up Key labeled (4th Floor)"
+
+[node name="KeyMesh" type="MeshInstance3D" parent="Key"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.231163, -0.134162, -0.0499115)
+mesh = SubResource("PrismMesh_iwxyb")
+skeleton = NodePath("../..")
+
+[node name="PickupCol" type="CollisionShape3D" parent="Key"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.388397, -0.236196, -0.0477753)
+shape = SubResource("BoxShape3D_64ft0")
+
+[connection signal="closeDoor" from="." to="Stairs" method="_on_floor_5_close_door"]
+[connection signal="openDoor" from="." to="Stairs" method="_on_floor_5_open_door"]
 [connection signal="body_entered" from="StairsTrigger" to="." method="_on_stairs_trigger_body_entered"]
+[connection signal="body_entered" from="StairsTrigger2" to="." method="_on_stairs_trigger_2_body_entered"]
+[connection signal="body_entered" from="StairsTrigger3" to="." method="_on_stairs_trigger_3_body_entered"]
+[connection signal="pickupKey" from="Key" to="." method="_on_key_pickup_key"]

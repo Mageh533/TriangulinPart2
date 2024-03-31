@@ -935,7 +935,7 @@ shape = SubResource("BoxShape3D_taxjm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6877, 0, -23.1802)
 
 [node name="Player" parent="." instance=ExtResource("1_esjso")]
-transform = Transform3D(0.99027, 0, -0.139156, 0, 1, 0, 0.139156, 0, 0.99027, -67.9636, 1.66454, 34.7772)
+transform = Transform3D(0.999921, 0, 0.0125309, 0, 1, 0, -0.0125309, 0, 0.999921, -67.3569, 1.66454, 32.9548)
 
 [node name="Estrellin" parent="." instance=ExtResource("4_gkiev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211145, 1.41271, -0.816917)

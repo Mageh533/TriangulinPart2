@@ -34,7 +34,6 @@ signal gameOver
 const SPEED : float = 4.5
 const SPRINT_SPEED : float = 8
 const JUMP_VELOCITY : float = 2.0
-const STEPS_TO_NOISE : float = 0.5
 
 # Gameplay variables
 var permNoise : float = 0
@@ -42,7 +41,6 @@ var tempNoise : float = 0
 var noise : float = 0
 var currentSpeed : float = 0
 var stamina : float = 0
-var steps : float = 0
 
 var active : bool = true
 var sprinting : bool = false
@@ -56,7 +54,6 @@ func _init():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _ready():
-	anim_player.play("UI_fade_out")
 	stamina = MAX_STAMINA
 	playEquipAnims(EQUIPED_LEFT, leftHand)
 	playEquipAnims(EQUIPED_RIGHT, rightHand)
@@ -106,14 +103,6 @@ func _physics_process(delta):
 	
 	emit_signal("canInteract", interactRay.is_colliding() and active)
 	
-	# Walking makes noise
-	if steps < 0:
-		steps = STEPS_TO_NOISE
-		if !sprinting:
-			permNoise = 0.5
-		else:
-			sprinting = 2
-	
 	move_and_slide()
 
 # Mouselook
@@ -122,7 +111,7 @@ func _input(event):
 		rotation.y -= event.relative.x * SENSITIVITY
 		
 		$Head.rotation.x -= event.relative.y * SENSITIVITY
-		$Head.rotation.x = clamp($Head.rotation.x, deg_to_rad(-45), deg_to_rad(90))
+		$Head.rotation.x = clamp($Head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func processNoise(delta):
 	if tempNoise > 0:
@@ -198,10 +187,14 @@ func playerControls(delta):
 	if direction:
 		velocity.x = direction.x * currentSpeed
 		velocity.z = direction.z * currentSpeed
-		steps -= (delta if !sprinting else delta * 2)
+		if sprinting:
+			permNoise = 2
+		else:
+			permNoise = 0.5
 	else:
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
+		permNoise = 0
 
 # Signal connections
 func _on_flashlight_emit_noise(noiseMade):

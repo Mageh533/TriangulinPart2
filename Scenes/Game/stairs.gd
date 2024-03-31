@@ -11,10 +11,13 @@ func _ready():
 	if level == 1:
 		floor4.locked = false
 		floor4.lockable = false
-	else:
-		floor5.locked = false
-		floor5.lockable = false
 
 
 func _on_floor_4_unlock_3_rd_floor():
 	floor3.locked = false
+
+func _on_floor_5_open_door():
+	floor5.open = true
+
+func _on_floor_5_close_door():
+	floor5.open = false

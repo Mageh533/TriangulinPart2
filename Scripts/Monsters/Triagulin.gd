@@ -5,6 +5,7 @@ const FLASHLIGHT_TIME : float = 3
 
 @export var appearChance : float = 0.2
 @export var appearCooldown : float = 5
+@export var killTimerOverride : float = -1
 
 var navigationMaps : Array[RID]
 
@@ -43,7 +44,8 @@ func _process(delta):
 	
 	if visible:
 		if timeOut:
-			setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], get_tree().get_first_node_in_group("Players").global_position))
+			if get_tree().get_first_node_in_group("Players") != null:
+				setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], get_tree().get_first_node_in_group("Players").global_position))
 			
 			var current_agent_position: Vector3 = global_transform.origin
 			var next_path_position: Vector3 = nav_agent.get_next_path_position()
@@ -73,7 +75,8 @@ func appear(spawnPoint : Vector3):
 			
 			global_position = spawnPoint
 			
-			killtimer.start()
+			# Override the timer 
+			killtimer.start(killTimerOverride)
 
 func dissapear():
 	hide()
