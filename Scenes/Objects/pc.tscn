@@ -6,7 +6,7 @@
 size = Vector3(1.77405, 1, 1.04591)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_c75lf"]
-viewport_path = NodePath("PCMesh/PCView")
+viewport_path = NodePath("PCView")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dyoa"]
 resource_local_to_scene = true
@@ -29,12 +29,16 @@ material_override = SubResource("StandardMaterial3D_0dyoa")
 mesh = SubResource("QuadMesh_urcvl")
 skeleton = NodePath("../..")
 
-[node name="PCView" type="SubViewport" parent="PCMesh"]
-handle_input_locally = false
+[node name="PCCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223541, 0.208967, -6.25967)
+fov = 107.011
+
+[node name="PCView" type="SubViewport" parent="."]
 size = Vector2i(500, 256)
 size_2d_override_stretch = true
+render_target_update_mode = 4
 
-[node name="PCUI" type="Control" parent="PCMesh/PCView"]
+[node name="PCUI" type="Control" parent="PCView"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +46,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="PCMesh/PCView/PCUI"]
+[node name="Label" type="Label" parent="PCView/PCUI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,7 +62,7 @@ grow_vertical = 2
 text = "Authorization required, authenticate all terminals"
 horizontal_alignment = 1
 
-[node name="UsbLabel" type="Label" parent="PCMesh/PCView/PCUI"]
+[node name="UsbLabel" type="Label" parent="PCView/PCUI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -73,10 +77,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "0/5"
 horizontal_alignment = 1
-
-[node name="PCCam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223541, 0.208967, -6.25967)
-fov = 107.011
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

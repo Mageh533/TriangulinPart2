@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ceuwkfvmg4356"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Triagulin.gd" id="1_syhr2"]
-[ext_resource type="PackedScene" uid="uid://dlhs4uccdne0l" path="res://Assets/Models/triangulin.glb" id="2_vbbxl"]
+[ext_resource type="PackedScene" uid="uid://dlhs4uccdne0l" path="res://Assets/Models/Monsters/triangulin.glb" id="2_vbbxl"]
 [ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="3_onqkg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uy6q"]

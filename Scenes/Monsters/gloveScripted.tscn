@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dky7pjng7gb3a"]
 
-[ext_resource type="PackedScene" uid="uid://dvq1hl0hljmbt" path="res://Assets/Models/glove.glb" id="1_miwuq"]
+[ext_resource type="PackedScene" uid="uid://dvq1hl0hljmbt" path="res://Assets/Models/Monsters/glove.glb" id="1_miwuq"]
 [ext_resource type="Script" path="res://Scripts/Monsters/gloveScripted.gd" id="2_yu8o6"]
 
 [node name="glove" instance=ExtResource("1_miwuq")]

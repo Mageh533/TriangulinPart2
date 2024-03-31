@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://djoymv62txxbq"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Circulin.gd" id="1_yiteo"]
-[ext_resource type="PackedScene" uid="uid://bdaf3fjl6l4x3" path="res://Assets/Models/circulin.glb" id="2_nbtpa"]
+[ext_resource type="PackedScene" uid="uid://bdaf3fjl6l4x3" path="res://Assets/Models/Monsters/circulin.glb" id="2_nbtpa"]
 [ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="3_t443u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]

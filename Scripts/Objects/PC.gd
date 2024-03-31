@@ -6,8 +6,8 @@ var usbPickedUp : int = 0
 var usbToPickUp : int = 5
 
 @onready var pc_cam = $PCCam
-@onready var pc_label = $PCMesh/PCView/PCUI/UsbLabel
-@onready var viewport = $PCMesh/PCView
+@onready var pc_label = $PCView/PCUI/UsbLabel
+@onready var viewport = $PCView
 @onready var pc_ui = $UI
 
 func use():

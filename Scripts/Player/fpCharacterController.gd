@@ -190,7 +190,7 @@ func playerControls(delta):
 		if sprinting:
 			permNoise = 2
 		else:
-			permNoise = 0.5
+			permNoise = 0.5 if !crouching else 0.1
 	else:
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)

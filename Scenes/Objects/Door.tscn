@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://w5m437wxwmbl"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Door.gd" id="1_lwywv"]
-[ext_resource type="PackedScene" uid="uid://b0m7wanybpopt" path="res://Assets/Models/metal_door/door.gltf" id="2_snnow"]
+[ext_resource type="PackedScene" uid="uid://b0m7wanybpopt" path="res://Assets/Models/Objects/metal_door/door.gltf" id="2_snnow"]
 [ext_resource type="Script" path="res://Scripts/Objects/DoorBarricade.gd" id="2_vsh1s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24v4j"]

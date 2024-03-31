@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmhrqj5e32tv2"]
 
-[ext_resource type="PackedScene" uid="uid://b0rpb7arjww6r" path="res://Scenes/Game/Floor4.tscn" id="1_u7gld"]
+[ext_resource type="PackedScene" uid="uid://bl27ggc60wlyc" path="res://Scenes/Game/Floor5.tscn" id="1_b1kb4"]
 
 [sub_resource type="GDScript" id="GDScript_llvpt"]
 script/source = "extends Control
@@ -22,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_llvpt")
-game = ExtResource("1_u7gld")
+game = ExtResource("1_b1kb4")
 
 [node name="Start" type="Button" parent="."]
 layout_mode = 1

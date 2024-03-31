@@ -102,7 +102,7 @@ func _physics_process(delta):
 	
 	set_velocity(new_velocity)
 	
-	look_at(target)
+	look_at(target if global_position != target else Vector3.FORWARD)
 	
 	move_and_slide()
 

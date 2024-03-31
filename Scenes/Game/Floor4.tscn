@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Game/Floor4.gd" id="1_85kuv"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_esjso"]
 [ext_resource type="Texture2D" uid="uid://btjjv0cbox2wv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_hkuty"]
-[ext_resource type="PackedScene" uid="uid://dbb8gechocnfo" path="res://Assets/Models/ceiling_light/light.gltf" id="2_jmu7s"]
+[ext_resource type="PackedScene" uid="uid://dbb8gechocnfo" path="res://Assets/Models/Objects/ceiling_light/light.gltf" id="2_51wqt"]
 [ext_resource type="Texture2D" uid="uid://cg46mw6li3bp6" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="2_r5pbs"]
 [ext_resource type="PackedScene" uid="uid://cta78vy2cx2y3" path="res://Scenes/Monsters/Estrellin.tscn" id="4_gkiev"]
 [ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="5_5urrw"]
@@ -64,28 +64,28 @@ script = ExtResource("1_85kuv")
 
 [node name="HallwayLights" type="Node3D" parent="."]
 
-[node name="CeilingLight" parent="HallwayLights" instance=ExtResource("2_jmu7s")]
+[node name="CeilingLight" parent="HallwayLights" instance=ExtResource("2_51wqt")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.6185, 4.43299, 27.635)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HallwayLights/CeilingLight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356014, 0.0842781)
 omni_range = 7.74711
 
-[node name="CeilingLight2" parent="HallwayLights" instance=ExtResource("2_jmu7s")]
+[node name="CeilingLight2" parent="HallwayLights" instance=ExtResource("2_51wqt")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.6185, 4.43299, -17.5632)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HallwayLights/CeilingLight2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356014, 0.0842781)
 omni_range = 7.74711
 
-[node name="CeilingLight3" parent="HallwayLights" instance=ExtResource("2_jmu7s")]
+[node name="CeilingLight3" parent="HallwayLights" instance=ExtResource("2_51wqt")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.6185, 4.43299, -52.1455)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HallwayLights/CeilingLight3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356014, 0.0842781)
 omni_range = 7.74711
 
-[node name="CeilingLight4" parent="HallwayLights" instance=ExtResource("2_jmu7s")]
+[node name="CeilingLight4" parent="HallwayLights" instance=ExtResource("2_51wqt")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -67.6185, 4.43299, -76.0277)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="HallwayLights/CeilingLight4"]

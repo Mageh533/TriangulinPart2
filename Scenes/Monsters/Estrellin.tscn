@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_bivr6"]
 [ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_hoqj4"]
-[ext_resource type="PackedScene" uid="uid://c67oive06y2a7" path="res://Assets/Models/estrellin.glb" id="2_ldc16"]
+[ext_resource type="PackedScene" uid="uid://c67oive06y2a7" path="res://Assets/Models/Monsters/estrellin.glb" id="2_ldc16"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
 size = Vector3(1.04928, 0.882538, 1.03003)

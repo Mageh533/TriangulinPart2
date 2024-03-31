@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://djpnal1bm2ddo"]
 
-[ext_resource type="PackedScene" uid="uid://ckxgci2gtuscs" path="res://Assets/Models/alarm_light/scene.gltf" id="1_vw17d"]
+[ext_resource type="PackedScene" uid="uid://ckxgci2gtuscs" path="res://Assets/Models/Objects/alarm_light/scene.gltf" id="1_vw17d"]
 
 [sub_resource type="GDScript" id="GDScript_8ivp2"]
 resource_name = "light_Switch"

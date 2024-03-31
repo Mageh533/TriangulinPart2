@@ -1,10 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://bl27ggc60wlyc"]
+[gd_scene load_steps=34 format=3 uid="uid://bl27ggc60wlyc"]
 
 [ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="1_1uuuv"]
 [ext_resource type="PackedScene" uid="uid://b0rpb7arjww6r" path="res://Scenes/Game/Floor4.tscn" id="1_txp8e"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="2_skniv"]
 [ext_resource type="PackedScene" uid="uid://cp7lfvrfqdxro" path="res://Scenes/Objects/ceiling_light_scripted.tscn" id="3_724ho"]
 [ext_resource type="PackedScene" uid="uid://djpnal1bm2ddo" path="res://Scenes/Objects/ceiling_alarm.tscn" id="3_n1yt5"]
+[ext_resource type="Texture2D" uid="uid://cg46mw6li3bp6" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="5_a7op8"]
+[ext_resource type="Texture2D" uid="uid://btjjv0cbox2wv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="5_kneiy"]
 [ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="6_17fyw"]
 [ext_resource type="PackedScene" uid="uid://ceuwkfvmg4356" path="res://Scenes/Monsters/Triagulin.tscn" id="7_ljopn"]
 
@@ -21,11 +23,13 @@ signal closeDoor
 @onready var stairs_trigger3 = $StairsTrigger3
 @onready var ceiling_lights = $Lights/CeilingLights
 @onready var alarm_light = $Lights/ceiling_alarm_light
+@onready var alarm_light2 = $Lights/ceiling_alarm_light2
 @onready var triangulin = $Triagulin
 @onready var t_spawn_point = $Spawnpoint
 
 func _ready():
 	alarm_light.switchLight()
+	alarm_light2.switchLight()
 
 func _on_stairs_trigger_body_entered(_body):
 	stairs_trigger.queue_free()
@@ -62,10 +66,13 @@ vertices = PackedVector3Array(3.4642, 0.249998, -5.75772, 3.9642, 0.249998, -8.0
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(9, 8, 7), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(18, 21, 19), PackedInt32Array(19, 21, 20), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(28, 27, 26), PackedInt32Array(31, 30, 29), PackedInt32Array(34, 33, 32), PackedInt32Array(35, 38, 36), PackedInt32Array(36, 38, 37), PackedInt32Array(40, 39, 41), PackedInt32Array(41, 39, 42), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 46), PackedInt32Array(46, 43, 48), PackedInt32Array(46, 48, 47), PackedInt32Array(51, 50, 49), PackedInt32Array(54, 53, 52)]
 agent_radius = 0.6
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67he0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxqsn"]
+albedo_texture = ExtResource("5_kneiy")
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhx4u"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("5_a7op8")
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jsgg"]
 albedo_color = Color(0.431373, 0.12549, 0, 1)
@@ -169,7 +176,7 @@ navigation_mesh = SubResource("NavigationMesh_hws3d")
 
 [node name="Floor" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.53584, -0.361084, -0.987122)
-material_override = SubResource("StandardMaterial3D_67he0")
+material_override = SubResource("StandardMaterial3D_jxqsn")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -192,12 +199,12 @@ collision_mask = 0
 size = Vector3(1, 1.4585, 6.01984)
 
 [node name="Wall9" type="CSGBox3D" parent="F5Layout/NavFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50128, 3, -1.02987)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.48419, 3, -1.02987)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
-size = Vector3(1, 1, 6.02228)
+size = Vector3(0.96582, 1, 6.02228)
 
 [node name="Wall10" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72998, -3.50634)
@@ -208,12 +215,12 @@ collision_mask = 0
 size = Vector3(1, 1.54004, 1.08887)
 
 [node name="Wall11" type="CSGBox3D" parent="F5Layout/NavFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72998, 1.4832)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46245, 1.72998, 1.4832)
 material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
-size = Vector3(1, 1.54004, 1)
+size = Vector3(0.996582, 1.54004, 1)
 
 [node name="Wall12" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72998, 1.4832)
@@ -280,7 +287,8 @@ collision_mask = 0
 size = Vector3(1, 3.96558, 16.9753)
 
 [node name="Ceiling" type="CSGBox3D" parent="F5Layout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.492807, 3.61341, -1.46179)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51217, 3.61341, -1.45585)
+material_override = SubResource("StandardMaterial3D_jxqsn")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -458,6 +466,9 @@ transform = Transform3D(2.57186e-08, -3.82137e-15, -1, -5.14371e-08, -1, 0, -0.5
 
 [node name="ceiling_alarm_light" parent="Lights" instance=ExtResource("3_n1yt5")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 14.7915, 10.3399, -23.3644)
+
+[node name="ceiling_alarm_light2" parent="Lights" instance=ExtResource("3_n1yt5")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -1.03641, 10.3399, -22.8877)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3517, 8.745, -23.1064)

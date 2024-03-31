@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cp7lfvrfqdxro"]
 
-[ext_resource type="PackedScene" uid="uid://dbb8gechocnfo" path="res://Assets/Models/ceiling_light/light.gltf" id="1_4ily8"]
+[ext_resource type="PackedScene" uid="uid://dbb8gechocnfo" path="res://Assets/Models/Objects/ceiling_light/light.gltf" id="1_4ily8"]
 
 [sub_resource type="GDScript" id="GDScript_7wsyr"]
 resource_name = "normal_light"
