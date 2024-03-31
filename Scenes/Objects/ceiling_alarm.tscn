@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://djpnal1bm2ddo"]
+
+[ext_resource type="PackedScene" uid="uid://ckxgci2gtuscs" path="res://Assets/Models/alarm_light/scene.gltf" id="1_vw17d"]
+
+[sub_resource type="GDScript" id="GDScript_8ivp2"]
+resource_name = "light_Switch"
+script/source = "extends Node3D
+
+@onready var light = $SpotLight3D
+
+func switchLight():
+	light.visible = !light.visible
+"
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_vw17d")]
+script = SubResource("GDScript_8ivp2")
+
+[node name="defaultMaterial" parent="Sketchfab_model/Collada visual scene group/TF2_FS_AlarmLight" index="0"]
+transform = Transform3D(0.03, 0, 0, 0, -1.31134e-09, 0.03, 0, -0.03, -1.31134e-09, 32.3952, -36.5294, 79.8025)
+
+[node name="SpotLight3D" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.426562, -0.0324956)
+light_color = Color(1, 0, 0, 1)
+light_energy = 5.0
+shadow_enabled = true
+omni_range = 7.40218

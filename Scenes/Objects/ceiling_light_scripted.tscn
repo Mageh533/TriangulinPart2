@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp7lfvrfqdxro"]
+[gd_scene load_steps=3 format=3 uid="uid://cp7lfvrfqdxro"]
 
 [ext_resource type="PackedScene" uid="uid://dbb8gechocnfo" path="res://Assets/Models/ceiling_light/light.gltf" id="1_4ily8"]
 
+[sub_resource type="GDScript" id="GDScript_7wsyr"]
+resource_name = "normal_light"
+script/source = "extends Node3D
+
+@onready var light = $OmniLight3D
+
+func switchLight():
+	light.visible = !light.visible
+"
+
 [node name="Ceiling_light" instance=ExtResource("1_4ily8")]
+script = SubResource("GDScript_7wsyr")
 
 [node name="Object_4" parent="Sketchfab_model/root/GLTF_SceneRootNode/Cube_0" index="0"]
 cast_shadow = 0
