@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dlr0blffuc2fd"]
+[gd_scene load_steps=21 format=3 uid="uid://dlr0blffuc2fd"]
 
 [ext_resource type="Script" path="res://Scenes/Game/stairs.gd" id="1_jcd30"]
 [ext_resource type="Texture2D" uid="uid://btjjv0cbox2wv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_run7r"]
@@ -6,12 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cg46mw6li3bp6" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="3_ikoek"]
 [ext_resource type="PackedScene" uid="uid://w5m437wxwmbl" path="res://Scenes/Objects/Door.tscn" id="4_yq6s3"]
 [ext_resource type="Texture2D" uid="uid://mqmc3ywjhicm" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="5_gtlkm"]
-[ext_resource type="Texture2D" uid="uid://cudgu41c3n71h" path="res://Assets/Sprites/Decals/floor5.png" id="7_brbl5"]
-[ext_resource type="Texture2D" uid="uid://hbrs8adfeiom" path="res://Assets/Sprites/Decals/floor4.png" id="7_q18qd"]
-[ext_resource type="Texture2D" uid="uid://cx1qq042eyf36" path="res://Assets/Sprites/Decals/floor2.png" id="8_0ixas"]
-[ext_resource type="Texture2D" uid="uid://e16trpr7hg4f" path="res://Assets/Sprites/Decals/floor3.png" id="8_bmrtn"]
-[ext_resource type="Texture2D" uid="uid://bedn06rsemyby" path="res://Assets/Sprites/Decals/floorg.png" id="9_rlgqi"]
-[ext_resource type="Texture2D" uid="uid://calcsghnn4jlm" path="res://Assets/Sprites/Decals/floor1.png" id="11_ss41j"]
+[ext_resource type="Texture2D" uid="uid://dljhh4yuc4xaa" path="res://Assets/Sprites/Decals/floorDecals.png" id="7_e16r8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mg3mp"]
 albedo_texture = ExtResource("1_run7r")
@@ -39,6 +34,42 @@ albedo_texture = ExtResource("5_gtlkm")
 uv1_scale = Vector3(0.75, 0.75, 0.75)
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlioh"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="TextMesh" id="TextMesh_phnin"]
+material = SubResource("StandardMaterial3D_rlioh")
+text = "5"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_rtncq"]
+material = SubResource("StandardMaterial3D_rlioh")
+text = "4"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_apdyu"]
+material = SubResource("StandardMaterial3D_rlioh")
+text = "3"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_5qlrs"]
+material = SubResource("StandardMaterial3D_rlioh")
+text = "2"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_xbwfk"]
+material = SubResource("StandardMaterial3D_rlioh")
+text = "1"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_fjf82"]
+material = SubResource("StandardMaterial3D_rlioh")
+text = "0"
+font_size = 127
+
 [node name="Stairs" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.5098, 0, 30.2262)
 script = ExtResource("1_jcd30")
@@ -61,6 +92,14 @@ size = Vector3(3.98724, 2, 13)
 
 [node name="EntranceFloor11" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93842, -26, 6.41214)
+material_override = SubResource("StandardMaterial3D_3cv8o")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(20, 1, 13)
+
+[node name="SCeiling" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93842, 13, 6.41214)
 material_override = SubResource("StandardMaterial3D_3cv8o")
 use_collision = true
 collision_layer = 4
@@ -154,30 +193,6 @@ use_collision = true
 collision_layer = 4
 collision_mask = 0
 size = Vector3(22, 39, 1)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.20595, 7)
-omni_range = 11.0
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.00814, 7)
-omni_range = 11.0
-
-[node name="OmniLight3D5" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.0673, 7)
-omni_range = 11.0
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -12.55, 7)
-omni_range = 11.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 11, 7)
-omni_range = 11.0
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, -0.697064, 7)
-omni_range = 11.0
 
 [node name="Wall10" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92828, 9, 0.409561)
@@ -431,38 +446,88 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1.75647, 1.42676, 1)
 
-[node name="Floor5Decal" type="Decal" parent="."]
+[node name="FloorNumbers" type="Node3D" parent="."]
+
+[node name="Floor5Decal" type="Decal" parent="FloorNumbers"]
 transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 16.9828, 10.6667, 6.89862)
-texture_albedo = ExtResource("7_brbl5")
+texture_albedo = ExtResource("7_e16r8")
 upper_fade = 9.66445e-05
 lower_fade = 7.58251e-05
 
-[node name="Floor4Decal" type="Decal" parent="."]
+[node name="5" type="MeshInstance3D" parent="FloorNumbers"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 17.9007, 10.7222, 6.93108)
+mesh = SubResource("TextMesh_phnin")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FloorNumbers/5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.79002)
+omni_range = 8.55862
+
+[node name="Floor4Decal" type="Decal" parent="FloorNumbers"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1.61412, 6.97159, 6.97775)
-texture_albedo = ExtResource("7_q18qd")
+texture_albedo = ExtResource("7_e16r8")
 upper_fade = 9.66445e-05
 lower_fade = 7.58251e-05
 
-[node name="Floor3Decal" type="Decal" parent="."]
+[node name="4" type="MeshInstance3D" parent="FloorNumbers"]
+transform = Transform3D(8.74228e-08, 0, 1, 0, 1, 0, -1, 0, 8.74228e-08, -2.03275, 7.01758, 6.98296)
+mesh = SubResource("TextMesh_rtncq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FloorNumbers/4"]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 1.79002)
+omni_range = 8.51516
+
+[node name="Floor3Decal" type="Decal" parent="FloorNumbers"]
 transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 16.9828, -0.955787, 6.89862)
-texture_albedo = ExtResource("8_bmrtn")
+texture_albedo = ExtResource("7_e16r8")
 upper_fade = 9.66445e-05
 lower_fade = 7.58251e-05
 
-[node name="Floor2Decal" type="Decal" parent="."]
+[node name="3" type="MeshInstance3D" parent="FloorNumbers"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 17.9007, -0.873665, 6.93108)
+mesh = SubResource("TextMesh_apdyu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FloorNumbers/3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.79002)
+omni_range = 8.35382
+
+[node name="Floor2Decal" type="Decal" parent="FloorNumbers"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1.61412, -8.05149, 6.97775)
-texture_albedo = ExtResource("8_0ixas")
+texture_albedo = ExtResource("7_e16r8")
 upper_fade = 9.66445e-05
 lower_fade = 7.58251e-05
 
-[node name="Floor1Decal" type="Decal" parent="."]
+[node name="2" type="MeshInstance3D" parent="FloorNumbers"]
+transform = Transform3D(8.74228e-08, 0, 1, 0, 1, 0, -1, 0, 8.74228e-08, -2.03275, -8.06448, 6.98296)
+mesh = SubResource("TextMesh_5qlrs")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FloorNumbers/2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.79002)
+omni_range = 9.21428
+
+[node name="Floor1Decal" type="Decal" parent="FloorNumbers"]
 transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 16.9828, -13.342, 6.89862)
-texture_albedo = ExtResource("11_ss41j")
+texture_albedo = ExtResource("7_e16r8")
 upper_fade = 9.66445e-05
 lower_fade = 7.58251e-05
 
-[node name="FloorGDecal" type="Decal" parent="."]
+[node name="1" type="MeshInstance3D" parent="FloorNumbers"]
+transform = Transform3D(-2.50556e-22, 0, -1, 4.23516e-22, 1, 0, 1, 0, 2.50556e-22, 17.9007, -13.2734, 6.93108)
+mesh = SubResource("TextMesh_xbwfk")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FloorNumbers/1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.79002)
+omni_range = 9.41076
+
+[node name="FloorGDecal" type="Decal" parent="FloorNumbers"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1.61412, -21.92, 6.97775)
-texture_albedo = ExtResource("9_rlgqi")
+texture_albedo = ExtResource("7_e16r8")
 upper_fade = 9.66445e-05
 lower_fade = 7.58251e-05
+
+[node name="G" type="MeshInstance3D" parent="FloorNumbers"]
+transform = Transform3D(8.74228e-08, 0, 1, 0, 1, 0, -1, 0, 8.74228e-08, -2.03275, -21.8943, 6.98296)
+mesh = SubResource("TextMesh_fjf82")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FloorNumbers/G"]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 1.79002)
+omni_range = 9.73443

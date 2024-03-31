@@ -48,3 +48,8 @@ bones/22/rotation = Quaternion(0.64804, -0.00165722, 0.00918063, 0.761549)
 bones/23/rotation = Quaternion(0.705803, -0.00220757, 0.00372796, 0.708395)
 bones/24/rotation = Quaternion(0.281922, 0.00613242, -0.00563814, 0.959401)
 bones/24/scale = Vector3(1, 1, 1)
+
+[node name="basicRig_Body" parent="basicRig/Skeleton3D" index="0"]
+layers = 2
+cast_shadow = 0
+gi_mode = 0

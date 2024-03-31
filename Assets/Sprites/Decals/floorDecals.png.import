@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hbrs8adfeiom"
-path.s3tc="res://.godot/imported/floor4.png-47e5957cf687c2be0ed301eabfb58865.s3tc.ctex"
+uid="uid://dljhh4yuc4xaa"
+path.s3tc="res://.godot/imported/floorDecals.png-05fb6e6d6da00d8107349955a40ad79f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Sprites/Decals/floor4.png"
-dest_files=["res://.godot/imported/floor4.png-47e5957cf687c2be0ed301eabfb58865.s3tc.ctex"]
+source_file="res://Assets/Sprites/Decals/floorDecals.png"
+dest_files=["res://.godot/imported/floorDecals.png-05fb6e6d6da00d8107349955a40ad79f.s3tc.ctex"]
 
 [params]
 

@@ -5,10 +5,14 @@ extends Control
 @onready var interactableLabel = $InteractLabel
 @onready var useMsgLabel = $UseMessageLabel
 @onready var inventory = $Inventory
+@onready var fps = $FPS
 
 func _ready():
 	inventory.hide()
 	reset_inventories()
+
+func _process(delta):
+	fps.text = "FPS: " +  str(Engine.get_frames_per_second())
 
 func _on_player_send_current_stamina(currentStamina):
 	staminaBar.value = currentStamina

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp7lfvrfqdxro"]
+
+[ext_resource type="PackedScene" uid="uid://dbb8gechocnfo" path="res://Assets/Models/ceiling_light/light.gltf" id="1_4ily8"]
+
+[node name="Ceiling_light" instance=ExtResource("1_4ily8")]
+
+[node name="Object_4" parent="Sketchfab_model/root/GLTF_SceneRootNode/Cube_0" index="0"]
+cast_shadow = 0
+
+[node name="Object_5" parent="Sketchfab_model/root/GLTF_SceneRootNode/Cube_0" index="1"]
+cast_shadow = 0
+
+[node name="Object_6" parent="Sketchfab_model/root/GLTF_SceneRootNode/Cube_0" index="2"]
+cast_shadow = 0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356014, 0.0842781)
+shadow_enabled = true
+omni_range = 7.74711

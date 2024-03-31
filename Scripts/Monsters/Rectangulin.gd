@@ -78,7 +78,7 @@ func _physics_process(delta):
 				alert = false
 				lastAlertSpot = target
 				searchTime = timeToSearch
-		return
+			return
 	
 	# Lose curiosity when nothing is happening, if searching for something then lose curiosity slower
 	if !alert:

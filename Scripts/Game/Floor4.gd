@@ -7,7 +7,7 @@ signal unlock3rdFloor
 @onready var map_center_mark = $MapCenter
 @onready var estrellin_monster = $Estrellin
 @onready var triangulin_monster = $Triagulin
-@onready var ceiling = $BaseLayout/Ceiling
+@onready var ceiling = $"BaseLayout/4Ceiling"
 
 @onready var UI = $UI
 

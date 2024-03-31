@@ -330,6 +330,12 @@ button_mask = 3
 icon = ExtResource("10_oh2wr")
 text_overrun_behavior = 1
 
+[node name="FPS" type="Label" parent="UI/GameplayUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS"
+
 [node name="Noise" parent="." instance=ExtResource("10_x3s4h")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

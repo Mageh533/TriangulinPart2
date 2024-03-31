@@ -1,13 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://ceuwkfvmg4356"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Triagulin.gd" id="1_syhr2"]
+[ext_resource type="PackedScene" uid="uid://dlhs4uccdne0l" path="res://Assets/Models/triangulin.glb" id="2_vbbxl"]
+[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="3_onqkg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uy6q"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6sei"]
-albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_q6r0m"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vlf8a"]
 radius = 2.0
@@ -20,12 +17,11 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_syhr2")
 
+[node name="triangulin" parent="." instance=ExtResource("2_vbbxl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0.207557)
+
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_2uy6q")
-
-[node name="Mesh" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_x6sei")
-mesh = SubResource("PrismMesh_q6r0m")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
@@ -47,6 +43,12 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0556793, 0.177765, 0.0192871)
 shape = SubResource("BoxShape3D_5vwmb")
+
+[node name="glove_right" parent="." instance=ExtResource("3_onqkg")]
+transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.35961, -0.300968, -0.00427508)
+
+[node name="glove_left" parent="." instance=ExtResource("3_onqkg")]
+transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.22094, -0.168943, -0.00413013)
 
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
 [connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]

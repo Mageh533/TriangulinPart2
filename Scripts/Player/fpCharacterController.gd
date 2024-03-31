@@ -109,8 +109,10 @@ func _physics_process(delta):
 	# Walking makes noise
 	if steps < 0:
 		steps = STEPS_TO_NOISE
-		if tempNoise < 4:
-			tempNoise += (0.5 if !crouching else 0.1)
+		if !sprinting:
+			permNoise = 0.5
+		else:
+			sprinting = 2
 	
 	move_and_slide()
 
