@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bl27ggc60wlyc"]
+[gd_scene load_steps=36 format=3 uid="uid://bl27ggc60wlyc"]
 
 [ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="1_1uuuv"]
 [ext_resource type="PackedScene" uid="uid://b0rpb7arjww6r" path="res://Scenes/Game/Floor4.tscn" id="1_txp8e"]
@@ -74,6 +74,10 @@ uv1_triplanar = true
 albedo_texture = ExtResource("5_a7op8")
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wehv"]
+albedo_texture = ExtResource("5_a7op8")
+uv1_triplanar = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jsgg"]
 albedo_color = Color(0.431373, 0.12549, 0, 1)
 
@@ -122,13 +126,28 @@ collision_bounce = 0.6
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kaeke"]
 albedo_color = Color(0, 1, 1, 1)
 emission_enabled = true
-emission = Color(0, 0, 1, 1)
+emission = Color(0, 1, 1, 1)
 emission_energy_multiplier = 16.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_1jt14"]
 material = SubResource("StandardMaterial3D_kaeke")
 radius = 0.024
 height = 0.03
+
+[sub_resource type="GDScript" id="GDScript_pwqla"]
+resource_name = "windowParticles"
+script/source = "extends GPUParticles3D
+
+var emissionTime := 0.0
+
+@onready var light = $OmniLight3D
+
+func _physics_process(delta):
+	emissionTime -= delta
+	if emissionTime <= 0:
+		emissionTime = lifetime
+	light.light_energy = emissionTime
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5272"]
 size = Vector3(1.8407, 3.11859, 3.85858)
@@ -190,46 +209,6 @@ collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 3.70654, 2.07031)
 
-[node name="Wall2" type="CSGBox3D" parent="F5Layout/NavFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 0.229248, -1.01712)
-material_override = SubResource("StandardMaterial3D_bhx4u")
-use_collision = true
-collision_layer = 4
-collision_mask = 0
-size = Vector3(1, 1.4585, 6.01984)
-
-[node name="Wall9" type="CSGBox3D" parent="F5Layout/NavFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.48419, 3, -1.02987)
-material_override = SubResource("StandardMaterial3D_bhx4u")
-use_collision = true
-collision_layer = 4
-collision_mask = 0
-size = Vector3(0.96582, 1, 6.02228)
-
-[node name="Wall10" type="CSGBox3D" parent="F5Layout/NavFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72998, -3.50634)
-material_override = SubResource("StandardMaterial3D_bhx4u")
-use_collision = true
-collision_layer = 4
-collision_mask = 0
-size = Vector3(1, 1.54004, 1.08887)
-
-[node name="Wall11" type="CSGBox3D" parent="F5Layout/NavFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46245, 1.72998, 1.4832)
-material_override = SubResource("StandardMaterial3D_bhx4u")
-use_collision = true
-collision_layer = 4
-collision_mask = 0
-size = Vector3(0.996582, 1.54004, 1)
-
-[node name="Wall12" type="CSGBox3D" parent="F5Layout/NavFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72998, 1.4832)
-material_override = SubResource("StandardMaterial3D_bhx4u")
-use_collision = true
-collision_layer = 4
-collision_mask = 0
-size = Vector3(1, 1.54004, 1)
-
 [node name="Wall7" type="CSGBox3D" parent="F5Layout/NavFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4642, 1.5, -0.914124)
 material_override = SubResource("StandardMaterial3D_bhx4u")
@@ -285,6 +264,40 @@ use_collision = true
 collision_layer = 4
 collision_mask = 0
 size = Vector3(1, 3.96558, 16.9753)
+
+[node name="WindowFrame" type="CSGCombiner3D" parent="F5Layout/NavFloor"]
+material_override = SubResource("StandardMaterial3D_5wehv")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+
+[node name="Wall2" type="CSGBox3D" parent="F5Layout/NavFloor/WindowFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 0.229248, -1.01712)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1.4585, 6.01984)
+
+[node name="Wall4" type="CSGBox3D" parent="F5Layout/NavFloor/WindowFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72839, 1.4928)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1.54321, 1)
+
+[node name="Wall5" type="CSGBox3D" parent="F5Layout/NavFloor/WindowFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 1.72839, -3.5072)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1.54321, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="F5Layout/NavFloor/WindowFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46416, 3, -1.01712)
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1, 1, 6.01984)
 
 [node name="Ceiling" type="CSGBox3D" parent="F5Layout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51217, 3.61341, -1.45585)
@@ -470,11 +483,6 @@ transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 14.791
 [node name="ceiling_alarm_light2" parent="Lights" instance=ExtResource("3_n1yt5")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -1.03641, 10.3399, -22.8877)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3517, 8.745, -23.1064)
-shadow_enabled = true
-omni_range = 3.94112
-
 [node name="ShockParticles" type="GPUParticles3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9992, 8.77752, -23.0183)
 amount = 32
@@ -483,6 +491,10 @@ explosiveness = 1.0
 visibility_aabb = AABB(-1.1044, -1.52226, -2.40031, 2.20881, 3.67537, 4.80062)
 process_material = SubResource("ParticleProcessMaterial_blaed")
 draw_pass_1 = SubResource("SphereMesh_1jt14")
+script = SubResource("GDScript_pwqla")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/ShockParticles"]
+omni_range = 3.18207
 
 [node name="StairsTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0084, 7.25162, -28.8722)
