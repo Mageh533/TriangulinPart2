@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cta78vy2cx2y3"]
+[gd_scene load_steps=10 format=3 uid="uid://cta78vy2cx2y3"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_bivr6"]
 [ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_hoqj4"]
 [ext_resource type="PackedScene" uid="uid://c67oive06y2a7" path="res://Assets/Models/Monsters/estrellin.glb" id="2_ldc16"]
+[ext_resource type="AudioStream" uid="uid://b25fm3hhrotcg" path="res://Assets/Sound/SFX/Monsters/sonido_estrellin.wav" id="4_hsf6t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
 size = Vector3(1.04928, 0.882538, 1.03003)
@@ -147,6 +148,11 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951495, -0.662896)
 light_color = Color(1, 0, 0, 1)
 light_energy = 9.242
+
+[node name="Eh" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02786, 0)
+stream = ExtResource("4_hsf6t")
+volume_db = -10.0
 
 [connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]

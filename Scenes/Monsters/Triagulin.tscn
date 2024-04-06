@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceuwkfvmg4356"]
+[gd_scene load_steps=9 format=3 uid="uid://ceuwkfvmg4356"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Triagulin.gd" id="1_syhr2"]
 [ext_resource type="PackedScene" uid="uid://dlhs4uccdne0l" path="res://Assets/Models/Monsters/triangulin.glb" id="2_vbbxl"]
 [ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="3_onqkg"]
+[ext_resource type="AudioStream" uid="uid://iahvvg0mkbpc" path="res://Assets/Sound/SFX/Monsters/Triangulin_Risa.wav" id="4_qlbtk"]
+[ext_resource type="AudioStream" uid="uid://njnnkthea4ha" path="res://Assets/Sound/SFX/Monsters/triangulin_te_persigue.wav" id="5_sx3ih"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uy6q"]
 
@@ -49,6 +51,14 @@ transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, 
 
 [node name="glove_left" parent="." instance=ExtResource("3_onqkg")]
 transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.22094, -0.168943, -0.00413013)
+
+[node name="Risa" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_qlbtk")
+volume_db = -10.0
+
+[node name="Chase" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_sx3ih")
+volume_db = -10.0
 
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
 [connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]

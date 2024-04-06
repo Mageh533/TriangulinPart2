@@ -12,6 +12,11 @@ extends CharacterBody3D
 @onready var glove_left = $glove_left
 @onready var glove_right = $glove_right
 @onready var face = $rectangulin
+
+@onready var eh = $Eh
+@onready var ehTu = $EhTu
+@onready var jeje = $Jeje
+@onready var ooo = $Ooo
 var navigationMaps : Array[RID]
 
 # Vector targets
@@ -32,6 +37,7 @@ var curiosity : float = 0
 var alert : bool = false
 var idle : bool = true
 var playerFound : bool = false
+var soundCooldown : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -58,6 +64,11 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	
 	if sight_detection.get_collision_count() > 0 and sight_detection.get_collider(0) != null:
+		# Sound effect
+		playerFound = true
+		if !soundCooldown:
+			soundCooldown = true
+			ehTu.play()
 		face.angry()
 		look_at(sight_detection.get_collider(0).global_position)
 		lastAlertSpot = sight_detection.get_collider(0).global_position
@@ -72,9 +83,14 @@ func _physics_process(delta):
 		return
 	else:
 		face.normal()
+		if soundCooldown:
+			soundCooldown = false
 		if nav_agent.is_navigation_finished():
 			idle = true
 			if alert:
+				if playerFound:
+					playerFound = false
+					ooo.play()
 				alert = false
 				lastAlertSpot = target
 				searchTime = timeToSearch
@@ -95,6 +111,11 @@ func _physics_process(delta):
 					idle = false
 			if curiosity > MAX_CURIOSITY:
 				curiosity = MAX_CURIOSITY
+			if !soundCooldown:
+				soundCooldown = true
+				eh.play()
+				await get_tree().create_timer(2).timeout
+				soundCooldown = false
 		else:
 			curiosity -= delta
 			timeLeftToShoot = TIME_TO_SHOOT
@@ -140,3 +161,6 @@ func _on_idle_timer_timeout():
 		searchSpot.z += randf_range(-50, 50)
 		
 		setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], searchSpot))
+
+func _on_player_hit_by_byllet():
+	jeje.play()

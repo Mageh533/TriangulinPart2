@@ -18,6 +18,9 @@ func _physics_process(delta):
 func _on_area_3d_body_entered(body):
 	collided = true
 	
-	body.kill("Rectangulin")
+	if body.shot:
+		body.kill("Rectangulin")
+	else:
+		body.bulletShot()
 	
 	queue_free()

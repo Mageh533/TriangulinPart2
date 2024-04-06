@@ -19,6 +19,8 @@ var target : Vector3
 @onready var killtimer = $KillTimer
 @onready var nav_agent = $NavigationAgent3D
 @onready var flashlight_cast = $FlashlightDetect
+@onready var risa = $Risa
+@onready var chase = $Chase
 
 # Get all spawnpoints
 func _ready():
@@ -75,6 +77,8 @@ func appear(spawnPoint : Vector3):
 			
 			global_position = spawnPoint
 			
+			risa.play()
+			
 			# Override the timer 
 			killtimer.start(killTimerOverride)
 
@@ -85,6 +89,8 @@ func dissapear():
 
 func _on_kill_timer_timeout():
 	timeOut = true
+	
+	chase.play()
 
 func _on_kill_area_body_entered(body):
 	body.kill("Triangulin")

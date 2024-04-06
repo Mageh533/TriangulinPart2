@@ -12,8 +12,8 @@
 albedo_texture = ExtResource("2_g73hq")
 uv1_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16mnt"]
-albedo_texture = ExtResource("2_g73hq")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nghi"]
+albedo_texture = ExtResource("5_gtlkm")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5ysb"]
@@ -100,7 +100,7 @@ size = Vector3(20, 1, 13)
 
 [node name="SCeiling" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93842, 13, 6.41214)
-material_override = SubResource("StandardMaterial3D_16mnt")
+material_override = SubResource("StandardMaterial3D_0nghi")
 use_collision = true
 collision_layer = 4
 collision_mask = 0

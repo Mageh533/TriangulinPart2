@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsuc42l1mm6wb"]
+[gd_scene load_steps=12 format=3 uid="uid://bsuc42l1mm6wb"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Rectangulin.gd" id="1_rpb52"]
 [ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_cwn3w"]
 [ext_resource type="PackedScene" uid="uid://0hr57sq6s78l" path="res://Scenes/Monsters/bullet.tscn" id="2_e18hp"]
 [ext_resource type="PackedScene" uid="uid://5vd67tpkkqij" path="res://Scenes/Monsters/rectangulin_model_scripted.tscn" id="3_waq0y"]
+[ext_resource type="AudioStream" uid="uid://ughyypftwecu" path="res://Assets/Sound/SFX/Monsters/Eh_Rectangulin.wav" id="5_6ycjn"]
+[ext_resource type="AudioStream" uid="uid://up7grccqxmvt" path="res://Assets/Sound/SFX/Monsters/Eh_tu_rectangulin.wav" id="6_c6m6l"]
+[ext_resource type="AudioStream" uid="uid://dnkstcnierqjf" path="res://Assets/Sound/SFX/Monsters/jejeje_rectangulin.wav" id="7_hse6x"]
+[ext_resource type="AudioStream" uid="uid://cbcjc515wkgoe" path="res://Assets/Sound/SFX/Monsters/ooo_rectangulin.wav" id="8_fbxy8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vcgo2"]
 size = Vector3(0.797821, 2.40588, 0.803833)
@@ -56,5 +60,17 @@ transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.0003110
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307327, -0.101001, -1.10002)
 light_color = Color(1, 0, 0, 1)
 light_energy = 9.242
+
+[node name="Eh" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_6ycjn")
+
+[node name="EhTu" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_c6m6l")
+
+[node name="Jeje" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_hse6x")
+
+[node name="Ooo" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_fbxy8")
 
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]

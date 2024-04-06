@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var nav_agent = $NavigationAgent3D
 @onready var noise_detection = $NoiseCast
 @onready var idle_timer = $idleTimer
+@onready var eh = $Eh
 var navigationMaps : Array[RID]
 
 # Vector targets
@@ -26,6 +27,7 @@ var alert : bool = false
 var idle : bool = true
 var hearing : bool = false
 var playerFound : bool = false
+var soundCooldown : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -57,6 +59,12 @@ func _physics_process(delta):
 			playerFound = true
 		else:
 			playerFound = false
+		
+		if !soundCooldown and !playerFound:
+			soundCooldown = true
+			eh.play()
+			await get_tree().create_timer(2).timeout
+			soundCooldown = false
 	else :
 		playerFound = false
 		hearing = false

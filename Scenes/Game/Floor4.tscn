@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b0rpb7arjww6r"]
+[gd_scene load_steps=27 format=3 uid="uid://b0rpb7arjww6r"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Floor4.gd" id="1_85kuv"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_esjso"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cta78vy2cx2y3" path="res://Scenes/Monsters/Estrellin.tscn" id="4_gkiev"]
 [ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="5_5urrw"]
 [ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="5_he655"]
+[ext_resource type="Texture2D" uid="uid://mqmc3ywjhicm" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="5_xxdrs"]
 [ext_resource type="PackedScene" uid="uid://djoymv62txxbq" path="res://Scenes/Monsters/Circulin.tscn" id="7_g01tx"]
 [ext_resource type="PackedScene" uid="uid://vmdjo3yhbaby" path="res://Scenes/Objects/pc.tscn" id="7_hwhci"]
 [ext_resource type="PackedScene" uid="uid://dj7kqc66xttxy" path="res://Scenes/Objects/Terminal.tscn" id="9_a0bvf"]
@@ -26,6 +27,10 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qpn38"]
 albedo_texture = ExtResource("4_14x3k")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvw04"]
+albedo_texture = ExtResource("5_xxdrs")
 uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdjc3"]
@@ -703,7 +708,7 @@ size = Vector3(5, 5, 1)
 
 [node name="4Ceiling" type="CSGBox3D" parent="BaseLayout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.8004, 5.2416, -31.2873)
-material_override = SubResource("StandardMaterial3D_qpn38")
+material_override = SubResource("StandardMaterial3D_hvw04")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -1034,5 +1039,6 @@ text = "Exit"
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger9" to="." method="_on_spawn_trigger_body_entered"]
 [connection signal="body_entered" from="TriangulinSpawnPoints/SpawnTrigger10" to="." method="_on_spawn_trigger_body_entered"]
 [connection signal="gameOver" from="Player" to="." method="_on_player_game_over"]
+[connection signal="hitByByllet" from="Player" to="Rectangulin" method="_on_player_hit_by_byllet"]
 [connection signal="pressed" from="UI/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Exit" to="." method="_on_exit_pressed"]

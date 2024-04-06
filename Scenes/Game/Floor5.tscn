@@ -1,10 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://bl27ggc60wlyc"]
+[gd_scene load_steps=38 format=3 uid="uid://bl27ggc60wlyc"]
 
 [ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="1_1uuuv"]
 [ext_resource type="PackedScene" uid="uid://b0rpb7arjww6r" path="res://Scenes/Game/Floor4.tscn" id="1_txp8e"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="2_skniv"]
 [ext_resource type="PackedScene" uid="uid://cp7lfvrfqdxro" path="res://Scenes/Objects/ceiling_light_scripted.tscn" id="3_724ho"]
 [ext_resource type="PackedScene" uid="uid://djpnal1bm2ddo" path="res://Scenes/Objects/ceiling_alarm.tscn" id="3_n1yt5"]
+[ext_resource type="Texture2D" uid="uid://mqmc3ywjhicm" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="5_37521"]
 [ext_resource type="Texture2D" uid="uid://p3yqmcxapyau" path="res://addons/kenney_prototype_textures/light/texture_02.png" id="5_e5i7g"]
 [ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="6_17fyw"]
 [ext_resource type="Texture2D" uid="uid://c3qatthopnxn8" path="res://Assets/Textures/wall.png" id="6_wbaff"]
@@ -75,6 +76,10 @@ uv1_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhx4u"]
 albedo_texture = ExtResource("6_wbaff")
 uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7sk0"]
+albedo_texture = ExtResource("5_37521")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jsgg"]
@@ -308,7 +313,7 @@ size = Vector3(1, 1, 6.01984)
 
 [node name="Ceiling" type="CSGBox3D" parent="F5Layout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51217, 3.61341, -1.45585)
-material_override = SubResource("StandardMaterial3D_jxqsn")
+material_override = SubResource("StandardMaterial3D_p7sk0")
 use_collision = true
 collision_layer = 4
 collision_mask = 0

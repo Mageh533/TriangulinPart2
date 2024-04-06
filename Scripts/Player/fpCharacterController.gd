@@ -9,6 +9,7 @@ signal updateInventory(inv : Array)
 signal toggleInventory
 signal usePrimary(primaryTool : String)
 signal useSecondary(secondaryTool : String)
+signal hitByByllet
 signal gameOver
 
 # Nodes
@@ -46,6 +47,7 @@ var active : bool = true
 var sprinting : bool = false
 var crouching : bool = false
 var staminaAnims : bool = false
+var shot : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -230,6 +232,15 @@ func kill(_killAnim := ""):
 	active = false
 	gameOver.emit()
 	queue_free()
+
+func bulletShot():
+	shot = true
+	hitByByllet.emit()
+	anim_player.play("UI_Hurt_Show")
+
+func heal():
+	shot = false
+	anim_player.play("UI_Hurt_Hide")
 
 # Equiping items from inventory
 func _on_flashlight_gui_input(event):

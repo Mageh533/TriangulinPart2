@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ishtnc6uke55"]
+[gd_scene load_steps=30 format=3 uid="uid://ishtnc6uke55"]
 
 [ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cpc0qjd6ijork" path="res://Assets/Sprites/UI/dynamo_flashlight.png" id="9_eb8xi"]
 [ext_resource type="Texture2D" uid="uid://bacq2nvjkrqeo" path="res://Assets/Sprites/UI/coin_bag.png" id="10_oh2wr"]
 [ext_resource type="PackedScene" uid="uid://b0thk1p1j4whw" path="res://Scenes/Game/noise.tscn" id="10_x3s4h"]
+[ext_resource type="Texture2D" uid="uid://clyt1qw6xvbe8" path="res://Assets/Textures/hurt.png" id="11_1hytq"]
 [ext_resource type="Script" path="res://Scripts/Player/Coin_Bag.gd" id="11_ss1v8"]
 [ext_resource type="PackedScene" uid="uid://kkwy2cd8ltf4" path="res://Scenes/Player/Coin.tscn" id="12_pm3pb"]
 
@@ -121,8 +122,52 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_txim5"]
+resource_name = "UI_Hurt_Show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/GameplayUI/HurtRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/GameplayUI/Hurt:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dlwpw"]
+resource_name = "UI_Hurt_Hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/GameplayUI/HurtRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ul36"]
 _data = {
+"UI_Hurt_Hide": SubResource("Animation_dlwpw"),
+"UI_Hurt_Show": SubResource("Animation_txim5"),
 "UI_fade_in": SubResource("Animation_i4f1y"),
 "UI_fade_out": SubResource("Animation_3rdar"),
 "UI_stamina_fade_in": SubResource("Animation_6vej0"),
@@ -246,6 +291,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_50oah")
+
+[node name="HurtRect" type="TextureRect" parent="UI/GameplayUI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_1hytq")
+expand_mode = 1
+
+[node name="Hurt" type="ColorRect" parent="UI/GameplayUI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
 
 [node name="StaminaPanel" type="Panel" parent="UI/GameplayUI"]
 layout_mode = 1

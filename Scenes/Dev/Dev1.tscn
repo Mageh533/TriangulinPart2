@@ -118,3 +118,4 @@ appearChance = 0.3
 transform = Transform3D(-0.830907, 0, 0.556412, 0, 1, 0, -0.556412, 0, -0.830907, -0.0317793, 1.66939, -15.0677)
 
 [connection signal="body_entered" from="TriangulinTrigger" to="." method="_on_triangulin_trigger_body_entered"]
+[connection signal="hitByByllet" from="Player" to="Rectangulin" method="_on_player_hit_by_byllet"]
