@@ -4,6 +4,9 @@ extends RigidBody3D
 
 var collided := false
 
+func _ready():
+	apply_torque_impulse(Vector3(5, 0, 0))
+
 func _physics_process(_delta):
 	if !collided:
 		if get_contact_count() > 0:

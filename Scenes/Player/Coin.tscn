@@ -6,10 +6,14 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6oisp"]
 albedo_color = Color(1, 1, 0, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_joga8"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_d4p33"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.033
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3wymh"]
-size = Vector3(0.181122, 0.212488, 0.1688)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_76udf"]
+height = 0.115638
+radius = 0.174752
 
 [node name="Coin" type="RigidBody3D"]
 process_mode = 1
@@ -20,13 +24,12 @@ contact_monitor = true
 script = ExtResource("1_38d3h")
 
 [node name="CoinMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.175738, 0, 0, 0, 0.213153, 0, 0, 0, 0.0527431, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_6oisp")
-mesh = SubResource("SphereMesh_joga8")
+mesh = SubResource("CylinderMesh_d4p33")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00147927, 0.00779047, -0.00249863)
-shape = SubResource("BoxShape3D_3wymh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00170323, 0.00779047, -0.00249863)
+shape = SubResource("CylinderShape3D_76udf")
 
 [node name="NoiseTransform" type="RemoteTransform3D" parent="."]
 remote_path = NodePath("../Noise")

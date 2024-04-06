@@ -1,55 +1,170 @@
-[gd_scene load_steps=3 format=3 uid="uid://c37o4eb6356us"]
+[gd_scene load_steps=10 format=3 uid="uid://c37o4eb6356us"]
 
 [ext_resource type="PackedScene" uid="uid://dpreienu34nhg" path="res://Assets/Models/fps-hands.glb" id="1_b0j5w"]
 [ext_resource type="Script" path="res://Scripts/Player/fps_hands_scripted.gd" id="2_r5xx3"]
+[ext_resource type="PackedScene" uid="uid://c5654fd1mk85r" path="res://Assets/Models/Objects/flashlight_-_fenix_fd41/flashlight.gltf" id="3_ehuy5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bry25"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4w32a"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.033
+
+[sub_resource type="Animation" id="Animation_3dec5"]
+resource_name = "Flashlight_Equip"
+length = 0.65
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flashlight:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.56, 0.6, 0.62),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-2.35808, 9.54667, 4.0762), Vector3(-2.34678, 9.65955, 4.0949), Vector3(-2.33945, 10.1098, 4.4348), Vector3(-2.35602, 10.8215, 5.01545), Vector3(-2.40755, 11.6167, 5.67868), Vector3(-2.42552, 12.2567, 6.19597), Vector3(-2.37678, 12.5337, 6.38654), Vector3(-2.42487, 12.6274, 6.42962), Vector3(-2.39187, 12.6818, 6.43753)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CoinMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tjxo0"]
+resource_name = "Dequip_All"
+length = 0.625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flashlight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.35808, 9.54667, 0.371643)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CoinMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_herpe"]
+resource_name = "Equip_Coin"
+length = 0.625
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flashlight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.35808, 9.54667, 0.371643)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CoinMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.101117, 0.404466, 0.500476, 0.549502, 0.62),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-2.34225, 9.7525, 3.81119), Vector3(-2.34225, 9.85014, 3.8549), Vector3(-2.34225, 9.84881, 3.86976), Vector3(-2.34225, 12.1783, 5.477), Vector3(-2.34225, 12.9013, 5.96579), Vector3(-2.34225, 13.1941, 6.12957), Vector3(-2.34225, 13.3768, 6.23755)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a10kl"]
+_data = {
+"Dequip_All": SubResource("Animation_tjxo0"),
+"Equip_Coin": SubResource("Animation_herpe"),
+"Flashlight_Equip": SubResource("Animation_3dec5")
+}
 
 [node name="fps-hands" instance=ExtResource("1_b0j5w")]
 script = ExtResource("2_r5xx3")
 
+[node name="Flashlight" parent="." index="0" instance=ExtResource("3_ehuy5")]
+transform = Transform3D(-6.24898e-11, -0.0199488, 0.0014296, -8.71992e-10, 0.0014296, 0.0199488, -0.02, 0, -8.74228e-10, -2.35808, 9.54667, 0.371643)
+
+[node name="CoinMesh" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1.2, 0, 0, 0, -5.24537e-08, -1.2, 0, 1.2, -5.24537e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_bry25")
+mesh = SubResource("CylinderMesh_4w32a")
+
 [node name="Skeleton3D" parent="basicRig" index="0"]
-bones/0/rotation = Quaternion(-0.367227, 0.646453, 0.388212, 0.544549)
+bones/0/rotation = Quaternion(-0.413538, 0.527885, 0.448995, 0.590532)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(-0.445434, 0.441786, -0.162568, 0.761568)
-bones/2/rotation = Quaternion(-0.0257049, 0.831181, -0.306447, -0.463216)
-bones/3/rotation = Quaternion(0.316043, -0.197195, 0.143927, 0.916797)
+bones/1/rotation = Quaternion(-0.457982, 0.339916, -0.215525, 0.792627)
+bones/2/rotation = Quaternion(0.0318988, 0.871812, -0.254047, -0.417597)
+bones/3/rotation = Quaternion(0.277984, -0.235681, 0.192348, 0.911143)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/position = Vector3(-2.83158, 13.0061, 5.36343)
-bones/4/rotation = Quaternion(-0.375898, 0.159676, 0.34028, 0.847003)
+bones/4/position = Vector3(-2.83158, 9.89399, 2.98565)
+bones/4/rotation = Quaternion(0.00956632, 0.0215885, 0.530419, 0.847407)
 bones/4/scale = Vector3(1.13177, 1.07142, 1)
 bones/5/rotation = Quaternion(0.703249, 0.147858, 0.547178, 0.429156)
 bones/5/scale = Vector3(0.955406, 0.969789, 0.893606)
 bones/6/rotation = Quaternion(0.164801, -0.0168496, 0.186147, 0.968456)
-bones/7/rotation = Quaternion(0.798726, 0.0049646, 0.00579211, 0.601647)
+bones/7/rotation = Quaternion(0.798726, 0.00496459, 0.00579212, 0.601647)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.733784, -0.00145488, -0.00819461, 0.679331)
+bones/8/rotation = Quaternion(0.733784, -0.00145485, -0.00819462, 0.679331)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.490783, -0.000147154, 0.0148051, 0.871156)
+bones/9/rotation = Quaternion(0.490783, -0.000147163, 0.014805, 0.871156)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.102712, -0.0903068, 0.036253, 0.98994)
+bones/10/rotation = Quaternion(0.102712, -0.0903069, 0.036253, 0.98994)
 bones/11/rotation = Quaternion(0.77155, 0.0687609, 0.0390272, 0.631236)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(0.81418, -0.00254115, -0.00619195, 0.580574)
+bones/12/rotation = Quaternion(0.81418, -0.0025412, -0.00619194, 0.580574)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(0.70229, 0.00566231, 0.012149, 0.711764)
+bones/13/rotation = Quaternion(0.70229, 0.0056623, 0.012149, 0.711764)
 bones/14/rotation = Quaternion(0.112513, -0.059066, 0.0987492, 0.986965)
 bones/15/rotation = Quaternion(0.75816, 0.104952, 0.0546158, 0.641245)
 bones/15/scale = Vector3(1, 1, 1)
-bones/16/rotation = Quaternion(0.791504, -0.00622902, -0.0118446, 0.611017)
+bones/16/rotation = Quaternion(0.791504, -0.00622905, -0.0118446, 0.611018)
 bones/17/rotation = Quaternion(0.621984, 0.0121808, 0.0232894, 0.782588)
 bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(0.0934429, -0.476247, -0.389598, 0.782732)
+bones/18/rotation = Quaternion(0.0934429, -0.476248, -0.389598, 0.782732)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/rotation = Quaternion(0.542985, -0.0185002, 0.233046, 0.806545)
 bones/19/scale = Vector3(1, 1, 1)
-bones/20/rotation = Quaternion(0.557108, 0.00960317, -0.0167979, 0.830215)
+bones/20/rotation = Quaternion(0.557108, 0.00960316, -0.0167978, 0.830215)
 bones/20/scale = Vector3(1, 1, 1)
-bones/21/rotation = Quaternion(0.121178, -0.00421588, 0.0681528, 0.990279)
-bones/22/rotation = Quaternion(0.64804, -0.00165722, 0.00918063, 0.761549)
-bones/23/rotation = Quaternion(0.705803, -0.00220757, 0.00372796, 0.708395)
-bones/24/rotation = Quaternion(0.281922, 0.00613242, -0.00563814, 0.959401)
+bones/21/rotation = Quaternion(0.121178, -0.00421591, 0.0681527, 0.990279)
+bones/22/rotation = Quaternion(0.64804, -0.00165721, 0.00918062, 0.761549)
+bones/23/rotation = Quaternion(0.705803, -0.00220759, 0.00372791, 0.708395)
+bones/24/rotation = Quaternion(0.281922, 0.00613241, -0.00563813, 0.959401)
 bones/24/scale = Vector3(1, 1, 1)
 
 [node name="basicRig_Body" parent="basicRig/Skeleton3D" index="0"]
 layers = 2
 cast_shadow = 0
 gi_mode = 0
+
+[node name="ItemsAnimPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_a10kl")
+}

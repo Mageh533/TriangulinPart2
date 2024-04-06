@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bku78k5461bs1"]
+[gd_scene load_steps=11 format=3 uid="uid://bku78k5461bs1"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Minigames/frogger.gd" id="1_k3alj"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Frogger.gd" id="1_th3bl"]
 [ext_resource type="Texture2D" uid="uid://cjg78mwet1njj" path="res://Assets/Sprites/Minigames/frogger_sprite.png" id="2_poi4g"]
 [ext_resource type="Texture2D" uid="uid://d0lltf7f4fy5r" path="res://Assets/Sprites/Minigames/frogger_tileset.png" id="3_yac73"]
+[ext_resource type="Script" path="res://Scenes/Monsters/Minigames/Car.gd" id="5_vxhmk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebd31"]
 size = Vector2(45, 49)
@@ -69,6 +70,9 @@ sources/0 = SubResource("TileSetAtlasSource_srryr")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyv13"]
 size = Vector2(1163, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1j0s3"]
+size = Vector2(128, 64)
+
 [node name="Frogger" type="Node2D"]
 script = ExtResource("1_k3alj")
 
@@ -119,6 +123,13 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "You Win!"
+
+[node name="Car" type="Area2D" parent="."]
+position = Vector2(567, 400)
+script = ExtResource("5_vxhmk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
+shape = SubResource("RectangleShape2D_1j0s3")
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
