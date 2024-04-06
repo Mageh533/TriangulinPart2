@@ -1,13 +1,13 @@
-[gd_scene load_steps=36 format=3 uid="uid://bl27ggc60wlyc"]
+[gd_scene load_steps=35 format=3 uid="uid://bl27ggc60wlyc"]
 
 [ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="1_1uuuv"]
 [ext_resource type="PackedScene" uid="uid://b0rpb7arjww6r" path="res://Scenes/Game/Floor4.tscn" id="1_txp8e"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="2_skniv"]
 [ext_resource type="PackedScene" uid="uid://cp7lfvrfqdxro" path="res://Scenes/Objects/ceiling_light_scripted.tscn" id="3_724ho"]
 [ext_resource type="PackedScene" uid="uid://djpnal1bm2ddo" path="res://Scenes/Objects/ceiling_alarm.tscn" id="3_n1yt5"]
-[ext_resource type="Texture2D" uid="uid://cg46mw6li3bp6" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="5_a7op8"]
-[ext_resource type="Texture2D" uid="uid://btjjv0cbox2wv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="5_kneiy"]
+[ext_resource type="Texture2D" uid="uid://p3yqmcxapyau" path="res://addons/kenney_prototype_textures/light/texture_02.png" id="5_e5i7g"]
 [ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="6_17fyw"]
+[ext_resource type="Texture2D" uid="uid://c3qatthopnxn8" path="res://Assets/Textures/wall.png" id="6_wbaff"]
 [ext_resource type="PackedScene" uid="uid://ceuwkfvmg4356" path="res://Scenes/Monsters/Triagulin.tscn" id="7_ljopn"]
 
 [sub_resource type="GDScript" id="GDScript_h4mex"]
@@ -41,7 +41,8 @@ func _on_stairs_trigger_body_entered(_body):
 
 func _on_stairs_trigger_2_body_entered(_body):
 	closeDoor.emit()
-	triangulin.queue_free()
+	if triangulin.is_inside_tree():
+		triangulin.queue_free()
 
 func _on_stairs_trigger_3_body_entered(body):
 	body.exitLevel()
@@ -67,15 +68,12 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 agent_radius = 0.6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxqsn"]
-albedo_texture = ExtResource("5_kneiy")
+albedo_texture = ExtResource("5_e5i7g")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhx4u"]
-albedo_texture = ExtResource("5_a7op8")
-uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wehv"]
-albedo_texture = ExtResource("5_a7op8")
+albedo_texture = ExtResource("6_wbaff")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jsgg"]
@@ -266,7 +264,7 @@ collision_mask = 0
 size = Vector3(1, 3.96558, 16.9753)
 
 [node name="WindowFrame" type="CSGCombiner3D" parent="F5Layout/NavFloor"]
-material_override = SubResource("StandardMaterial3D_5wehv")
+material_override = SubResource("StandardMaterial3D_bhx4u")
 use_collision = true
 collision_layer = 4
 collision_mask = 0

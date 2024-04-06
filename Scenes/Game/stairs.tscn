@@ -1,32 +1,32 @@
 [gd_scene load_steps=21 format=3 uid="uid://dlr0blffuc2fd"]
 
 [ext_resource type="Script" path="res://Scenes/Game/stairs.gd" id="1_jcd30"]
-[ext_resource type="Texture2D" uid="uid://btjjv0cbox2wv" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_run7r"]
+[ext_resource type="Texture2D" uid="uid://p3yqmcxapyau" path="res://addons/kenney_prototype_textures/light/texture_02.png" id="2_g73hq"]
 [ext_resource type="Texture2D" uid="uid://cftm1yfo1d0m3" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="2_leiw2"]
-[ext_resource type="Texture2D" uid="uid://cg46mw6li3bp6" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="3_ikoek"]
+[ext_resource type="Texture2D" uid="uid://c3qatthopnxn8" path="res://Assets/Textures/wall.png" id="4_dur7m"]
 [ext_resource type="PackedScene" uid="uid://w5m437wxwmbl" path="res://Scenes/Objects/Door.tscn" id="4_yq6s3"]
 [ext_resource type="Texture2D" uid="uid://mqmc3ywjhicm" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="5_gtlkm"]
 [ext_resource type="Texture2D" uid="uid://dljhh4yuc4xaa" path="res://Assets/Sprites/Decals/floorDecals.png" id="7_e16r8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mg3mp"]
-albedo_texture = ExtResource("1_run7r")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ie3dm"]
+albedo_texture = ExtResource("2_g73hq")
 uv1_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cv8o"]
-albedo_texture = ExtResource("1_run7r")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16mnt"]
+albedo_texture = ExtResource("2_g73hq")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5ysb"]
+albedo_texture = ExtResource("2_g73hq")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thk1l"]
 albedo_texture = ExtResource("2_leiw2")
 uv1_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wsxpu"]
-albedo_texture = ExtResource("3_ikoek")
-uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6ki8"]
-albedo_texture = ExtResource("3_ikoek")
-uv1_scale = Vector3(0.75, 0.75, 0.75)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm4ul"]
+albedo_texture = ExtResource("4_dur7m")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0vfa"]
@@ -76,7 +76,7 @@ script = ExtResource("1_jcd30")
 
 [node name="EntranceFloor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0679626, 0, 6.41214)
-material_override = SubResource("StandardMaterial3D_mg3mp")
+material_override = SubResource("StandardMaterial3D_ie3dm")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -84,7 +84,7 @@ size = Vector3(3.98724, 1, 13)
 
 [node name="EntranceFloor7" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0679626, -13.5, 6.41214)
-material_override = SubResource("StandardMaterial3D_mg3mp")
+material_override = SubResource("StandardMaterial3D_ie3dm")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -92,7 +92,7 @@ size = Vector3(3.98724, 2, 13)
 
 [node name="EntranceFloor11" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93842, -26, 6.41214)
-material_override = SubResource("StandardMaterial3D_3cv8o")
+material_override = SubResource("StandardMaterial3D_ie3dm")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -100,7 +100,7 @@ size = Vector3(20, 1, 13)
 
 [node name="SCeiling" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93842, 13, 6.41214)
-material_override = SubResource("StandardMaterial3D_3cv8o")
+material_override = SubResource("StandardMaterial3D_16mnt")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -108,7 +108,7 @@ size = Vector3(20, 1, 13)
 
 [node name="EntranceFloor4" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.932, 6, 6.41568)
-material_override = SubResource("StandardMaterial3D_mg3mp")
+material_override = SubResource("StandardMaterial3D_r5ysb")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -116,7 +116,7 @@ size = Vector3(3.98724, 1, 12.9929)
 
 [node name="EntranceFloor5" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.932, -7, 6.4125)
-material_override = SubResource("StandardMaterial3D_mg3mp")
+material_override = SubResource("StandardMaterial3D_r5ysb")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -124,7 +124,7 @@ size = Vector3(3.98724, 1, 12.9993)
 
 [node name="EntranceFloor9" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.932, -20.5, 6.4125)
-material_override = SubResource("StandardMaterial3D_mg3mp")
+material_override = SubResource("StandardMaterial3D_r5ysb")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -172,7 +172,7 @@ size = Vector3(14, 1, 6)
 
 [node name="Wall" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.57434, -7, 6.91034)
-material_override = SubResource("StandardMaterial3D_wsxpu")
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -180,7 +180,7 @@ size = Vector3(1, 39, 12)
 
 [node name="Wall2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4257, -7, 6.91034)
-material_override = SubResource("StandardMaterial3D_wsxpu")
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -188,7 +188,7 @@ size = Vector3(1, 39, 12)
 
 [node name="Wall3" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92566, -7, 13.4103)
-material_override = SubResource("StandardMaterial3D_wsxpu")
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -196,7 +196,7 @@ size = Vector3(22, 39, 1)
 
 [node name="Wall10" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92828, 9, 0.409561)
-material_override = SubResource("StandardMaterial3D_a6ki8")
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -204,7 +204,7 @@ size = Vector3(16, 7, 1)
 
 [node name="Wall15" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.92828, 2.5, 0.409561)
-material_override = SubResource("StandardMaterial3D_a6ki8")
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -212,7 +212,7 @@ size = Vector3(16, 6, 1)
 
 [node name="Wall11" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92828, -4, 0.409561)
-material_override = SubResource("StandardMaterial3D_a6ki8")
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -220,7 +220,7 @@ size = Vector3(16, 7, 1)
 
 [node name="Wall12" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.92828, -11, 0.409561)
-material_override = SubResource("StandardMaterial3D_a6ki8")
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -228,7 +228,7 @@ size = Vector3(16, 7, 1)
 
 [node name="Wall13" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92828, -18, 0.409561)
-material_override = SubResource("StandardMaterial3D_a6ki8")
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -236,7 +236,7 @@ size = Vector3(16, 7, 1)
 
 [node name="Wall14" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.92828, -24, 0.409561)
-material_override = SubResource("StandardMaterial3D_a6ki8")
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -273,6 +273,7 @@ locked = true
 lockable = false
 
 [node name="DoorFrame" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -302,6 +303,7 @@ collision_mask = 0
 size = Vector3(1.75647, 3.29517, 1)
 
 [node name="DoorFrame2" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -331,6 +333,7 @@ collision_mask = 0
 size = Vector3(1.75647, 2.27588, 1)
 
 [node name="DoorFrame3" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -360,6 +363,7 @@ collision_mask = 0
 size = Vector3(1.75647, 3.29517, 1)
 
 [node name="DoorFrame4" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -389,6 +393,7 @@ collision_mask = 0
 size = Vector3(1.75647, 2.47656, 1)
 
 [node name="DoorFrame5" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0
@@ -418,6 +423,7 @@ collision_mask = 0
 size = Vector3(1.75647, 2.47656, 1)
 
 [node name="DoorFrame6" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_jm4ul")
 use_collision = true
 collision_layer = 4
 collision_mask = 0

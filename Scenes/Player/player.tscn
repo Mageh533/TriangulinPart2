@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ishtnc6uke55"]
+[gd_scene load_steps=27 format=3 uid="uid://ishtnc6uke55"]
 
 [ext_resource type="Script" path="res://Scripts/Player/fpCharacterController.gd" id="1_nm7ix"]
 [ext_resource type="Script" path="res://Scripts/Player/Flashlight.gd" id="2_81jkl"]
@@ -40,13 +40,24 @@ border_width_bottom = 1
 [sub_resource type="Theme" id="Theme_brl77"]
 Panel/styles/panel = SubResource("StyleBoxFlat_jsfjh")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1di7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kv0rk"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86d4"]
 bg_color = Color(0, 0.72549, 0.192157, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_4v4k0"]
-font_size = 24
+font_size = 12
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
@@ -237,19 +248,19 @@ grow_vertical = 2
 script = ExtResource("4_50oah")
 
 [node name="StaminaPanel" type="Panel" parent="UI/GameplayUI"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -261.0
-offset_top = -70.0
-offset_right = 258.0
-offset_bottom = -32.0
+offset_left = -154.0
+offset_top = -33.0
+offset_right = 154.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_m1di7")
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/GameplayUI/StaminaPanel"]
 layout_mode = 1
@@ -257,10 +268,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = -13.0
-offset_right = -8.0
-offset_bottom = 14.0
+offset_left = 30.0
+offset_top = -4.5
+offset_right = -35.0
+offset_bottom = 4.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_kv0rk")
@@ -299,37 +310,41 @@ grow_vertical = 2
 
 [node name="Inventory" type="Panel" parent="UI/GameplayUI"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -310.0
-offset_top = -619.0
-offset_right = 309.0
-offset_bottom = -480.0
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -152.0
+offset_right = 196.0
+offset_bottom = -62.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="Flashlight" type="Button" parent="UI/GameplayUI/Inventory"]
 layout_mode = 0
-offset_left = 11.0
-offset_right = 147.0
-offset_bottom = 136.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 84.0
+offset_bottom = 82.0
 mouse_filter = 1
 button_mask = 3
 icon = ExtResource("9_eb8xi")
 text_overrun_behavior = 1
+expand_icon = true
 
 [node name="Coinbag" type="Button" parent="UI/GameplayUI/Inventory"]
 layout_mode = 0
-offset_left = 165.0
-offset_right = 305.0
-offset_bottom = 136.0
+offset_left = 97.0
+offset_top = 9.0
+offset_right = 170.0
+offset_bottom = 82.0
 mouse_filter = 1
 button_mask = 3
 icon = ExtResource("10_oh2wr")
 text_overrun_behavior = 1
+expand_icon = true
 
 [node name="FPS" type="Label" parent="UI/GameplayUI"]
 layout_mode = 0

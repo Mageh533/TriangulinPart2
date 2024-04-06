@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpreienu34nhg" path="res://Assets/Models/fps-hands.glb" id="1_b0j5w"]
 [ext_resource type="Script" path="res://Scripts/Player/fps_hands_scripted.gd" id="2_r5xx3"]
-[ext_resource type="PackedScene" uid="uid://c5654fd1mk85r" path="res://Assets/Models/Objects/flashlight_-_fenix_fd41/flashlight.gltf" id="3_ehuy5"]
+[ext_resource type="PackedScene" uid="uid://ddhgua0sxcook" path="res://Scenes/Player/flashlight_modified.tscn" id="3_r4nit"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bry25"]
 albedo_color = Color(1, 1, 0, 1)
@@ -108,12 +108,13 @@ _data = {
 [node name="fps-hands" instance=ExtResource("1_b0j5w")]
 script = ExtResource("2_r5xx3")
 
-[node name="Flashlight" parent="." index="0" instance=ExtResource("3_ehuy5")]
-transform = Transform3D(-6.24898e-11, -0.0199488, 0.0014296, -8.71992e-10, 0.0014296, 0.0199488, -0.02, 0, -8.74228e-10, -2.35808, 9.54667, 0.371643)
+[node name="Flashlight" parent="." index="0" instance=ExtResource("3_r4nit")]
+transform = Transform3D(-6.27266e-10, -0.0199488, 0.00142961, -8.71996e-10, 0.00142961, 0.0199488, -0.02, 5.63331e-10, -9.14603e-10, -2.39187, 12.6818, 6.43753)
 
 [node name="CoinMesh" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(1.2, 0, 0, 0, -5.24537e-08, -1.2, 0, 1.2, -5.24537e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_bry25")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_4w32a")
 
 [node name="Skeleton3D" parent="basicRig" index="0"]

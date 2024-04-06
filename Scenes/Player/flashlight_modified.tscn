@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddhgua0sxcook"]
+
+[ext_resource type="PackedScene" uid="uid://c5654fd1mk85r" path="res://Assets/Models/Objects/flashlight_-_fenix_fd41/flashlight.gltf" id="1_b3rnt"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_b3rnt")]
+
+[node name="Object_3" parent="Sketchfab_model/d9f0446532054e9eb2303f5c00e20a6a_obj_cleaner_materialmerger_gles/Object_2" index="0"]
+cast_shadow = 0
