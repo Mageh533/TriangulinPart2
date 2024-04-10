@@ -43,8 +43,6 @@ func _on_stairs_trigger_body_entered(_body):
 
 func _on_stairs_trigger_2_body_entered(_body):
 	closeDoor.emit()
-	if triangulin.is_inside_tree():
-		triangulin.queue_free()
 
 func _on_stairs_trigger_3_body_entered(body):
 	body.exitLevel()
@@ -506,6 +504,21 @@ draw_pass_1 = SubResource("SphereMesh_1jt14")
 script = SubResource("GDScript_pwqla")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights/ShockParticles"]
+shadow_enabled = true
+omni_range = 3.18207
+
+[node name="ShockParticles2" type="GPUParticles3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28782, 8.89949, -23.0183)
+amount = 32
+lifetime = 3.0
+explosiveness = 1.0
+visibility_aabb = AABB(-1.1044, -1.52226, -2.40031, 2.20881, 3.67537, 4.80062)
+process_material = SubResource("ParticleProcessMaterial_blaed")
+draw_pass_1 = SubResource("SphereMesh_1jt14")
+script = SubResource("GDScript_pwqla")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/ShockParticles2"]
+shadow_enabled = true
 omni_range = 3.18207
 
 [node name="StairsTrigger" type="Area3D" parent="."]

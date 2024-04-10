@@ -10,6 +10,10 @@ extends CharacterBody3D
 @onready var idle_timer = $idleTimer
 var navigationMaps : Array[RID]
 
+@onready var eh = $Eh
+@onready var risa = $Risa
+@onready var enfadado = $Enfadado
+
 # Vector targets
 var centerOfMap := Vector3(-67.688, 0, -23.18)
 var target : Vector3
@@ -27,6 +31,7 @@ var alert : bool = false
 var idle : bool = true
 var hearing : bool = false
 var playerFound : bool = false
+var soundCooldown : bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -56,8 +61,18 @@ func _physics_process(delta):
 		# Check if its a player. All noises should have a type set
 		if sight_detection.is_colliding() or (noise_detection.get_collider(0) is Area3D and noise_detection.get_collider(0).TYPE == "Player"):
 			playerFound = true
+			if !soundCooldown:
+				soundCooldown = true
+				risa.play()
+				await get_tree().create_timer(2).timeout
+				soundCooldown = false
 		else:
 			playerFound = false
+			if !soundCooldown:
+				soundCooldown = true
+				eh.play()
+				await get_tree().create_timer(2).timeout
+				soundCooldown = false
 	else :
 		playerFound = false
 		hearing = false
