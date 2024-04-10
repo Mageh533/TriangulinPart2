@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cbcjc515wkgoe" path="res://Assets/Sound/SFX/Monsters/ooo_rectangulin.wav" id="8_fbxy8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vcgo2"]
-size = Vector3(0.797821, 2.40588, 0.803833)
+size = Vector3(0.797821, 2.1879, 0.536346)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wn7mm"]
 radius = 3.692
@@ -25,10 +25,10 @@ script = ExtResource("1_rpb52")
 bullet = ExtResource("2_e18hp")
 
 [node name="rectangulin" parent="." instance=ExtResource("3_waq0y")]
-transform = Transform3D(-8.08661e-09, 0, 0.169, 0, 0.185, 0, -0.185, 0, -7.38722e-09, 0.616, -0.658, 0.267)
+transform = Transform3D(-8.08661e-09, 0, 0.169, 0, 0.185, 0, -0.185, 0, -7.38722e-09, 0.616, 0.30065, 0.642645)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0327606, 0.161432, -0.0980835)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0327606, 1.22959, 0.248856)
 shape = SubResource("BoxShape3D_vcgo2")
 metadata/_edit_lock_ = true
 
@@ -36,14 +36,14 @@ metadata/_edit_lock_ = true
 avoidance_enabled = true
 
 [node name="NoiseCast" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0214558, 0.802002, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0214558, 1.76065, 0)
 shape = SubResource("SphereShape3D_wn7mm")
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="SightCast" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37825, -6.1155)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3369, -6.1155)
 shape = SubResource("BoxShape3D_5x7g1")
 
 [node name="idleTimer" type="Timer" parent="."]
@@ -51,26 +51,30 @@ wait_time = 3.0
 autostart = true
 
 [node name="glove_right" parent="." instance=ExtResource("2_cwn3w")]
-transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.35961, -0.300968, -0.00427508)
+transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.35961, 0.657682, -0.00427508)
 
 [node name="glove_left" parent="." instance=ExtResource("2_cwn3w")]
-transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.22094, -0.168943, -0.00413013)
+transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.22094, 0.789707, -0.00413013)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307327, -0.101001, -1.10002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307327, 0.857649, -1.10002)
 light_color = Color(1, 0, 0, 1)
 light_energy = 9.242
 
 [node name="Eh" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95865, 0)
 stream = ExtResource("5_6ycjn")
 
 [node name="EhTu" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95865, 0)
 stream = ExtResource("6_c6m6l")
 
 [node name="Jeje" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95865, 0)
 stream = ExtResource("7_hse6x")
 
 [node name="Ooo" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95865, 0)
 stream = ExtResource("8_fbxy8")
 
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]

@@ -708,6 +708,7 @@ size = Vector3(5, 5, 1)
 
 [node name="4Ceiling" type="CSGBox3D" parent="BaseLayout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.8004, 5.2416, -31.2873)
+visible = false
 material_override = SubResource("StandardMaterial3D_hvw04")
 use_collision = true
 collision_layer = 4

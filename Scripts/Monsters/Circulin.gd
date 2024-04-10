@@ -64,18 +64,17 @@ func _physics_process(delta):
 			if !soundCooldown:
 				soundCooldown = true
 				risa.play()
-				await get_tree().create_timer(2).timeout
-				soundCooldown = false
 		else:
 			playerFound = false
 			if !soundCooldown:
 				soundCooldown = true
 				eh.play()
-				await get_tree().create_timer(2).timeout
-				soundCooldown = false
 	else :
 		playerFound = false
 		hearing = false
+		if soundCooldown:
+			await get_tree().create_timer(2).timeout
+			soundCooldown = false
 	
 	# Lose curiosity when nothing is happening, if searching for something then lose curiosity slower
 	if !alert:
@@ -125,7 +124,10 @@ func _physics_process(delta):
 	
 	set_velocity(new_velocity)
 	
-	look_at(target if global_position != target else Vector3.FORWARD)
+	if playerFound:
+		look_at(target if global_position != target else Vector3.FORWARD)
+	else:
+		look_at(global_transform.origin + velocity, Vector3.UP)
 	
 	move_and_slide()
 

@@ -132,7 +132,10 @@ func _physics_process(delta):
 	
 	set_velocity(new_velocity)
 	
-	look_at(target if global_position != target else Vector3.FORWARD)
+	if playerFound:
+		look_at(target if global_position != target else Vector3.FORWARD)
+	else:
+		look_at(global_transform.origin + velocity, Vector3.UP)
 	
 	move_and_slide()
 
