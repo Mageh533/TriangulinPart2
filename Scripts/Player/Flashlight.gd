@@ -9,6 +9,7 @@ signal emitNoise(noiseMade : float)
 @export var noise : float = 2
 
 @onready var beam = $Beam
+@onready var reload_sfx = $FlashlightReload
 
 var battery : float
 
@@ -30,10 +31,11 @@ func _process(delta):
 	else:
 		beam.process_mode = Node.PROCESS_MODE_DISABLED
 
-func _on_player_reload(delta):
-	if battery < maxBattery:
-		battery += delta * rechargeRate
-	emit_signal("emitNoise", noise * delta)
+func _on_player_reload(delta, primaryTool, secondaryTool):
+	if primaryTool or secondaryTool == "Flashlight":
+		if battery < maxBattery:
+			battery += delta * rechargeRate
+		emit_signal("emitNoise", noise * delta)
 
 func use_flashlight():
 	visible = !visible
@@ -45,3 +47,9 @@ func _on_player_use_primary(primaryTool):
 func _on_player_use_secondary(secondaryTool):
 	if secondaryTool == "Flashlight":
 		use_flashlight()
+
+func _on_player_reload_sfx():
+	if reload_sfx.playing:
+		reload_sfx.stop()
+	else:
+		reload_sfx.play()

@@ -4,7 +4,8 @@ extends CharacterBody3D
 signal sendCurrentStamina(currentStamina : float)
 signal canInteract(interactable : bool)
 signal sendUseMessage(message : String)
-signal reload(delta : float)
+signal reload(delta : float, primaryTool : String, secondaryTool : String)
+signal reloadSfx
 signal updateInventory(inv : Array)
 signal toggleInventory
 signal usePrimary(primaryTool : String)
@@ -167,7 +168,13 @@ func playerControls(delta):
 		send_inventory_to_ui()
 	
 	if Input.is_action_pressed("recharge"):
-		emit_signal("reload", delta)
+		reload.emit(delta, EQUIPED_RIGHT, EQUIPED_LEFT)
+	
+	if Input.is_action_just_pressed("recharge"):
+		reloadSfx.emit()
+	
+	if Input.is_action_just_released("recharge"):
+		reloadSfx.emit()
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
