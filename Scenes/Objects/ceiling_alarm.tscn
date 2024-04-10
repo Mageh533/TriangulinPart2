@@ -1,15 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://djpnal1bm2ddo"]
+[gd_scene load_steps=4 format=3 uid="uid://djpnal1bm2ddo"]
 
 [ext_resource type="PackedScene" uid="uid://ckxgci2gtuscs" path="res://Assets/Models/Objects/alarm_light/scene.gltf" id="1_vw17d"]
+[ext_resource type="AudioStream" uid="uid://cjmtxsw5q1x8s" path="res://Assets/Sound/SFX/Objects/Alarm.mp3" id="2_l1k5v"]
 
 [sub_resource type="GDScript" id="GDScript_8ivp2"]
 resource_name = "light_Switch"
 script/source = "extends Node3D
 
 @onready var light = $SpotLight3D
+@onready var sound = $Alarm
 
 func switchLight():
 	light.visible = !light.visible
+	if light.visible:
+		sound.play()
 "
 
 [node name="Sketchfab_Scene" instance=ExtResource("1_vw17d")]
@@ -24,3 +28,7 @@ light_color = Color(1, 0, 0, 1)
 light_energy = 5.0
 shadow_enabled = true
 omni_range = 7.40218
+
+[node name="Alarm" type="AudioStreamPlayer3D" parent="." index="2"]
+stream = ExtResource("2_l1k5v")
+volume_db = -10.0
