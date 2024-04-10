@@ -17,6 +17,9 @@ extends CharacterBody3D
 @onready var ehTu = $EhTu
 @onready var jeje = $Jeje
 @onready var ooo = $Ooo
+@onready var pium = $Pium
+@onready var recarga = $Recarga
+
 var navigationMaps : Array[RID]
 
 # Vector targets
@@ -69,6 +72,7 @@ func _physics_process(delta):
 		if !soundCooldown:
 			soundCooldown = true
 			ehTu.play()
+			recarga.play()
 		face.angry()
 		look_at(sight_detection.get_collider(0).global_position)
 		lastAlertSpot = sight_detection.get_collider(0).global_position
@@ -143,6 +147,7 @@ func shoot():
 	var bulletShot = bullet.instantiate()
 	get_tree().root.add_child(bulletShot)
 	bulletShot.global_transform = global_transform
+	pium.play()
 
 # What to do when there is no noise around
 func _on_idle_timer_timeout():

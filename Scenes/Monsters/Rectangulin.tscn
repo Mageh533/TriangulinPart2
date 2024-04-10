@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsuc42l1mm6wb"]
+[gd_scene load_steps=14 format=3 uid="uid://bsuc42l1mm6wb"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Rectangulin.gd" id="1_rpb52"]
 [ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_cwn3w"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://up7grccqxmvt" path="res://Assets/Sound/SFX/Monsters/Eh_tu_rectangulin.wav" id="6_c6m6l"]
 [ext_resource type="AudioStream" uid="uid://dnkstcnierqjf" path="res://Assets/Sound/SFX/Monsters/jejeje_rectangulin.wav" id="7_hse6x"]
 [ext_resource type="AudioStream" uid="uid://cbcjc515wkgoe" path="res://Assets/Sound/SFX/Monsters/ooo_rectangulin.wav" id="8_fbxy8"]
+[ext_resource type="AudioStream" uid="uid://48nh30hmedh1" path="res://Assets/Sound/SFX/Objects/Pium.wav" id="9_7uiww"]
+[ext_resource type="AudioStream" uid="uid://d2m15cuct8xbo" path="res://Assets/Sound/SFX/Objects/Draw_pistol.wav" id="10_wmvvg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vcgo2"]
 size = Vector3(0.797821, 2.1879, 0.536346)
@@ -76,5 +78,13 @@ stream = ExtResource("7_hse6x")
 [node name="Ooo" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95865, 0)
 stream = ExtResource("8_fbxy8")
+
+[node name="Pium" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95865, 0)
+stream = ExtResource("9_7uiww")
+
+[node name="Recarga" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95865, 0)
+stream = ExtResource("10_wmvvg")
 
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]

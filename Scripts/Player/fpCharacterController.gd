@@ -235,10 +235,14 @@ func exitLevel():
 	active = false
 	anim_player.play("UI_fade_in")
 
-func kill(_killAnim := ""):
+func kill(killAnim := ""):
 	active = false
-	gameOver.emit()
-	queue_free()
+	match killAnim:
+		_:
+			anim_player.play("Death_Generic")
+			await anim_player.animation_finished
+			gameOver.emit()
+			queue_free()
 
 func bulletShot():
 	shot = true
