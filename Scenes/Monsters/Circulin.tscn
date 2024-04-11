@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://djoymv62txxbq"]
+[gd_scene load_steps=15 format=3 uid="uid://djoymv62txxbq"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Circulin.gd" id="1_yiteo"]
 [ext_resource type="PackedScene" uid="uid://bdaf3fjl6l4x3" path="res://Assets/Models/Monsters/circulin.glb" id="2_nbtpa"]
-[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/Gloves/gloveGun.tscn" id="3_t443u"]
+[ext_resource type="PackedScene" uid="uid://ys0ykmjga0dj" path="res://Scenes/Monsters/Gloves/gloveGrab.tscn" id="3_tcp7c"]
 [ext_resource type="AudioStream" uid="uid://bi8mrn33c5lcm" path="res://Assets/Sound/SFX/Monsters/sorpresa_circulin.mp3" id="4_1rpsu"]
+[ext_resource type="PackedScene" uid="uid://dql0if2xcsj6s" path="res://Assets/Models/Monsters/low_poly_pirate_shovel/scene.gltf" id="4_y4aj5"]
 [ext_resource type="AudioStream" uid="uid://kht4dyer7c4w" path="res://Assets/Sound/SFX/Monsters/Risita_Circulin.mp3" id="5_ueprc"]
 [ext_resource type="AudioStream" uid="uid://max33sy1vfwc" path="res://Assets/Sound/SFX/Monsters/Circulin_Enfadado.mp3" id="6_s6niq"]
 
@@ -18,6 +19,140 @@ size = Vector3(3.29, 3.46, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_81ocm"]
 size = Vector3(2.90588, 2.79602, 1.29004)
+
+[sub_resource type="Animation" id="Animation_t46km"]
+resource_name = "Idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glove_right:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.565586, 0.401244, -0.586366), Vector3(0.388867, 0.401244, -0.889762), Vector3(0.597432, 0.368854, -0.592097), Vector3(0.488075, 0.368854, -1.05794), Vector3(0.597432, 0.368854, -0.592097)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glove_right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.3811, 0.834456, 0.843609), Vector3(1.3811, 0.556757, 0.843609), Vector3(1.3811, 0.875349, 0.843609), Vector3(1.3811, 1.13301, 0.843609), Vector3(1.3811, 0.875349, 0.843609)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glove_left:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.654086, 0.202304, -0.450221), Vector3(-0.742758, 0.202304, -1.05289), Vector3(-0.654086, 0.202304, -0.450221), Vector3(-0.650537, 0.202304, -0.706781), Vector3(-0.654086, 0.202304, -0.450221)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("glove_left:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.10605, 2.54067, -0.482579), Vector3(1.10605, 2.20703, -0.482579), Vector3(1.10605, 2.54067, -0.482579), Vector3(1.10605, 2.67625, -0.482579), Vector3(1.10605, 2.54067, -0.482579)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("circulin:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.099763), Vector3(0, 0.276425, -0.099763), Vector3(0, 0, -0.099763), Vector3(-3.70677e-09, -0.351213, -0.099763), Vector3(0, 0, -0.099763)]
+}
+
+[sub_resource type="Animation" id="Animation_i4xm3"]
+resource_name = "Chase"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glove_right:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.565586, 0.401244, -0.586366), Vector3(0.945343, 1.19112, -0.285258), Vector3(0.983888, 1.50727, -0.362554)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glove_right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.3811, 0.834456, 0.843609), Vector3(0.998337, 1.07375, 1.58578), Vector3(0.615578, 1.31304, 2.32796)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glove_left:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.654086, 0.202304, -0.450221), Vector3(0.879412, 0.675555, -1.06125)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("glove_left:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.10605, 2.54067, -0.482579), Vector3(0.0156391, 1.45946, -0.622986)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("circulin:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.099763), Vector3(0, 0, -0.099763)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkwdi"]
+_data = {
+"Chase": SubResource("Animation_i4xm3"),
+"Idle": SubResource("Animation_t46km")
+}
 
 [node name="Circulin" type="CharacterBody3D" groups=["Monsters"]]
 collision_layer = 2
@@ -47,11 +182,14 @@ collide_with_bodies = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15302, -9.23583)
 shape = SubResource("BoxShape3D_hkngh")
 
-[node name="glove_right" parent="." instance=ExtResource("3_t443u")]
-transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.26282, 0.474192, 0)
+[node name="glove_right" parent="." instance=ExtResource("3_tcp7c")]
+transform = Transform3D(-0.0990028, 0.00179889, -0.0139714, -0.0140867, -0.0125352, 0.0982061, -1.52826e-05, -0.0991948, -0.0126636, 0.565586, 0.401244, -0.586366)
 
-[node name="glove_left" parent="." instance=ExtResource("3_t443u")]
-transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.31773, 0.606217, 0.000144958)
+[node name="glove_left" parent="." instance=ExtResource("3_tcp7c")]
+transform = Transform3D(-0.0965176, 0.00649458, 0.0253412, -0.0207993, 0.0397014, -0.0893934, -0.0158666, -0.0915512, -0.036968, -0.654086, 0.202304, -0.450221)
+
+[node name="Sketchfab_Scene" parent="glove_left" instance=ExtResource("4_y4aj5")]
+transform = Transform3D(-0.428457, -1.37157, -4.78908, 1.56, -4.60193, 1.17841, -4.73106, -1.39321, 0.822276, -10.3757, 7.26548, 2.73632)
 
 [node name="idleTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -83,6 +221,11 @@ volume_db = -10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02786, 0)
 stream = ExtResource("6_s6niq")
 volume_db = -10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mkwdi")
+}
 
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]

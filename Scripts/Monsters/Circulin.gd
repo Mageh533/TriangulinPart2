@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var noise_detection = $NoiseCast
 @onready var sight_detection = $SightCast
 @onready var idle_timer = $idleTimer
+@onready var anims = $AnimationPlayer
 var navigationMaps : Array[RID]
 
 @onready var eh = $Eh
@@ -39,6 +40,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	navigationMaps = NavigationServer3D.get_maps()
 	target = global_position
+	anims.play("Idle")
 	call_deferred("actor_setup")
 
 func actor_setup():
@@ -64,11 +66,14 @@ func _physics_process(delta):
 			if !soundCooldown:
 				soundCooldown = true
 				risa.play()
+				anims.stop()
+				anims.play("Chase")
 		else:
 			playerFound = false
 			if !soundCooldown:
 				soundCooldown = true
 				eh.play()
+				anims.play("Idle")
 	else :
 		playerFound = false
 		hearing = false
