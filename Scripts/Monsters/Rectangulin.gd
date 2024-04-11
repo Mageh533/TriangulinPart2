@@ -9,8 +9,7 @@ extends CharacterBody3D
 @onready var noise_detection = $NoiseCast
 @onready var sight_detection = $SightCast
 @onready var idle_timer = $idleTimer
-@onready var glove_left = $glove_left
-@onready var glove_right = $glove_right
+@onready var anims = $AnimationPlayer
 @onready var face = $rectangulin
 
 @onready var eh = $Eh
@@ -49,6 +48,7 @@ func _ready():
 	timeLeftToShoot = TIME_TO_SHOOT
 	navigationMaps = NavigationServer3D.get_maps()
 	target = global_position
+	anims.play("Idle")
 	call_deferred("actor_setup")
 
 func actor_setup():
@@ -73,13 +73,12 @@ func _physics_process(delta):
 			soundCooldown = true
 			ehTu.play()
 			recarga.play()
+			anims.play("Gun_Point")
 		face.angry()
 		look_at(sight_detection.get_collider(0).global_position)
 		lastAlertSpot = sight_detection.get_collider(0).global_position
 		alert = true
 		idle = false
-		glove_right.gun()
-		glove_left.grab()
 		timeLeftToShoot -= delta
 		if timeLeftToShoot <= 0:
 			shoot()
@@ -95,6 +94,8 @@ func _physics_process(delta):
 				if playerFound:
 					playerFound = false
 					ooo.play()
+					anims.stop()
+					anims.play("Idle")
 				alert = false
 				lastAlertSpot = target
 				searchTime = timeToSearch

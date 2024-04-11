@@ -237,6 +237,8 @@ func exitLevel():
 
 func kill(killAnim := ""):
 	active = false
+	rightHand.dequip()
+	leftHand.dequip()
 	match killAnim:
 		_:
 			anim_player.play("Death_Generic")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Circulin.gd" id="1_yiteo"]
 [ext_resource type="PackedScene" uid="uid://bdaf3fjl6l4x3" path="res://Assets/Models/Monsters/circulin.glb" id="2_nbtpa"]
-[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="3_t443u"]
+[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/Gloves/gloveGun.tscn" id="3_t443u"]
 [ext_resource type="AudioStream" uid="uid://bi8mrn33c5lcm" path="res://Assets/Sound/SFX/Monsters/sorpresa_circulin.mp3" id="4_1rpsu"]
 [ext_resource type="AudioStream" uid="uid://kht4dyer7c4w" path="res://Assets/Sound/SFX/Monsters/Risita_Circulin.mp3" id="5_ueprc"]
 [ext_resource type="AudioStream" uid="uid://max33sy1vfwc" path="res://Assets/Sound/SFX/Monsters/Circulin_Enfadado.mp3" id="6_s6niq"]

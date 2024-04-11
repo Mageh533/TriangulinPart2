@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cta78vy2cx2y3"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_bivr6"]
-[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_hoqj4"]
+[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/Gloves/gloveGun.tscn" id="2_hoqj4"]
 [ext_resource type="PackedScene" uid="uid://c67oive06y2a7" path="res://Assets/Models/Monsters/estrellin.glb" id="2_ldc16"]
 [ext_resource type="AudioStream" uid="uid://b25fm3hhrotcg" path="res://Assets/Sound/SFX/Monsters/sonido_estrellin.wav" id="4_hsf6t"]
 

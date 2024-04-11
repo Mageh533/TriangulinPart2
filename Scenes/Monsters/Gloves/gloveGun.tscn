@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dky7pjng7gb3a"]
+
+[ext_resource type="PackedScene" uid="uid://dvq1hl0hljmbt" path="res://Assets/Models/Monsters/glove.glb" id="1_1hmcj"]
+
+[node name="glove" instance=ExtResource("1_1hmcj")]
+
+[node name="Skeleton3D" parent="Glove" index="0"]
+bones/0/position = Vector3(-0.14987, 0.198465, 5.07916e-09)
+bones/0/rotation = Quaternion(-3.08807e-05, 0.00994546, -0.00310721, 0.999946)
+bones/1/rotation = Quaternion(0.215877, -0.0104902, 0.0205091, 0.976149)
+bones/2/rotation = Quaternion(0.562128, -0.0151349, 0.0313529, 0.826317)
+bones/3/rotation = Quaternion(0.753912, 0.0150715, -0.00474721, 0.656785)
+bones/4/rotation = Quaternion(0.759038, -0.00482246, -0.00416949, 0.651015)
+bones/5/rotation = Quaternion(0.780565, 0.0587336, -0.0377174, 0.621165)
+bones/6/rotation = Quaternion(0.786597, 0.010211, 0.00812484, 0.617328)
+bones/7/rotation = Quaternion(0.210305, 0.41697, 0.348543, 0.812665)

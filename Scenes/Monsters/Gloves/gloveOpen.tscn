@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dky7pjng7gb3a"]
+[gd_scene load_steps=2 format=3 uid="uid://by678oec5ghrj"]
 
-[ext_resource type="PackedScene" uid="uid://dvq1hl0hljmbt" path="res://Assets/Models/Monsters/glove.glb" id="1_miwuq"]
-[ext_resource type="Script" path="res://Scripts/Monsters/gloveScripted.gd" id="2_yu8o6"]
+[ext_resource type="PackedScene" uid="uid://dvq1hl0hljmbt" path="res://Assets/Models/Monsters/glove.glb" id="1_sn0v5"]
 
-[node name="glove" instance=ExtResource("1_miwuq")]
-script = ExtResource("2_yu8o6")
+[node name="glove" instance=ExtResource("1_sn0v5")]
 
 [node name="Skeleton3D" parent="Glove" index="0"]
 bones/0/position = Vector3(-0.14987, 0.198465, 5.07916e-09)

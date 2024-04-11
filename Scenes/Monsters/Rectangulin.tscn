@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsuc42l1mm6wb"]
+[gd_scene load_steps=19 format=3 uid="uid://bsuc42l1mm6wb"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Rectangulin.gd" id="1_rpb52"]
-[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/gloveScripted.tscn" id="2_cwn3w"]
+[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/Gloves/gloveGun.tscn" id="2_cwn3w"]
 [ext_resource type="PackedScene" uid="uid://0hr57sq6s78l" path="res://Scenes/Monsters/bullet.tscn" id="2_e18hp"]
 [ext_resource type="PackedScene" uid="uid://5vd67tpkkqij" path="res://Scenes/Monsters/rectangulin_model_scripted.tscn" id="3_waq0y"]
+[ext_resource type="PackedScene" uid="uid://bvc1be7tf2i5u" path="res://Assets/Models/Monsters/pistol/scene.gltf" id="5_3r2ch"]
 [ext_resource type="AudioStream" uid="uid://ughyypftwecu" path="res://Assets/Sound/SFX/Monsters/Eh_Rectangulin.wav" id="5_6ycjn"]
+[ext_resource type="PackedScene" uid="uid://ys0ykmjga0dj" path="res://Scenes/Monsters/Gloves/gloveGrab.tscn" id="6_2dkvj"]
 [ext_resource type="AudioStream" uid="uid://up7grccqxmvt" path="res://Assets/Sound/SFX/Monsters/Eh_tu_rectangulin.wav" id="6_c6m6l"]
 [ext_resource type="AudioStream" uid="uid://dnkstcnierqjf" path="res://Assets/Sound/SFX/Monsters/jejeje_rectangulin.wav" id="7_hse6x"]
 [ext_resource type="AudioStream" uid="uid://cbcjc515wkgoe" path="res://Assets/Sound/SFX/Monsters/ooo_rectangulin.wav" id="8_fbxy8"]
@@ -19,6 +21,92 @@ radius = 3.692
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5x7g1"]
 size = Vector3(2, 2, 13.815)
+
+[sub_resource type="Animation" id="Animation_w7lop"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glove_right:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.35961, 0.657682, -0.00427508), Vector3(1.35961, 0.657682, -0.00427508), Vector3(1.35961, 0.657682, -0.00427508)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glove_right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0929514, 1.29506, 2.93703), Vector3(0.301467, 1.32822, 2.83343), Vector3(0.0929514, 1.29506, 2.93703)]
+}
+
+[sub_resource type="Animation" id="Animation_mvoqw"]
+resource_name = "Gun_Point"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glove_right:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.35961, 0.657682, -0.00427508), Vector3(0.859478, 0.657682, -0.779755)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glove_right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0929514, 1.29506, 2.93703), Vector3(0.0955024, 1.51901, 1.75129)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glove_left:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.2233, 0.406447, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("glove_left:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.137301, 1.75242, -0.715947)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pj64b"]
+_data = {
+"Gun_Point": SubResource("Animation_mvoqw"),
+"Idle": SubResource("Animation_w7lop")
+}
 
 [node name="Rectangulin" type="CharacterBody3D" groups=["Monsters"]]
 collision_layer = 2
@@ -53,10 +141,13 @@ wait_time = 3.0
 autostart = true
 
 [node name="glove_right" parent="." instance=ExtResource("2_cwn3w")]
-transform = Transform3D(0.0344053, 0.0118853, -0.0931398, -0.093895, 0.0043712, -0.0341265, -1.52916e-05, -0.0991949, -0.0126636, 1.35961, 0.657682, -0.00427508)
+transform = Transform3D(-0.00843899, 0.00680181, -0.0994109, -0.0979272, 0.01787, 0.00953573, -0.0184133, -0.098155, -0.00515277, 0.859478, 0.657682, -0.779755)
 
-[node name="glove_left" parent="." instance=ExtResource("2_cwn3w")]
-transform = Transform3D(-0.0327526, -0.0085664, 0.0940951, -0.094433, -0.000311033, -0.0328985, 0.00311089, -0.0996319, -0.00798764, -1.22094, 0.789707, -0.00413013)
+[node name="Gun" parent="glove_right" instance=ExtResource("5_3r2ch")]
+transform = Transform3D(-1.95576, -39.8824, 2.36001, 7.25494, 1.96903, 39.2872, -39.288, 2.34895, 7.13732, -3.60569, 6.0743, 1.79312)
+
+[node name="glove_left" parent="." instance=ExtResource("6_2dkvj")]
+transform = Transform3D(-0.0224635, -0.00169872, 0.0974295, -0.0650156, 0.0747371, -0.013687, -0.0725835, -0.0664189, -0.017893, -1.2233, 0.406447, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307327, 0.857649, -1.10002)
@@ -86,5 +177,10 @@ stream = ExtResource("9_7uiww")
 [node name="Recarga" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95865, 0)
 stream = ExtResource("10_wmvvg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pj64b")
+}
 
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]
