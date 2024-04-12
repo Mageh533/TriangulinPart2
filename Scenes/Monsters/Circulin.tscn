@@ -20,6 +20,69 @@ size = Vector3(3.29, 3.46, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_81ocm"]
 size = Vector3(2.90588, 2.79602, 1.29004)
 
+[sub_resource type="Animation" id="Animation_i4xm3"]
+resource_name = "Chase"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glove_right:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.565586, 0.401244, -0.586366), Vector3(0.945343, 1.19112, -0.285258), Vector3(0.983888, 1.50727, -0.362554)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glove_right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.3811, 0.834456, 0.843609), Vector3(0.998337, 1.07375, 1.58578), Vector3(0.615578, 1.31304, 2.32796)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glove_left:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.654086, 0.202304, -0.450221), Vector3(0.879412, 0.675555, -1.06125)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("glove_left:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.10605, 2.54067, -0.482579), Vector3(0.0156391, 1.45946, -0.622986)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("circulin:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.099763), Vector3(0, 0, -0.099763)]
+}
+
 [sub_resource type="Animation" id="Animation_t46km"]
 resource_name = "Idle"
 length = 4.0
@@ -83,69 +146,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, -0.099763), Vector3(0, 0.276425, -0.099763), Vector3(0, 0, -0.099763), Vector3(-3.70677e-09, -0.351213, -0.099763), Vector3(0, 0, -0.099763)]
-}
-
-[sub_resource type="Animation" id="Animation_i4xm3"]
-resource_name = "Chase"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("glove_right:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.565586, 0.401244, -0.586366), Vector3(0.945343, 1.19112, -0.285258), Vector3(0.983888, 1.50727, -0.362554)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("glove_right:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1.3811, 0.834456, 0.843609), Vector3(0.998337, 1.07375, 1.58578), Vector3(0.615578, 1.31304, 2.32796)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("glove_left:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.654086, 0.202304, -0.450221), Vector3(0.879412, 0.675555, -1.06125)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("glove_left:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1.10605, 2.54067, -0.482579), Vector3(0.0156391, 1.45946, -0.622986)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("circulin:rotation")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, -0.099763), Vector3(0, 0, -0.099763)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkwdi"]

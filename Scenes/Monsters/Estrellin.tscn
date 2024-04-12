@@ -1,9 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://cta78vy2cx2y3"]
+[gd_scene load_steps=14 format=3 uid="uid://cta78vy2cx2y3"]
 
 [ext_resource type="Script" path="res://Scripts/Monsters/Estrellin.gd" id="1_bivr6"]
-[ext_resource type="PackedScene" uid="uid://dky7pjng7gb3a" path="res://Scenes/Monsters/Gloves/gloveGun.tscn" id="2_hoqj4"]
+[ext_resource type="PackedScene" uid="uid://ys0ykmjga0dj" path="res://Scenes/Monsters/Gloves/gloveGrab.tscn" id="2_hq00c"]
 [ext_resource type="PackedScene" uid="uid://c67oive06y2a7" path="res://Assets/Models/Monsters/estrellin.glb" id="2_ldc16"]
 [ext_resource type="AudioStream" uid="uid://b25fm3hhrotcg" path="res://Assets/Sound/SFX/Monsters/sonido_estrellin.wav" id="4_hsf6t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ear7"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ij8xh"]
+material = SubResource("StandardMaterial3D_7ear7")
+height = 30.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1k4l"]
 size = Vector3(1.04928, 0.882538, 1.03003)
@@ -14,89 +21,204 @@ size = Vector3(2.90588, 2.79602, 1.29004)
 [sub_resource type="SphereShape3D" id="SphereShape3D_iqi3w"]
 radius = 5.988
 
-[sub_resource type="Animation" id="Animation_he77b"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_8hdgj"]
+resource_name = "Idle"
+length = 2.5
 loop_mode = 1
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("glove_right")
-tracks/0/interp = 1
+tracks/0/path = NodePath("glove_right:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"open"
-}]
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.26282, 0.474192, -0.289689), Vector3(1.26282, 0.851996, -0.670158), Vector3(1.26282, 0.851996, -0.670158), Vector3(1.26282, 0.689047, -0.591184), Vector3(0.549016, 0.689047, -1.51277), Vector3(1.26282, 0.474192, -0.289689)]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("glove_left")
-tracks/1/interp = 1
+tracks/1/path = NodePath("glove_right:rotation")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"open"
-}]
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.143927, 1.56144, 0.575376), Vector3(0.0110962, 2.11426, 0.314816), Vector3(0.253177, 2.05713, -0.109271), Vector3(0.253177, 1.41448, -0.109271), Vector3(0.253177, 2.24945, -0.109271), Vector3(-0.143927, 1.56144, 0.575376)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("glove_right:position")
+tracks/2/path = NodePath("glove_left:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1.26282, 0.474192, 0), Vector3(1.26282, 0.474192, 0), Vector3(1.26282, 0.474192, 0)]
+"values": [Vector3(-1.31561, 0.474192, 0), Vector3(-0.912577, 0.474192, -0.447616), Vector3(-0.728779, 0.474192, -0.613554), Vector3(-1.2484, 0.474192, -0.94757)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("glove_right:rotation")
+tracks/3/path = NodePath("glove_left:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.0696911, 1.44442, 1.57964), Vector3(-0.393408, 1.43424, 1.62342), Vector3(-0.0696911, 1.44442, 1.57964)]
+"values": [Vector3(-0.0657973, 1.44417, -1.53758), Vector3(0.999266, 1.33567, -1.74478), Vector3(1.29013, 1.96324, -0.865873), Vector3(1.38533, 2.48069, -0.352572)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("glove_left:position")
-tracks/4/interp = 1
+tracks/4/path = NodePath("estrellin:rotation")
+tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.31773, 0.606217, 0.000144958), Vector3(-1.31773, 0.606217, 0.000144958), Vector3(-1.31773, 0.606217, 0.000144958)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("glove_left:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.0288404, 1.64985, -1.60441), Vector3(0.394231, 1.6564, -1.56918), Vector3(-0.0288404, 1.64985, -1.60441)]
+"values": [Vector3(0, 1.5708, 0), Vector3(0.0321736, 1.71385, -0.219718), Vector3(0.0241302, 1.43792, -0.164788), Vector3(0.0160868, 1.27678, -0.109859), Vector3(0.00804341, 2.00732, -0.0549295)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6gyf0"]
+[sub_resource type="Animation" id="Animation_h3e0h"]
+resource_name = "Chase"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glove_right:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.501, 0.474192, 0.183554)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glove_right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0145506, 1.4273, 2.18137), Vector3(0.314645, 1.42208, 1.83369), Vector3(-0.105737, 1.46188, 1.46937), Vector3(0.0145506, 1.4273, 2.18137)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glove_left:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.52688, 0.474192, 0), Vector3(-1.52688, 0.906592, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("glove_left:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.120651, 1.49456, -0.055587), Vector3(0.120651, 1.49456, -0.055587)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("estrellin:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.01, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(-1.21958e-08, 1.5708, 0.282761)]
+}
+
+[sub_resource type="Animation" id="Animation_b8vjj"]
+resource_name = "Slap"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glove_right:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.26282, 0.474192, -0.289689), Vector3(1.26282, 0.474192, -0.289689), Vector3(1.26282, 0.474192, -0.289689)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glove_right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0633682, 1.45714, 1.57591), Vector3(-1.47995, 0.00301232, 3.13484), Vector3(-0.0633682, 1.45714, 1.57591)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("glove_left:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.23027, 0.38973, -0.500246), Vector3(-1.23027, 0.38973, -0.500246)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("glove_left:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.39346, 0.77512, -0.758178), Vector3(-1.30724, 1.06589, -1.05578)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("estrellin:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(-0.02),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ey0ga"]
 _data = {
-"idle": SubResource("Animation_he77b")
+"Chase": SubResource("Animation_h3e0h"),
+"Idle": SubResource("Animation_8hdgj"),
+"Slap": SubResource("Animation_b8vjj")
 }
 
 [node name="Estrellin" type="CharacterBody3D" groups=["Monsters"]]
@@ -104,11 +226,15 @@ collision_layer = 2
 collision_mask = 20
 script = ExtResource("1_bivr6")
 
-[node name="glove_right" parent="." instance=ExtResource("2_hoqj4")]
-transform = Transform3D(0.00701913, 0.0125424, -0.0989617, -0.0997533, 0.000882212, -0.00696347, 3.36766e-07, -0.0992064, -0.0125734, 1.26282, 0.474192, 0)
+[node name="glove_right" parent="." instance=ExtResource("2_hq00c")]
+transform = Transform3D(0.0063497, 0.0113086, -0.0991554, -0.099798, 0.000510836, -0.00633258, 0.000209606, -0.0993573, -0.0113182, 1.26282, 0.474192, -0.289689)
 
-[node name="glove_left" parent="." instance=ExtResource("2_hoqj4")]
-transform = Transform3D(0.00313841, -0.00779607, 0.0996462, -0.099902, -0.00335934, 0.00288364, 0.00312265, -0.099639, -0.00789385, -1.31773, 0.606217, 0.000144958)
+[node name="Stick" type="MeshInstance3D" parent="glove_right"]
+transform = Transform3D(0.0439244, -0.996966, -0.0642617, 0.99763, 0.0471827, -0.0500969, 0.0529765, -0.0619089, 0.996675, -12.5323, 5.16138, 0.844469)
+mesh = SubResource("CylinderMesh_ij8xh")
+
+[node name="glove_left" parent="." instance=ExtResource("2_hq00c")]
+transform = Transform3D(0.0992309, -0.000897258, 0.0123454, -0.0121301, 0.0128092, 0.0984316, -0.00246453, -0.0991722, 0.0126018, -1.23027, 0.38973, -0.500246)
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.080385, 1.12432, -0.0751314)
@@ -139,11 +265,6 @@ collide_with_bodies = false
 wait_time = 3.0
 autostart = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_6gyf0")
-}
-
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951495, -0.662896)
 light_color = Color(1, 0, 0, 1)
@@ -153,6 +274,11 @@ light_energy = 9.242
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02786, 0)
 stream = ExtResource("4_hsf6t")
 volume_db = -10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ey0ga")
+}
 
 [connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]
 [connection signal="timeout" from="idleTimer" to="." method="_on_idle_timer_timeout"]

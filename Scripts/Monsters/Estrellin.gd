@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var noise_detection = $NoiseCast
 @onready var idle_timer = $idleTimer
 @onready var eh = $Eh
+@onready var anims = $AnimationPlayer
 var navigationMaps : Array[RID]
 
 # Vector targets
@@ -35,6 +36,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	navigationMaps = NavigationServer3D.get_maps()
 	target = global_position
+	anims.play("Idle")
 	call_deferred("actor_setup")
 
 func actor_setup():
@@ -57,7 +59,9 @@ func _physics_process(delta):
 		# Check if its a player. All noises should have a type set
 		if noise_detection.get_collider(0) is Area3D and noise_detection.get_collider(0).TYPE == "Player":
 			playerFound = true
+			anims.play("Chase")
 		else:
+			anims.play("Idle")
 			playerFound = false
 		
 		if !soundCooldown and !playerFound:
