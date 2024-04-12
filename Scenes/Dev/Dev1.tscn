@@ -99,9 +99,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18588, 3.73112)
 
 [node name="Estrellin" parent="." instance=ExtResource("4_sajwv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0629, 0.810346, -13.5117)
+searchRange = [-20, 20]
 
 [node name="Circulin" parent="." instance=ExtResource("5_7fwpv")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 13.1513, 0.660811, -15.9232)
+searchRange = [-20, 20]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.991445, -0.0401073, -0.124211, 0.0975649, 0.859868, 0.501107, 0.0867075, -0.508939, 0.856425, 0, 14.583, 11.3233)
@@ -115,7 +117,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.52675, 0.809245, 1.74087)
 appearChance = 0.3
 
 [node name="Rectangulin" parent="." instance=ExtResource("7_lxn8b")]
-transform = Transform3D(-0.830907, 0, 0.556412, 0, 1, 0, -0.556412, 0, -0.830907, -0.0317793, 1.66939, -15.0677)
+transform = Transform3D(-0.830907, 0, 0.556412, 0, 1, 0, -0.556412, 0, -0.830907, -0.0317793, 0.147628, -15.0677)
+searchRange = [-20, 20]
+
+[node name="Center" type="Marker3D" parent="." groups=["Center"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24213, 0, -4.75813)
 
 [connection signal="body_entered" from="TriangulinTrigger" to="." method="_on_triangulin_trigger_body_entered"]
 [connection signal="hitByByllet" from="Player" to="Rectangulin" method="_on_player_hit_by_byllet"]

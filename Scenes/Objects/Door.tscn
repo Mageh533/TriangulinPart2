@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://w5m437wxwmbl"]
+[gd_scene load_steps=10 format=3 uid="uid://w5m437wxwmbl"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Door.gd" id="1_lwywv"]
 [ext_resource type="PackedScene" uid="uid://b0m7wanybpopt" path="res://Assets/Models/Objects/metal_door/door.gltf" id="2_snnow"]
 [ext_resource type="Script" path="res://Scripts/Objects/DoorBarricade.gd" id="2_vsh1s"]
+[ext_resource type="AudioStream" uid="uid://7nxlw8eq26q3" path="res://Assets/Sound/SFX/Objects/door_locked.wav" id="4_yxpsw"]
+[ext_resource type="AudioStream" uid="uid://xha64yk5tc35" path="res://Assets/Sound/SFX/Objects/door_open.wav" id="5_v5vob"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24v4j"]
 size = Vector3(0.342773, 2.67102, 1.59424)
@@ -48,5 +50,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133483, 0.934128, 0.506495
 remote_path = NodePath("../DoorBarricade")
 update_rotation = false
 update_scale = false
+
+[node name="LockedSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 1.29951, -0.90961)
+stream = ExtResource("4_yxpsw")
+
+[node name="OpenSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 1.29951, -0.90961)
+stream = ExtResource("5_v5vob")
+volume_db = -5.0
 
 [connection signal="IsInUse" from="DoorBarricade" to="." method="_on_door_barricade_is_in_use"]

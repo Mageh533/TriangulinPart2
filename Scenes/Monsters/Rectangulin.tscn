@@ -22,34 +22,6 @@ radius = 3.692
 [sub_resource type="BoxShape3D" id="BoxShape3D_5x7g1"]
 size = Vector3(2, 2, 13.815)
 
-[sub_resource type="Animation" id="Animation_w7lop"]
-resource_name = "Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("glove_right:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1.35961, 0.657682, -0.00427508), Vector3(1.35961, 0.657682, -0.00427508), Vector3(1.35961, 0.657682, -0.00427508)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("glove_right:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.0929514, 1.29506, 2.93703), Vector3(0.301467, 1.32822, 2.83343), Vector3(0.0929514, 1.29506, 2.93703)]
-}
-
 [sub_resource type="Animation" id="Animation_mvoqw"]
 resource_name = "Gun_Point"
 length = 0.5
@@ -100,6 +72,34 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.137301, 1.75242, -0.715947)]
+}
+
+[sub_resource type="Animation" id="Animation_w7lop"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("glove_right:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.35961, 0.657682, -0.00427508), Vector3(1.35961, 0.657682, -0.00427508), Vector3(1.35961, 0.657682, -0.00427508)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("glove_right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0929514, 1.29506, 2.93703), Vector3(0.301467, 1.32822, 2.83343), Vector3(0.0929514, 1.29506, 2.93703)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pj64b"]
@@ -153,6 +153,7 @@ transform = Transform3D(-0.0224635, -0.00169872, 0.0974295, -0.0650156, 0.074737
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307327, 0.857649, -1.10002)
 light_color = Color(1, 0, 0, 1)
 light_energy = 9.242
+shadow_enabled = true
 
 [node name="Eh" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95865, 0)

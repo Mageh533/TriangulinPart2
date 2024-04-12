@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 #Export vars
 @export var timeToSearch : float = 30
+@export var searchRange := [-60, 60]
 
 # Nodes
 @onready var nav_agent = $NavigationAgent3D
@@ -36,8 +37,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	navigationMaps = NavigationServer3D.get_maps()
 	target = global_position
-	anims.play("Idle")
+	anims.play("Slap")
 	call_deferred("actor_setup")
+	if get_tree().get_nodes_in_group("Center").size() > 0:
+		centerOfMap = get_tree().get_first_node_in_group("Center").global_position
 
 func actor_setup():
 	await get_tree().physics_frame
@@ -61,7 +64,6 @@ func _physics_process(delta):
 			playerFound = true
 			anims.play("Chase")
 		else:
-			anims.play("Idle")
 			playerFound = false
 		
 		if !soundCooldown and !playerFound:
@@ -85,6 +87,7 @@ func _physics_process(delta):
 				if noise_detection.get_collider(0) != null:
 					setTarget(noise_detection.get_collider(0).global_position)
 					alert = true
+					anims.play("Idle")
 					idle = false
 			if curiosity > MAX_CURIOSITY:
 				curiosity = MAX_CURIOSITY
@@ -97,6 +100,7 @@ func _physics_process(delta):
 			setTarget(noise_detection.get_collider(0).global_position)
 	
 	if nav_agent.is_navigation_finished():
+		anims.play("Slap")
 		idle = true
 		if alert:
 			alert = false
@@ -132,13 +136,17 @@ func _on_idle_timer_timeout():
 		searchSpot.x += randf_range(-10, 10)
 		searchSpot.z += randf_range(-10, 10)
 		
+		anims.play("Idle")
+		
 		setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], searchSpot))
 	elif !alert and searchTime == 0 and idle:
 		idle = false
 		var searchSpot := centerOfMap
 		# Go to a new spot thats somewhere else
-		searchSpot.x += randf_range(-60, 60)
-		searchSpot.z += randf_range(-50, 50)
+		searchSpot.x += randf_range(searchRange[0], searchRange[1])
+		searchSpot.z += randf_range(searchRange[0], searchRange[1])
+		
+		anims.play("Idle")
 		
 		setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], searchSpot))
 

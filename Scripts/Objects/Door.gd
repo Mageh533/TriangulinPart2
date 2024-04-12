@@ -1,6 +1,10 @@
 extends AnimatableBody3D
 
 @onready var barricade = $DoorBarricade
+@onready var collision = $Collision
+
+@onready var locked_sfx = $LockedSound
+@onready var open_sfx = $OpenSound
 
 @export var open : bool = false
 @export var locked : bool = false
@@ -18,14 +22,19 @@ func _physics_process(delta):
 		rotation.y = rotate_toward(rotation.y, initRotY + deg_to_rad(90), delta * 8)
 	else:
 		rotation.y = rotate_toward(rotation.y, initRotY, delta * 8)
+	
+	# Handle collisions while its opening/closing
+	collision.disabled = (rotation.y != initRotY + deg_to_rad(90) or rotation.y != initRotY)
 
 func use():
 	var message : String = ""
 	if !locked:
 		open = !open
 		message = ""
+		open_sfx.play(0.4)
 	else:
 		message = "The door is locked"
+		locked_sfx.play()
 	return message
 
 func _on_door_barricade_is_in_use(inUse):

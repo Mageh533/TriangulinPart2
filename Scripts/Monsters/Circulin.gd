@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 #Export vars
 @export var timeToSearch : float = 30
+@export var searchRange := [-60, 60]
 
 # Nodes
 @onready var nav_agent = $NavigationAgent3D
@@ -42,6 +43,8 @@ func _ready():
 	target = global_position
 	anims.play("Idle")
 	call_deferred("actor_setup")
+	if get_tree().get_nodes_in_group("Center").size() > 0:
+		centerOfMap = get_tree().get_first_node_in_group("Center").global_position
 
 func actor_setup():
 	await get_tree().physics_frame
@@ -152,8 +155,8 @@ func _on_idle_timer_timeout():
 		idle = false
 		var searchSpot := centerOfMap
 		# Go to a new spot thats somewhere else
-		searchSpot.x += randf_range(-60, 60)
-		searchSpot.z += randf_range(-50, 50)
+		searchSpot.x += randf_range(searchRange[0], searchRange[1])
+		searchSpot.z += randf_range(searchRange[0], searchRange[1])
 		
 		setTarget(NavigationServer3D.map_get_closest_point(navigationMaps[0], searchSpot))
 

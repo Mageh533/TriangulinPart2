@@ -1007,6 +1007,9 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Exit"
 
+[node name="Center" type="Marker3D" parent="." groups=["Center"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.9832, 0, -24.3081)
+
 [connection signal="terminalCleared" from="." to="Objects/PC Room/PC" method="_on_floor_4_terminal_cleared"]
 [connection signal="unlock3rdFloor" from="." to="BaseLayout/Stairs" method="_on_floor_4_unlock_3_rd_floor"]
 [connection signal="body_entered" from="BaseLayout/Stairs/WinClip" to="." method="_on_win_clip_body_entered"]
