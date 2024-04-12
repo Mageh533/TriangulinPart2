@@ -797,6 +797,9 @@ spot_angle = 25.1796
 [node name="Terminal" parent="Objects" instance=ExtResource("9_a0bvf")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -60.5249, 2.69311, -87.5867)
 
+[node name="Terminal7" parent="Objects" instance=ExtResource("9_a0bvf")]
+transform = Transform3D(-0.998244, 0, 0.0592365, 0, 1, 0, -0.0592365, 0, -0.998244, -67.9485, 2.69311, 41.7021)
+
 [node name="Terminal2" parent="Objects" instance=ExtResource("9_a0bvf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -46, 2.69311, -5.99113)
 
@@ -1017,6 +1020,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.9832, 0, -24.3081)
 [connection signal="toggleControlToPlayer" from="Objects/PC Room/PC" to="Player" method="_on_terminal_toggle_control_to_player"]
 [connection signal="terminalFinished" from="Objects/Terminal" to="." method="_on_terminal_terminal_finished"]
 [connection signal="toggleControlToPlayer" from="Objects/Terminal" to="Player" method="_on_terminal_toggle_control_to_player"]
+[connection signal="terminalFinished" from="Objects/Terminal7" to="." method="_on_terminal_terminal_finished"]
+[connection signal="toggleControlToPlayer" from="Objects/Terminal7" to="Player" method="_on_terminal_toggle_control_to_player"]
 [connection signal="terminalFinished" from="Objects/Terminal2" to="." method="_on_terminal_terminal_finished"]
 [connection signal="toggleControlToPlayer" from="Objects/Terminal2" to="Player" method="_on_terminal_toggle_control_to_player"]
 [connection signal="terminalFinished" from="Objects/Terminal3" to="." method="_on_terminal_terminal_finished"]

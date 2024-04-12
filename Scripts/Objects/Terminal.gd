@@ -36,7 +36,8 @@ func _on_exit_button_pressed():
 
 func gameWon():
 	print("Game won")
-	game.get_child(0).queue_free()
+	if game.get_child(0) != null:
+		game.get_child(0).queue_free()
 	active = false
 	flash_timer.start()
 	terminalFinished.emit()

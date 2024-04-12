@@ -22,9 +22,6 @@ func _physics_process(delta):
 		rotation.y = rotate_toward(rotation.y, initRotY + deg_to_rad(90), delta * 8)
 	else:
 		rotation.y = rotate_toward(rotation.y, initRotY, delta * 8)
-	
-	# Handle collisions while its opening/closing
-	collision.disabled = (rotation.y != initRotY + deg_to_rad(90) or rotation.y != initRotY)
 
 func use():
 	var message : String = ""
@@ -32,6 +29,9 @@ func use():
 		open = !open
 		message = ""
 		open_sfx.play(0.4)
+		collision.disabled = true
+		await get_tree().create_timer(0.5).timeout
+		collision.disabled = false
 	else:
 		message = "The door is locked"
 		locked_sfx.play()

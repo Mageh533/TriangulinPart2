@@ -4,62 +4,25 @@
 [ext_resource type="Script" path="res://Scripts/Player/Player_Frogger.gd" id="1_th3bl"]
 [ext_resource type="Texture2D" uid="uid://cjg78mwet1njj" path="res://Assets/Sprites/Minigames/frogger_sprite.png" id="2_poi4g"]
 [ext_resource type="Texture2D" uid="uid://d0lltf7f4fy5r" path="res://Assets/Sprites/Minigames/frogger_tileset.png" id="3_yac73"]
-[ext_resource type="Script" path="res://Scenes/Monsters/Minigames/Car.gd" id="5_vxhmk"]
+[ext_resource type="PackedScene" uid="uid://ky30hsfosydj" path="res://Scenes/Game/Minigames/car.tscn" id="5_evcce"]
+[ext_resource type="PackedScene" uid="uid://cwtunexgrcj05" path="res://Scenes/Game/Minigames/log.tscn" id="6_mwsst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebd31"]
-size = Vector2(45, 49)
+size = Vector2(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_srryr"]
 texture = ExtResource("3_yac73")
 texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0 = 0
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
-0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0 = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-2:1/0 = 0
-2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0 = 0
-3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:1/0/physics_layer_0/angular_velocity = 0.0
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 0:2/0 = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0 = 0
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/0 = 0
-2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/0/physics_layer_0/angular_velocity = 0.0
-3:2/0 = 0
-3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:2/0/physics_layer_0/angular_velocity = 0.0
-0:3/0 = 0
-0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:3/0/physics_layer_0/angular_velocity = 0.0
-1:3/0 = 0
-1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:3/0/physics_layer_0/angular_velocity = 0.0
-2:3/0 = 0
-2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:3/0/physics_layer_0/angular_velocity = 0.0
-3:3/0 = 0
-3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:3/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSet" id="TileSet_4gmsm"]
 tile_size = Vector2i(64, 64)
@@ -70,16 +33,17 @@ sources/0 = SubResource("TileSetAtlasSource_srryr")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyv13"]
 size = Vector2(1163, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1j0s3"]
-size = Vector2(128, 64)
-
 [node name="Frogger" type="Node2D"]
 script = ExtResource("1_k3alj")
+cars = ExtResource("5_evcce")
+logs = ExtResource("6_mwsst")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(565, 596)
-collision_mask = 6
+collision_mask = 2
 motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294901764
 script = ExtResource("1_th3bl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -89,8 +53,17 @@ scale = Vector2(0.34375, 0.367188)
 texture = ExtResource("2_poi4g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_ebd31")
+
+[node name="Cooldown" type="Timer" parent="Player"]
+wait_time = 0.2
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Player"]
+target_position = Vector2(1, 2)
+collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4gmsm")
@@ -124,12 +97,46 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "You Win!"
 
-[node name="Car" type="Area2D" parent="."]
-position = Vector2(567, 400)
-script = ExtResource("5_vxhmk")
+[node name="CarsSpawnsLeft" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
-shape = SubResource("RectangleShape2D_1j0s3")
+[node name="2" type="Marker2D" parent="CarsSpawnsLeft"]
+position = Vector2(1151, 376)
+
+[node name="3" type="Marker2D" parent="CarsSpawnsLeft"]
+position = Vector2(1151, 298)
+
+[node name="CarsSpawnsRight" type="Node2D" parent="."]
+position = Vector2(-1153, 0)
+
+[node name="1" type="Marker2D" parent="CarsSpawnsRight"]
+position = Vector2(1151, 454)
+
+[node name="LogSpawnsRight" type="Node2D" parent="."]
+
+[node name="LogRight" type="Marker2D" parent="LogSpawnsRight"]
+position = Vector2(-1, 173)
+
+[node name="LogRight3" type="Marker2D" parent="LogSpawnsRight"]
+position = Vector2(-1, 108)
+
+[node name="LogSpawnsLeft" type="Node2D" parent="."]
+position = Vector2(1154, 0)
+
+[node name="LogRight2" type="Marker2D" parent="LogSpawnsLeft"]
+position = Vector2(-1, 141)
+
+[node name="LogRight4" type="Marker2D" parent="LogSpawnsLeft"]
+position = Vector2(-1, 80)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
+[connection signal="timeout" from="Player/Cooldown" to="Player" method="_on_cooldown_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

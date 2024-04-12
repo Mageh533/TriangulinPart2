@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://ky30hsfosydj"]
+
+[ext_resource type="Script" path="res://Scenes/Monsters/Minigames/Car.gd" id="1_d1q8e"]
+[ext_resource type="Texture2D" uid="uid://cddnsltdhccjk" path="res://Assets/Sprites/Minigames/COCHAZO.png" id="2_4ptmy"]
+[ext_resource type="Texture2D" uid="uid://b1pxurohr6lqf" path="res://Assets/Sprites/Minigames/Bici.png" id="2_8bmbq"]
+[ext_resource type="Texture2D" uid="uid://bpjrfhw3yffgd" path="res://Assets/Sprites/Minigames/Camion_porro_pilotado.png" id="4_syr36"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1j0s3"]
+size = Vector2(128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44cvc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8bmbq")
+}],
+"loop": true,
+"name": &"bike",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4ptmy")
+}],
+"loop": true,
+"name": &"car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_syr36")
+}],
+"loop": true,
+"name": &"truck",
+"speed": 5.0
+}]
+
+[node name="Car" type="Area2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_d1q8e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1j0s3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.424179, -0.378226)
+scale = Vector2(0.206947, 0.181331)
+sprite_frames = SubResource("SpriteFrames_44cvc")
+animation = &"truck"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

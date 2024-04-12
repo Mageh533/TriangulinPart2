@@ -149,7 +149,7 @@ func playerControls(delta):
 	if Input.is_action_just_pressed("interact"):
 		if interactRay.is_colliding():
 			var message
-			message = interactRay.get_collider().use()
+			message = await interactRay.get_collider().use()
 			if message is String:
 				emit_signal("sendUseMessage", message)
 	
