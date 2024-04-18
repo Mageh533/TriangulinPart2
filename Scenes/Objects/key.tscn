@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://u41ff7bkhdrr"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="1_0v7ge"]
+[ext_resource type="AudioStream" uid="uid://b7nfnis41xxfs" path="res://Assets/Sound/SFX/Objects/key_pickup.wav" id="2_gfrug"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_iwxyb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_64ft0"]
+
+[node name="Key" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.186295, 0.254636, -0.037497)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_0v7ge")
+returnMessage = "Picked up Key labeled (4th Floor)"
+
+[node name="KeyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.231163, -0.134162, -0.0499115)
+mesh = SubResource("PrismMesh_iwxyb")
+skeleton = NodePath("../..")
+
+[node name="PickupCol" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.388397, -0.236196, -0.0477753)
+shape = SubResource("BoxShape3D_64ft0")
+
+[node name="Pickup" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_gfrug")

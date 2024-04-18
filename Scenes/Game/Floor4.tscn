@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b0rpb7arjww6r"]
+[gd_scene load_steps=25 format=3 uid="uid://b0rpb7arjww6r"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Floor4.gd" id="1_85kuv"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_esjso"]
@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://c3qatthopnxn8" path="res://Assets/Textures/wall.png" id="3_syipn"]
 [ext_resource type="Texture2D" uid="uid://p3yqmcxapyau" path="res://addons/kenney_prototype_textures/light/texture_02.png" id="4_14x3k"]
 [ext_resource type="PackedScene" uid="uid://cta78vy2cx2y3" path="res://Scenes/Monsters/Estrellin.tscn" id="4_gkiev"]
-[ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="5_5urrw"]
 [ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="5_he655"]
 [ext_resource type="Texture2D" uid="uid://mqmc3ywjhicm" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="5_xxdrs"]
 [ext_resource type="PackedScene" uid="uid://djoymv62txxbq" path="res://Scenes/Monsters/Circulin.tscn" id="7_g01tx"]
 [ext_resource type="PackedScene" uid="uid://vmdjo3yhbaby" path="res://Scenes/Objects/pc.tscn" id="7_hwhci"]
+[ext_resource type="PackedScene" uid="uid://u41ff7bkhdrr" path="res://Scenes/Objects/key.tscn" id="7_wqddr"]
 [ext_resource type="PackedScene" uid="uid://dj7kqc66xttxy" path="res://Scenes/Objects/Terminal.tscn" id="9_a0bvf"]
 [ext_resource type="PackedScene" uid="uid://ceuwkfvmg4356" path="res://Scenes/Monsters/Triagulin.tscn" id="12_walbj"]
 [ext_resource type="PackedScene" uid="uid://bsuc42l1mm6wb" path="res://Scenes/Monsters/Rectangulin.tscn" id="13_pf6k7"]
@@ -35,10 +35,6 @@ uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdjc3"]
 size = Vector3(2.23193, 2.79639, 2.04175)
-
-[sub_resource type="PrismMesh" id="PrismMesh_ic6w3"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_da8dn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ivcbx"]
 
@@ -732,20 +728,8 @@ shape = SubResource("BoxShape3D_qdjc3")
 [node name="PC Room" type="Node3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67, 2, -84)
 
-[node name="Key" type="StaticBody3D" parent="Objects/PC Room"]
+[node name="Key" parent="Objects/PC Room" instance=ExtResource("7_wqddr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.73194, 0.276482, -2.10455)
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("5_5urrw")
-
-[node name="KeyMesh" type="MeshInstance3D" parent="Objects/PC Room/Key"]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.231163, -0.134162, -0.0499115)
-mesh = SubResource("PrismMesh_ic6w3")
-skeleton = NodePath("../..")
-
-[node name="PickupCol" type="CollisionShape3D" parent="Objects/PC Room/Key"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.388397, -0.236196, -0.0477753)
-shape = SubResource("BoxShape3D_da8dn")
 
 [node name="KeySpotlight" type="SpotLight3D" parent="Objects/PC Room"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -7, 3.60573, -2.27334)

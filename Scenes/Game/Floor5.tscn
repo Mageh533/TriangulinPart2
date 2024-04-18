@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bl27ggc60wlyc"]
+[gd_scene load_steps=36 format=3 uid="uid://bl27ggc60wlyc"]
 
 [ext_resource type="PackedScene" uid="uid://dlr0blffuc2fd" path="res://Scenes/Game/stairs.tscn" id="1_1uuuv"]
 [ext_resource type="PackedScene" uid="uid://b0rpb7arjww6r" path="res://Scenes/Game/Floor4.tscn" id="1_txp8e"]
@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://djpnal1bm2ddo" path="res://Scenes/Objects/ceiling_alarm.tscn" id="3_n1yt5"]
 [ext_resource type="Texture2D" uid="uid://mqmc3ywjhicm" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="5_37521"]
 [ext_resource type="Texture2D" uid="uid://p3yqmcxapyau" path="res://addons/kenney_prototype_textures/light/texture_02.png" id="5_e5i7g"]
-[ext_resource type="Script" path="res://Scripts/Objects/Key.gd" id="6_17fyw"]
 [ext_resource type="Texture2D" uid="uid://c3qatthopnxn8" path="res://Assets/Textures/wall.png" id="6_wbaff"]
 [ext_resource type="PackedScene" uid="uid://ceuwkfvmg4356" path="res://Scenes/Monsters/Triagulin.tscn" id="7_ljopn"]
+[ext_resource type="PackedScene" uid="uid://u41ff7bkhdrr" path="res://Scenes/Objects/key.tscn" id="10_aougb"]
 [ext_resource type="AudioStream" uid="uid://b1h6i04u4r73m" path="res://Assets/Sound/Music/ambiente.ogg" id="10_xwkmj"]
 
 [sub_resource type="GDScript" id="GDScript_h4mex"]
@@ -156,10 +156,6 @@ size = Vector3(1.8407, 3.11859, 3.85858)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i2x1"]
 size = Vector3(1.8407, 2.62936, 1.27393)
-
-[sub_resource type="PrismMesh" id="PrismMesh_iwxyb"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_64ft0"]
 
 [node name="Floor5" type="Node3D"]
 script = SubResource("GDScript_h4mex")
@@ -543,21 +539,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.986318, 1.29636, -14.6251)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.420349, 0.589555, 1.25073)
 shape = SubResource("BoxShape3D_0i2x1")
 
-[node name="Key" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.63011, -25.1901, -7.45443)
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("6_17fyw")
-returnMessage = "Picked up Key labeled (4th Floor)"
-
-[node name="KeyMesh" type="MeshInstance3D" parent="Key"]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.231163, -0.134162, -0.0499115)
-mesh = SubResource("PrismMesh_iwxyb")
-skeleton = NodePath("../..")
-
-[node name="PickupCol" type="CollisionShape3D" parent="Key"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.388397, -0.236196, -0.0477753)
-shape = SubResource("BoxShape3D_64ft0")
+[node name="Key" parent="." instance=ExtResource("10_aougb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.186295, 1.25464, -7.0375)
 
 [node name="Ambient" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_xwkmj")
