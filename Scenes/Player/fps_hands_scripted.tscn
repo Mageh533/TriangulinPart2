@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://c37o4eb6356us"]
+[gd_scene load_steps=11 format=3 uid="uid://c37o4eb6356us"]
 
 [ext_resource type="PackedScene" uid="uid://dpreienu34nhg" path="res://Assets/Models/fps-hands.glb" id="1_b0j5w"]
 [ext_resource type="Script" path="res://Scripts/Player/fps_hands_scripted.gd" id="2_r5xx3"]
 [ext_resource type="PackedScene" uid="uid://ddhgua0sxcook" path="res://Scenes/Player/flashlight_modified.tscn" id="3_r4nit"]
+[ext_resource type="PackedScene" uid="uid://cnuhunqwslagk" path="res://Assets/Models/Objects/1_euro_coin/scene.gltf" id="4_c7uhj"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bry25"]
-albedo_color = Color(1, 1, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4icc"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_4w32a"]
 top_radius = 0.1
@@ -109,13 +111,16 @@ _data = {
 script = ExtResource("2_r5xx3")
 
 [node name="Flashlight" parent="." index="0" instance=ExtResource("3_r4nit")]
-transform = Transform3D(-6.27266e-10, -0.0199488, 0.00142961, -8.71996e-10, 0.00142961, 0.0199488, -0.02, 5.63331e-10, -9.14603e-10, -2.39187, 12.6818, 6.43753)
+transform = Transform3D(-6.27266e-10, -0.0199488, 0.00142961, -8.71996e-10, 0.00142961, 0.0199488, -0.02, 5.63331e-10, -9.14603e-10, -2.35808, 9.54667, 0.371643)
 
 [node name="CoinMesh" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(1.2, 0, 0, 0, -5.24537e-08, -1.2, 0, 1.2, -5.24537e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_bry25")
+material_override = SubResource("StandardMaterial3D_y4icc")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_4w32a")
+
+[node name="Euro" parent="CoinMesh" index="0" instance=ExtResource("4_c7uhj")]
+transform = Transform3D(0.0916667, 0, 0, 0, -4.00688e-09, 0.120622, 0, -0.0916667, -5.27254e-09, 0, 4.21e-09, 0.0963134)
 
 [node name="Skeleton3D" parent="basicRig" index="0"]
 bones/0/rotation = Quaternion(-0.419232, 0.470686, 0.471532, 0.616731)

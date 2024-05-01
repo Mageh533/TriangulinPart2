@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj7kqc66xttxy"]
+[gd_scene load_steps=9 format=3 uid="uid://dj7kqc66xttxy"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Terminal.gd" id="1_6nwiv"]
 [ext_resource type="PackedScene" uid="uid://bku78k5461bs1" path="res://Scenes/Game/Minigames/frogger.tscn" id="2_kxfdw"]
 [ext_resource type="Texture2D" uid="uid://bjv1gyv48qygk" path="res://Assets/Sprites/UI/079icon.png" id="3_l3c2d"]
+[ext_resource type="PackedScene" uid="uid://blufpk0jqsavg" path="res://Assets/Models/Objects/tablet__display__stands/scene.gltf" id="3_licws"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_t1dk0"]
 size = Vector2(1.5, 1)
@@ -14,23 +15,18 @@ viewport_path = NodePath("SubViewport")
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_bhsng")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8st4"]
-albedo_color = Color(0, 0.239216, 0.180392, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_6clws"]
-size = Vector3(1.475, 2.99, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_1h24m"]
-size = Vector3(1.475, 0.19, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_18ivn"]
 size = Vector3(1.54053, 3, 2.00818)
 
 [node name="Terminal" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.387155, 0)
 collision_layer = 20
 collision_mask = 0
 script = ExtResource("1_6nwiv")
 sceneToPlay = ExtResource("2_kxfdw")
+
+[node name="Tablet" parent="." instance=ExtResource("3_licws")]
+transform = Transform3D(0.019, 0, 0, 0, 0.019, 0, 0, 0, 0.019, 0, -3, 0)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -90,27 +86,19 @@ grow_vertical = 2
 texture = ExtResource("3_l3c2d")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.702754)
+transform = Transform3D(1, 0, 0, 0, 0.805515, 0.592576, 0, -0.592576, 0.805515, 0, -0.838701, 0.218403)
 
 [node name="Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.472252, 0, 0, 0, 0.390328, 1.20907, 0, -0.334044, 1.41279, 0, -1.03568, -0.070463)
 mesh = SubResource("QuadMesh_t1dk0")
 surface_material_override/0 = SubResource("StandardMaterial3D_c0gao")
-
-[node name="Terminal" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.998429, -0.507285)
-material_override = SubResource("StandardMaterial3D_h8st4")
-mesh = SubResource("BoxMesh_6clws")
-
-[node name="Terminal2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.606708, 0.479686)
-mesh = SubResource("BoxMesh_1h24m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114746, -1, -0.0183716)
 shape = SubResource("BoxShape3D_18ivn")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.492986)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.97708, 0.0269888)
 omni_range = 1.06121
 
 [node name="FlashTimer" type="Timer" parent="."]

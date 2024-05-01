@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pot plant - Dracena
+* source:	https://sketchfab.com/3d-models/pot-plant-dracena-c2207e3e18ba454f8ceb43f208d0927c
+* author:	Asia Matusik (https://sketchfab.com/asiam)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pot plant - Dracena" (https://sketchfab.com/3d-models/pot-plant-dracena-c2207e3e18ba454f8ceb43f208d0927c) by Asia Matusik (https://sketchfab.com/asiam) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

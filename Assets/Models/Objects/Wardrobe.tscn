@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdu3jla6mtssl"]
+
+[ext_resource type="PackedScene" uid="uid://cdmxxrckr5lwf" path="res://Assets/Models/Objects/furniture_pack_3d_model/scene.gltf" id="1_alb63"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_alb63")]
+
+[node name="SmallCabinet2" parent="Sketchfab_model/126cf2331fb54845ae0f419fb9c54e01_fbx/RootNode" index="1"]
+visible = false
+
+[node name="SmallCabinet1" parent="Sketchfab_model/126cf2331fb54845ae0f419fb9c54e01_fbx/RootNode" index="2"]
+visible = false
