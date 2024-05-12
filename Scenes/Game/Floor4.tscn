@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b0rpb7arjww6r"]
+[gd_scene load_steps=31 format=3 uid="uid://b0rpb7arjww6r"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Floor4.gd" id="1_85kuv"]
 [ext_resource type="PackedScene" uid="uid://ishtnc6uke55" path="res://Scenes/Player/player.tscn" id="1_esjso"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dj7kqc66xttxy" path="res://Scenes/Objects/Terminal.tscn" id="9_a0bvf"]
 [ext_resource type="PackedScene" uid="uid://bnorehn0xf5h8" path="res://Assets/Models/Objects/pot_plant_-_dracena/scene.gltf" id="10_mprlk"]
 [ext_resource type="PackedScene" uid="uid://cdu3jla6mtssl" path="res://Assets/Models/Objects/Wardrobe.tscn" id="11_8nlit"]
+[ext_resource type="PackedScene" uid="uid://drob3wv4od2n4" path="res://Assets/Models/Objects/cabinet1.tscn" id="12_164nk"]
 [ext_resource type="PackedScene" uid="uid://1flxhta47mvf" path="res://Assets/Models/Objects/officeChair.tscn" id="12_eve5a"]
 [ext_resource type="PackedScene" uid="uid://ceuwkfvmg4356" path="res://Scenes/Monsters/Triagulin.tscn" id="12_walbj"]
 [ext_resource type="PackedScene" uid="uid://bsuc42l1mm6wb" path="res://Scenes/Monsters/Rectangulin.tscn" id="13_pf6k7"]
@@ -60,6 +61,7 @@ ssao_enabled = true
 sdfgi_use_occlusion = true
 glow_enabled = true
 glow_normalized = true
+glow_strength = 2.0
 
 [node name="Floor4" type="Node3D"]
 script = ExtResource("1_85kuv")
@@ -925,6 +927,8 @@ collision_layer = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.321762, 1.45844, 1.10048)
 shape = SubResource("BoxShape3D_taxjm")
 
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("11_8nlit")]
+
 [node name="Props" type="Node3D" parent="."]
 
 [node name="Plant" parent="Props" instance=ExtResource("10_mprlk")]
@@ -979,324 +983,365 @@ transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, -8, 0.885, 14)
 transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, -20, 0.885, 14)
 
 [node name="wardrobe_1" parent="Props" instance=ExtResource("11_8nlit")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -91, 1, 18)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -91, 0.435, 18)
+
+[node name="wardrobe_3" parent="Props" instance=ExtResource("11_8nlit")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -56.1124, 0.435, 6.94335)
+
+[node name="wardrobe_4" parent="Props" instance=ExtResource("11_8nlit")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -48.1124, 0.435, -46.2351)
+
+[node name="wardrobe_5" parent="Props" instance=ExtResource("11_8nlit")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -90.1124, 0.435, -35.2351)
+
+[node name="wardrobe_6" parent="Props" instance=ExtResource("11_8nlit")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.11238, 0.435, -35.2351)
+
+[node name="wardrobe_7" parent="Props" instance=ExtResource("11_8nlit")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -21.1124, 0.435, -64.2351)
+
+[node name="wardrobe_8" parent="Props" instance=ExtResource("11_8nlit")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -62.1124, 0.435, -64.2351)
+
+[node name="wardrobe_9" parent="Props" instance=ExtResource("11_8nlit")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -123.112, 0.435, -35.2351)
+
+[node name="wardrobe_10" parent="Props" instance=ExtResource("11_8nlit")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -112.112, 0.435, 23.7649)
+
+[node name="cabinet_1" parent="Props" instance=ExtResource("12_164nk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.0467, 0.498659, -11.0328)
+
+[node name="cabinet_2" parent="Props" instance=ExtResource("12_164nk")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -79.0467, 0.498659, 3.21004)
+
+[node name="cabinet_3" parent="Props" instance=ExtResource("12_164nk")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -103.272, 0.498659, 6.21004)
+
+[node name="cabinet_4" parent="Props" instance=ExtResource("12_164nk")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -103.272, 0.498659, 13.2297)
+
+[node name="cabinet_5" parent="Props" instance=ExtResource("12_164nk")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -103.272, 0.498659, -0.869134)
 
 [node name="wardrobe_2" parent="Props" instance=ExtResource("11_8nlit")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -91, 1, 11)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -91, 0.46974, 11)
 
 [node name="office_chair_1" parent="Props" instance=ExtResource("12_eve5a")]
 transform = Transform3D(0.00866025, 0, -0.005, 0, 0.01, 0, 0.005, 0, 0.00866025, -85, 0.992766, 14)
 
 [node name="Table_item_1" parent="Props" instance=ExtResource("15_qv4hx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -86, 0.864, 16)
+transform = Transform3D(-1.09278e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278e-07, -86, 0.864, 16)
 
 [node name="Table_item_2" parent="Props" instance=ExtResource("15_qv4hx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -79, 0.864, -5)
+transform = Transform3D(-1.09278e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278e-07, -79, 0.864, -5)
 
 [node name="Table_item_3" parent="Props" instance=ExtResource("15_qv4hx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -110, 0.864, -35)
+transform = Transform3D(-1.09278e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278e-07, -110, 0.864, -35)
 
 [node name="Table_item_4" parent="Props" instance=ExtResource("15_qv4hx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -77, 0.864, -60)
+transform = Transform3D(0.049913, 0, -2.4995, 0, 2.5, 0, 2.4995, 0, 0.049913, -74.0826, 0.864, -58.5239)
 
 [node name="Table_item_5" parent="Props" instance=ExtResource("15_qv4hx")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -55, 0.864, -68)
+transform = Transform3D(-2.5, 0, -3.77489e-07, 0, 2.5, 0, 3.77489e-07, 0, -2.5, -55, 0.864, -68)
 
 [node name="Table_item_6" parent="Props" instance=ExtResource("15_qv4hx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50, 0.864, -34)
+transform = Transform3D(-1.09278e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278e-07, -50, 0.864, -34)
 
 [node name="Table_item_7" parent="Props" instance=ExtResource("15_qv4hx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -41, 0.864, -36)
+transform = Transform3D(-1.09278e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278e-07, -41, 0.864, -36)
 
 [node name="Table_item_8" parent="Props" instance=ExtResource("15_qv4hx")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 0.864, 15)
+transform = Transform3D(-2.5, 0, -3.77489e-07, 0, 2.5, 0, 3.77489e-07, 0, -2.5, -14, 0.864, 15)
 
-[node name="Locker_1" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Lockers" type="Node3D" parent="Props"]
+
+[node name="Locker_1" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -118.393, 0.464722, -56.4864)
 
-[node name="Locker_2" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_2" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -117.506, 0.464722, -56.4864)
 
-[node name="Locker_3" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_3" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -116.632, 0.464722, -56.4864)
 
-[node name="Locker_4" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_4" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -115.786, 0.464722, -56.4864)
 
-[node name="Locker_5" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_5" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -114.893, 0.464722, -56.4864)
 
-[node name="Locker_6" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_6" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -114.005, 0.464722, -56.4864)
 
-[node name="Locker_7" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_7" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -113.132, 0.464722, -56.4864)
 
-[node name="Locker_8" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_8" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -112.286, 0.464722, -56.4864)
 
-[node name="Locker_9" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_9" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -111.368, 0.464722, -56.4864)
 
-[node name="Locker_10" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_10" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -110.48, 0.464722, -56.4864)
 
-[node name="Locker_11" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_11" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -109.607, 0.464722, -56.4864)
 
-[node name="Locker_12" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_12" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -108.761, 0.464722, -56.4864)
 
-[node name="Locker_13" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_13" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -107.868, 0.464722, -56.4864)
 
-[node name="Locker_14" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_14" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -106.98, 0.464722, -56.4864)
 
-[node name="Locker_15" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_15" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -106.107, 0.464722, -56.4864)
 
-[node name="Locker_16" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_16" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -105.261, 0.464722, -56.4864)
 
-[node name="Locker_17" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_17" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -104.378, 0.464722, -56.4864)
 
-[node name="Locker_18" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_18" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -103.49, 0.464722, -56.4864)
 
-[node name="Locker_19" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_19" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -102.616, 0.464722, -56.4864)
 
-[node name="Locker_20" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_20" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -101.771, 0.464722, -56.4864)
 
-[node name="Locker_21" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_21" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -100.878, 0.464722, -56.4864)
 
-[node name="Locker_22" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_22" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -99.9898, 0.464722, -56.4864)
 
-[node name="Locker_23" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_23" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -99.1162, 0.464722, -56.4864)
 
-[node name="Locker_24" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_24" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -98.2704, 0.464722, -56.4864)
 
-[node name="Locker_25" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_25" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -97.3524, 0.464722, -56.4864)
 
-[node name="Locker_26" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_26" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -96.4647, 0.464722, -56.4864)
 
-[node name="Locker_27" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_27" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -95.5911, 0.464722, -56.4864)
 
-[node name="Locker_28" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_28" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -94.7453, 0.464722, -56.4864)
 
-[node name="Locker_29" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_29" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -93.8522, 0.464722, -56.4864)
 
-[node name="Locker_30" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_30" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -92.9644, 0.464722, -56.4864)
 
-[node name="Locker_31" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_31" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -92.0908, 0.464722, -56.4864)
 
-[node name="Locker_32" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_32" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -91.245, 0.464722, -56.4864)
 
-[node name="Locker_33" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_33" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -90.3042, 0.464722, -56.4864)
 
-[node name="Locker_34" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_34" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -89.4164, 0.464722, -56.4864)
 
-[node name="Locker_35" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_35" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -88.5428, 0.464722, -56.4864)
 
-[node name="Locker_36" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_36" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -87.697, 0.464722, -56.4864)
 
-[node name="Locker_37" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_37" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -86.8039, 0.464722, -56.4864)
 
-[node name="Locker_38" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_38" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -85.9161, 0.464722, -56.4864)
 
-[node name="Locker_39" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_39" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -85.0425, 0.464722, -56.4864)
 
-[node name="Locker_40" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_40" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -84.1967, 0.464722, -56.4864)
 
-[node name="Locker_41" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_41" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -83.2788, 0.464722, -56.4864)
 
-[node name="Locker_42" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_42" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -82.391, 0.464722, -56.4864)
 
-[node name="Locker_43" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_43" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -81.5175, 0.464722, -56.4864)
 
-[node name="Locker_44" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_44" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -80.6716, 0.464722, -56.4864)
 
-[node name="Locker_45" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_45" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -79.7785, 0.464722, -56.4864)
 
-[node name="Locker_46" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_46" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -78.8908, 0.464722, -56.4864)
 
-[node name="Locker_47" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_47" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -78.0172, 0.464722, -56.4864)
 
-[node name="Locker_48" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_48" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(1.50996e-07, 0, 2, 0, 2, 0, -2, 0, 1.50996e-07, -77.1714, 0.464722, -56.4864)
 
-[node name="Locker_49" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_49" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -77.1697, 0.464722, -72.2255)
 
-[node name="Locker_50" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_50" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -78.0575, 0.464722, -72.2255)
 
-[node name="Locker_51" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_51" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -78.931, 0.464722, -72.2255)
 
-[node name="Locker_52" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_52" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -79.7769, 0.464722, -72.2255)
 
-[node name="Locker_53" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_53" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -80.67, 0.464722, -72.2255)
 
-[node name="Locker_54" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_54" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -81.5577, 0.464722, -72.2255)
 
-[node name="Locker_55" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_55" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -82.4313, 0.464722, -72.2255)
 
-[node name="Locker_56" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_56" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -83.2771, 0.464722, -72.2255)
 
-[node name="Locker_57" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_57" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -84.1951, 0.464722, -72.2255)
 
-[node name="Locker_58" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_58" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -85.0828, 0.464722, -72.2255)
 
-[node name="Locker_59" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_59" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -85.9564, 0.464722, -72.2255)
 
-[node name="Locker_60" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_60" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -86.8022, 0.464722, -72.2255)
 
-[node name="Locker_61" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_61" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -87.6953, 0.464722, -72.2255)
 
-[node name="Locker_62" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_62" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -88.5831, 0.464722, -72.2255)
 
-[node name="Locker_63" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_63" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -89.4567, 0.464722, -72.2255)
 
-[node name="Locker_64" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_64" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -90.3025, 0.464722, -72.2255)
 
-[node name="Locker_65" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_65" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -91.1854, 0.464722, -72.2255)
 
-[node name="Locker_66" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_66" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -92.0731, 0.464722, -72.2255)
 
-[node name="Locker_67" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_67" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -92.9467, 0.464722, -72.2255)
 
-[node name="Locker_68" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_68" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -93.7925, 0.464722, -72.2255)
 
-[node name="Locker_69" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_69" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -94.6857, 0.464722, -72.2255)
 
-[node name="Locker_70" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_70" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -95.5734, 0.464722, -72.2255)
 
-[node name="Locker_71" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_71" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -96.447, 0.464722, -72.2255)
 
-[node name="Locker_72" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_72" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -97.2928, 0.464722, -72.2255)
 
-[node name="Locker_73" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_73" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -98.2107, 0.464722, -72.2255)
 
-[node name="Locker_74" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_74" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -99.0985, 0.464722, -72.2255)
 
-[node name="Locker_75" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_75" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -99.9721, 0.464722, -72.2255)
 
-[node name="Locker_76" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_76" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -100.818, 0.464722, -72.2255)
 
-[node name="Locker_77" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_77" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -101.711, 0.464722, -72.2255)
 
-[node name="Locker_78" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_78" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -102.599, 0.464722, -72.2255)
 
-[node name="Locker_79" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_79" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -103.472, 0.464722, -72.2255)
 
-[node name="Locker_80" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_80" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -104.318, 0.464722, -72.2255)
 
-[node name="Locker_81" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_81" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -105.259, 0.464722, -72.2255)
 
-[node name="Locker_82" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_82" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -106.147, 0.464722, -72.2255)
 
-[node name="Locker_83" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_83" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -107.02, 0.464722, -72.2255)
 
-[node name="Locker_84" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_84" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -107.866, 0.464722, -72.2255)
 
-[node name="Locker_85" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_85" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -108.759, 0.464722, -72.2255)
 
-[node name="Locker_86" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_86" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -109.647, 0.464722, -72.2255)
 
-[node name="Locker_87" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_87" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -110.521, 0.464722, -72.2255)
 
-[node name="Locker_88" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_88" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -111.366, 0.464722, -72.2255)
 
-[node name="Locker_89" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_89" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -112.284, 0.464722, -72.2255)
 
-[node name="Locker_90" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_90" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -113.172, 0.464722, -72.2255)
 
-[node name="Locker_91" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_91" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -114.046, 0.464722, -72.2255)
 
-[node name="Locker_92" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_92" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -114.892, 0.464722, -72.2255)
 
-[node name="Locker_93" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_93" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -115.785, 0.464722, -72.2255)
 
-[node name="Locker_94" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_94" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -116.672, 0.464722, -72.2255)
 
-[node name="Locker_95" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_95" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -117.546, 0.464722, -72.2255)
 
-[node name="Locker_96" parent="Props" instance=ExtResource("14_fytwf")]
+[node name="Locker_96" parent="Props/Lockers" instance=ExtResource("14_fytwf")]
 transform = Transform3D(-3.25841e-07, 0, -2, 0, 2, 0, 2, 0, -3.25841e-07, -118.392, 0.464722, -72.2255)
 
 [node name="MapCenter" type="Marker3D" parent="."]

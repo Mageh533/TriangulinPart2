@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxbn3no561bs8"]
+
+[ext_resource type="PackedScene" uid="uid://cpvg5ga7l1rdx" path="res://Assets/Models/Objects/flare/scene.gltf" id="1_hyb0u"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_hyb0u")]
+
+[node name="Object_4" parent="Sketchfab_model/root/GLTF_SceneRootNode/Cylinder_0" index="0"]
+cast_shadow = 0
+
+[node name="Object_6" parent="Sketchfab_model/root/GLTF_SceneRootNode/Cylinder_001_1" index="0"]
+cast_shadow = 0

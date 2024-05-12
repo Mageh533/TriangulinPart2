@@ -292,6 +292,24 @@ func _on_coinbag_gui_input(event):
 				playEquipAnims(EQUIPED_LEFT, leftHand)
 		send_inventory_to_ui()
 
+func _on_flare_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				EQUIPED_RIGHT = "Flare"
+				if EQUIPED_LEFT == EQUIPED_RIGHT:
+					EQUIPED_LEFT = ""
+					playEquipAnims(EQUIPED_LEFT, leftHand)
+				playEquipAnims(EQUIPED_RIGHT, rightHand)
+			MOUSE_BUTTON_RIGHT:
+				EQUIPED_LEFT = "Flare"
+				playEquipAnims("Flare", leftHand)
+				if EQUIPED_RIGHT == EQUIPED_LEFT:
+					EQUIPED_RIGHT = ""
+					playEquipAnims(EQUIPED_RIGHT, rightHand)
+				playEquipAnims(EQUIPED_LEFT, leftHand)
+		send_inventory_to_ui()
+
 func _on_terminal_toggle_control_to_player():
 	active = !active
 	if active:

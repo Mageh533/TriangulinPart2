@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpwe0jd5b43jw"]
+
+[ext_resource type="PackedScene" uid="uid://dxbn3no561bs8" path="res://Assets/Models/Objects/flare_scripted.tscn" id="1_v128r"]
+
+[sub_resource type="GDScript" id="GDScript_ks1wk"]
+resource_name = "flare"
+script/source = "extends RigidBody3D
+
+@export var duration : float = 60
+
+@onready var flames = $FlamesLight
+@onready var particles = $ParticleFlames
+
+var time_left : float = 0
+var active : bool = true
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	time_left = duration
+
+func _process(delta):
+	time_left -= delta
+	if time_left <= 0 and active:
+		active = false
+		turn_off()
+
+func turn_off():
+	var tween = get_tree().create_tween()
+	tween.tween_property(flames, \"light_energy\", 0, 5)
+	await tween.finished
+	particles.emitting = false
+	await get_tree().create_timer(2).timeout
+	queue_free()
+"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lgs3l"]
+height = 0.908069
+radius = 0.0821487
+
+[sub_resource type="Curve" id="Curve_20ivm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.395652, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_82cf4"]
+curve = SubResource("Curve_20ivm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bhb03"]
+spread = 35.759
+initial_velocity_min = -2.53
+initial_velocity_max = 4.0
+gravity = Vector3(0, 20, 0)
+scale_curve = SubResource("CurveTexture_82cf4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvsic"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.0431373, 0, 1)
+emission_energy_multiplier = 42.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_5xglq"]
+material = SubResource("StandardMaterial3D_jvsic")
+radius = 0.02
+height = 0.056
+radial_segments = 4
+rings = 3
+
+[node name="Flare" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 4
+script = SubResource("GDScript_ks1wk")
+
+[node name="Model" parent="." instance=ExtResource("1_v128r")]
+transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, 0.05, 0, -0.05, -2.18557e-09, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0317959, 0)
+shape = SubResource("CylinderShape3D_lgs3l")
+
+[node name="ParticleFlames" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.440595, 0)
+cast_shadow = 0
+amount = 64
+lifetime = 0.6
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_bhb03")
+draw_pass_1 = SubResource("SphereMesh_5xglq")
+
+[node name="FlamesLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57961, 0)
+light_color = Color(1, 0.435294, 0.364706, 1)
+light_energy = 16.0
+light_indirect_energy = 16.0
+shadow_enabled = true
+omni_range = 18.7408
